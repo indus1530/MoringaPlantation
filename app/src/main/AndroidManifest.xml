@@ -69,6 +69,7 @@
             android:name="edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
+
         <activity
             android:name="edu.aku.hassannaqvi.moringaPlantation.core.AndroidDatabaseManager"
             android:parentActivityName="edu.aku.hassannaqvi.moringaPlantation.ui.other.MainActivity"
