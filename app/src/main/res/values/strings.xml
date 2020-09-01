@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name"> Moringa Plantation 2020 </string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="btnSync">Download Data</string>
+    <string name="btnUpload">Upload Data</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="splashText"> </string>
+    <string name="splashText2">  </string>
+    <string name="check_pending_forms">CHECK PENDING FORMS</string>
+    <string name="open_new_form"> OPEN NEW FORM </string>
+    <string name="openScreening"> Screening </string>
+    <string name="openPretest"> Pre Test Knowlegde </string>
+    <string name="openFollowup"> Follow Up </string>
+    <string name="records_summary">Records Summary</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="only_for_testing">ONLY FOR TESTING</string>
+    <string name="database">Database</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="no"> نہیں </string>
+    <string name="dkn"> معلوم نہیں </string>
+    <string name="none"> کوئی نہیں </string>
+    <string name="never"> کبھی نہیں </string>
+    <string name="na"> قابل اطلاق / دستیاب نہیں  </string>
+    <string name="nap"> قابل اطلاق نہیں </string>
+    <string name="nav"> دستیاب نہیں </string>
+    <string name="ref"> انکار کر دیا </string>
+    <string name="other"> دیگر </string>
+    <string name="specify"> وضاحت کریں </string>
+    <string name="year"> سال </string>
+    <string name="month"> مہینہ </string>
+    <string name="weeks"> ہفتے </string>
+    <string name="days"> دن </string>
+    <string name="hours"> گھنٹے </string>
+    <string name="minutes"> منٹ </string>
+    <string name="kg"> کلوگرام </string>
+    <string name="km"> کلومیٹر </string>
+    <string name="cm"> سینٹی میٹر </string>
+    <string name="in"> انچ </string>
+    <string name="rupees"> روپے </string>
+    <string name="num"> اعداد </string>
+    <string name="name"> نام </string>
+    <string name="contactnum"> رابطہ نمبر </string>
+    <string name="checkHHpresent"> گھر کے سربراہ کا نام لائن لسٹنگ ڈیٹا سے مطابقت رکھتا ہے۔ </string>
+
+
+    <string name='Q_mp101'>mp101</string>
+    <string name='Q_mp102'>mp102</string>
+    <string name='Q_mp103'>mp103</string>
+    <string name='Q_mp104'>mp104</string>
+    <string name='Q_mp105'>mp105</string>
+    <string name='Q_mp106'>mp106</string>
+    <string name='Q_mp107'>mp107</string>
+    <string name='Q_mp108'>mp108</string>
+
+    <string name='Q_mf101'>mf101</string>
+    <string name='Q_mf102'>mf102</string>
+    <string name='Q_mf103'>mf103</string>
+    <string name='Q_mf104'>mf104</string>
+    <string name='Q_mf105'>mf105</string>
+    <string name='Q_mf106'>mf106</string>
+    <string name='Q_mf107'>mf107</string>
+    <string name='Q_mf108'>mf108</string>
+
+
+    <string name="mp101"> دوري جي تاريخ </string>
+    <string name="mp102">سي ايڇ ڊبليو جو نالو ۽ ڪوڊ نمبر</string>
+    <string name="mp103">ٽيم ليڊر جو نالو ۽ ڪوڊ</string>
+    <string name="mp104">ڳوٺ/ پاڙو</string>
+    <string name="mp105">يونين ڪائونسل</string>
+    <string name="mp106">ٻوٽي جي سائيز (انچن ۾) </string>
+    <string name="mp107"> ٻوٽي لڳائڻ جي جاءِ</string>
+    <string name="mp10701">ننڍا زميندار</string>
+    <string name="mp10702"> وڏا زميندار</string>
+    <string name="mp10703"> گھر</string>
+    <string name="mp1074">اسڪول</string>
+    <string name="mp10705">مسجد </string>
+    <string name="mp10706">درگاه</string>
+    <string name="mp10707">مندر </string>
+    <string name="mp10708"> قبرستان</string>
+    <string name="mp10709">اسپتال </string>
+    <string name="mp10710">عوامي هنڌ </string>
+    <string name="mp10711">ٻيو ڪجھ وضاحت ڪريو</string>
+    <string name="mp108">  ٻوٽن  جي تعداد</string>
+
+    <string name="mf101">  دوري جي تاريخ    </string>
+    <string name="mf102">  ٽيم ليڊر جو نالو ۽ڪوڊ</string>
+    <string name="mf103">ڳوٺ/پاڙو</string>
+    <string name="mf104">يونين ڪائونسل</string>
+    <string name="mf105">مورنگا وڻ جو نتيجو </string>
+    <string name="mf10501">موجود ۽ سائوآهي</string>
+    <string name="mf10502">موجود آهي پر سائو ناهي</string>
+    <string name="mf10503">موجود ناهي</string>
+    <string name="mf10504">انڪار ڪيو</string>
+    <string name="mf10505">خالي گهر / بغير رهائش</string>
+    <string name="mf10506">گھر نه مليو</string>
+    <string name="mf106">پوئين دوري جو نتيجو ڇا آهي </string>
+    <string name="mf10601">ٻارن پاران راند ڪرڻ دوران نقصان ٿيو</string>
+    <string name="mf10602">ڪابه قابل ذڪر ناهي</string>
+    <string name="mf10603"> ڪي به پن موجود ناهن </string>
+    <string name="mf10604">جانور کائي ويا </string>
+    <string name="mf10605">خبر ناهي</string>
+    <string name="mf10696">ٻيو ڪجھ وضاحت ڪريو</string>
+    <string name="mf107">ٻوٽي جي سائيز (انچن ۾) </string>
+    <string name="mf108">موجود نه هجڻ جو سبب ڇا آهي</string>
+    <string name="mf10801">انسانن پاران تباه ٿيل</string>
+    <string name="mf10802">ڪلر واري زمين</string>
+    <string name="mf10896">ٻيو ڪجھ وضاحت ڪريو</string>
+
+
+</resources>
