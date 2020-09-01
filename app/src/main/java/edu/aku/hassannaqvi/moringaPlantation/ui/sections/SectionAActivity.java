@@ -20,6 +20,7 @@ import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionABinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.moringaPlantation.utils.EndSectionActivity;
 
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
@@ -48,7 +49,7 @@ public class SectionAActivity extends AppCompatActivity {
         SaveDraft();
         if (UpdateDB()) {
             finish();
-            startActivity(new Intent(this, SectionBActivity.class));
+            startActivity(new Intent(this, EndSectionActivity.class));
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
         }

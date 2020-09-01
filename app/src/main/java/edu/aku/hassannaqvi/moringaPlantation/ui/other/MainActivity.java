@@ -38,8 +38,6 @@ import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
 import edu.aku.hassannaqvi.moringaPlantation.ui.list_activity.FormsReportDate;
 import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionAActivity;
-import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionCActivity;
-import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionEActivity;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AndroidUtilityKt;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable;
@@ -139,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                 }
 
                 rSumText
-                        .append((form.getS1q1() + "          ").substring(0, 10))
-                        .append((form.getPid() + "      ").substring(0, 6))
+                        .append((form.getMf101() + "          ").substring(0, 10))
+                        .append((form.getMf102() + "      ").substring(0, 6))
                         .append("  \t\t")
                         .append(iStatus)
                         .append("\t\t\t\t")
@@ -297,12 +295,12 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
             case R.id.formA:
                 oF = new Intent(this, SectionAActivity.class);
                 break;
-            case R.id.formB:
+           /* case R.id.formB:
                 oF = new Intent(this, SectionCActivity.class);
                 break;
             case R.id.formC:
                 oF = new Intent(this, SectionEActivity.class);
-                break;
+                break;*/
             /*  case R.id.formD:
                 oF = new Intent(this, SectionDActivity.class);
                 break;

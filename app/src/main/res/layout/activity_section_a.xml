@@ -91,6 +91,7 @@
                             android:layout_alignTop="@id/qtxt_mf102"
                             android:layout_alignBottom="@id/qtxt_mf102"
                             android:text="@string/Q_mf102" />
+
                     </RelativeLayout>
 
                     <EditText
@@ -99,7 +100,9 @@
                         android:layout_height="56dp"
                         android:layout_marginBottom="12dp"
                         android:hint="@string/mf102" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mf103  Input   -->

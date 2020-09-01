@@ -7,9 +7,9 @@ import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.Versio
 
 public final class CreateTable {
 
-    public static final String DATABASE_NAME = "covid_dadu.db";
-    public static final String DB_NAME = "covid_dadu_copy.db";
-    public static final String PROJECT_NAME = "covid_dadu";
+    public static final String DATABASE_NAME = "moringa_plantation.db";
+    public static final String DB_NAME = "moringa_plantation_copy.db";
+    public static final String PROJECT_NAME = "moringa_plantation";
     public static final int DATABASE_VERSION = 1;
 
     public static final String SQL_CREATE_FORMS = "CREATE TABLE "
@@ -21,7 +21,6 @@ public final class CreateTable {
             + FormsTable.COLUMN_SYSDATE + " TEXT,"
             + FormsTable.COLUMN_UID + " TEXT,"
             + FormsTable.COLUMN_USERNAME + " TEXT,"
-            + FormsTable.COLUMN_FORMDATE + " TEXT,"
             + FormsTable.COLUMN_MF101 + " TEXT,"
             + FormsTable.COLUMN_MF102 + " TEXT,"
             + FormsTable.COLUMN_MF103 + " TEXT,"
@@ -29,12 +28,13 @@ public final class CreateTable {
             + FormsTable.COLUMN_MF105 + " TEXT,"
             + FormsTable.COLUMN_MF106 + " TEXT,"
             + FormsTable.COLUMN_MF107 + " TEXT,"
+            + FormsTable.COLUMN_MF108 + " TEXT,"
             + FormsTable.COLUMN_GPSLAT + " TEXT,"
             + FormsTable.COLUMN_GPSLNG + " TEXT,"
             + FormsTable.COLUMN_GPSDATE + " TEXT,"
             + FormsTable.COLUMN_GPSACC + " TEXT,"
             + FormsTable.COLUMN_APPVERSION + " TEXT,"
-            + FormsTable.COLUMN_MF108 + " TEXT,"
+            + FormsTable.COLUMN_SB + " TEXT,"
             + FormsTable.COLUMN_ENDINGDATETIME + " TEXT,"
             + FormsTable.COLUMN_ISTATUS + " TEXT,"
             + FormsTable.COLUMN_ISTATUS96x + " TEXT,"

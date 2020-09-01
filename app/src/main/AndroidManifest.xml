@@ -61,32 +61,7 @@
             android:theme="@style/AppThemeEnglish" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.InfoSectionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeUrdu" />
-
-        <activity
             android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionAActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeUrdu" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionBActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeUrdu" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionCActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeUrdu" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionDActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeUrdu" />
-
-        <activity
-            android:name="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionEActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
 
