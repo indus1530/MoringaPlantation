@@ -98,7 +98,6 @@
                         android:id="@+id/mf102"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
                         android:hint="@string/mf102" />
 
                 </LinearLayout>
@@ -141,9 +140,10 @@
                         android:id="@+id/mf103"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
                         android:hint="@string/mf103" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mf104  Input   -->
@@ -182,7 +182,6 @@
                         android:id="@+id/mf104"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
                         android:hint="@string/mf104" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -340,7 +339,6 @@
                             android:id="@+id/mf10696x"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:layout_marginBottom="12dp"
                             android:hint="@string/mf10696"
                             android:tag="mf10696"
                             android:text='@{mf10696.checked ? mf10696x.getText().toString() : ""}'
@@ -385,7 +383,6 @@
                         android:id="@+id/mf107"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
                         android:hint="@string/mf107"
                         app:mask="##"
                         app:maxValue="500"
@@ -453,14 +450,19 @@
                             android:id="@+id/mf10896x"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:layout_marginBottom="12dp"
                             android:hint="@string/mf10896"
                             android:tag="mf10896"
                             android:text='@{mf10896.checked ? mf10896x.getText().toString() : ""}'
                             android:visibility='@{mf10896.checked? View.VISIBLE : View.GONE}' />
+
                     </RadioGroup>
+
                 </LinearLayout>
-            </androidx.cardview.widget.CardView><!--EndButton LinearLayout-->
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--EndButton LinearLayout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -488,6 +490,11 @@
                     android:text="Save"
                     android:textColor="@color/white" />
             </LinearLayout>
+            <!--EndButton LinearLayout-->
+
+
         </LinearLayout>
+
     </ScrollView>
+
 </layout>
