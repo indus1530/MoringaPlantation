@@ -78,12 +78,6 @@
                             android:text="@string/istatusb" />
 
                         <RadioButton
-                            android:id="@+id/istatusc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/istatusc" />
-
-                        <RadioButton
                             android:id="@+id/istatus96"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

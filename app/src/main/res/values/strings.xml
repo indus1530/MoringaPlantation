@@ -69,6 +69,7 @@
     <string name='Q_mf106'>mf106</string>
     <string name='Q_mf107'>mf107</string>
     <string name='Q_mf108'>mf108</string>
+    <string name='Q_istatus'>istatus</string>
 
 
     <string name="mp101"> دوري جي تاريخ </string>
@@ -114,6 +115,12 @@
     <string name="mf10801">انسانن پاران تباه ٿيل</string>
     <string name="mf10802">ڪلر واري زمين</string>
     <string name="mf10896">ٻيو ڪجھ وضاحت ڪريو</string>
+
+    <string name="istatus"> انٽرويو جو نتيجو </string>
+    <string name="istatusa"> مڪمل </string>
+    <string name="istatusb"> نامڪمل </string>
+    <string name="istatus96"> ٻيو ڪجھ </string>
+    <string name="istatus96x"> وضاحت ڪريو </string>
 
 
 </resources>

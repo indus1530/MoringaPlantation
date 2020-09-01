@@ -25,13 +25,11 @@ class EndingActivity : AppCompatActivity() {
         if (check) {
             bi.istatusa.isEnabled = true
             bi.istatusb.isEnabled = false
-            bi.istatusc.isEnabled = false
             bi.istatus96.isEnabled = false
         } else {
             val bool = intent.getIntExtra(FSTATUS_END_FLAG, 0)
             bi.istatusa.isEnabled = false
             bi.istatusb.isEnabled = true
-            bi.istatusc.isEnabled = true
             bi.istatus96.isEnabled = true
         }
     }
@@ -50,7 +48,6 @@ class EndingActivity : AppCompatActivity() {
     private fun saveDraft() {
         val statusValue = if (bi.istatusa.isChecked) "1"
         else if (bi.istatusb.isChecked) "2"
-        else if (bi.istatusc.isChecked) "3"
         else if (bi.istatus96.isChecked) "96"
         else "-1"
         form.istatus = statusValue
