@@ -3,11 +3,13 @@ package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
@@ -38,8 +40,24 @@ public class SectionMFActivity extends AppCompatActivity {
 
 
     private void setupSkip() {
-        /*bi.a06.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.lla07));
-        bi.a07.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.lla08));*/
+
+        bi.mf105.setOnCheckedChangeListener((radioGroup, i) -> {
+            Clear.clearAllFields(bi.fldGrpCVmf106);
+            Clear.clearAllFields(bi.fldGrpCVmf107);
+            Clear.clearAllFields(bi.fldGrpCVmf108);
+            bi.fldGrpCVmf106.setVisibility(View.GONE);
+            bi.fldGrpCVmf107.setVisibility(View.GONE);
+            bi.fldGrpCVmf108.setVisibility(View.GONE);
+
+            if (i == bi.mf10501.getId()) {
+                bi.fldGrpCVmf107.setVisibility(View.VISIBLE);
+            } else if (i == bi.mf10502.getId()) {
+                bi.fldGrpCVmf106.setVisibility(View.VISIBLE);
+            } else if (i == bi.mf10503.getId()) {
+                bi.fldGrpCVmf108.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
 

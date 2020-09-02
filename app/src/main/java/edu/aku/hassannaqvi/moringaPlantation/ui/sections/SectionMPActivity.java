@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
@@ -38,8 +39,7 @@ public class SectionMPActivity extends AppCompatActivity {
 
 
     private void setupSkip() {
-        /*bi.a06.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.lla07));
-        bi.a07.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.lla08));*/
+        bi.mp107.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVmp108));
     }
 
 
@@ -109,6 +109,7 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setMf107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
 
         form.setMf108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
+
         MainApp.setGPS(this);
 
 
