@@ -114,6 +114,7 @@ public class SectionAActivity extends AppCompatActivity {
                 : bi.mf10896.isChecked() ? "96"
                 : "-1");
         form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
+        MainApp.setGPS(this);
 
 
     }

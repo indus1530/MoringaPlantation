@@ -111,6 +111,7 @@ public class SectionBActivity extends AppCompatActivity {
         form.setMf107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
 
         form.setMf108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
+        MainApp.setGPS(this);
 
 
     }
