@@ -76,12 +76,13 @@ public class SectionAActivity extends AppCompatActivity {
 
         form = new Form();
         form.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        form.setMf101(form.getSysdate());
+        form.setFormtype("Follow Up");
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setAppversion(MainApp.appInfo.getAppVersion());
 
+        form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
 
         form.setMf102(bi.mf102.getText().toString().trim().isEmpty() ? "-1" : bi.mf102.getText().toString());
 
@@ -104,7 +105,7 @@ public class SectionAActivity extends AppCompatActivity {
                 : bi.mf10605.isChecked() ? "5"
                 : bi.mf10696.isChecked() ? "96"
                 : "-1");
-        form.setMf106(bi.mf10696x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10696x.getText().toString());
+        form.setMf106x(bi.mf10696x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10696x.getText().toString());
 
         form.setMf107(bi.mf107.getText().toString().trim().isEmpty() ? "-1" : bi.mf107.getText().toString());
 
@@ -112,7 +113,7 @@ public class SectionAActivity extends AppCompatActivity {
                 : bi.mf10802.isChecked() ? "2"
                 : bi.mf10896.isChecked() ? "96"
                 : "-1");
-        form.setMf108(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
+        form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
 
 
     }

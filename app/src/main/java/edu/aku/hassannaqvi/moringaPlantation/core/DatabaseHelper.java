@@ -502,6 +502,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Form form = new Form();
                 form.set_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_ID)));
                 form.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
+                form.setFormtype(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMTYPE)));
                 form.setUsername(c.getString(c.getColumnIndex(FormsTable.COLUMN_USERNAME)));
                 form.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
                 form.setMf101(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF101)));
@@ -510,8 +511,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 form.setMf104(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF104)));
                 form.setMf105(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF105)));
                 form.setMf106(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF106)));
+                form.setMf106x(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF106x)));
                 form.setMf107(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF107)));
+                form.setMf107x(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF107x)));
                 form.setMf108(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF108)));
+                form.setMf108x(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF108x)));
                 form.setsB(c.getString(c.getColumnIndex(FormsTable.COLUMN_SB)));
                 form.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
                 form.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
@@ -536,6 +540,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_MF101,
                 FormsTable.COLUMN_MF102,
@@ -568,6 +573,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Form form = new Form();
                 form.set_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_ID)));
                 form.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
+                form.setFormtype(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMTYPE)));
                 form.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
                 form.setMf101(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF101)));
                 form.setMf102(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF102)));
@@ -593,6 +599,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_MF102,
                 FormsTable.COLUMN_MF103,
@@ -621,6 +628,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Form form = new Form();
                 form.set_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_ID)));
                 form.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
+                form.setFormtype(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMTYPE)));
                 form.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
                 form.setMf101(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF101)));
                 form.setMf102(c.getString(c.getColumnIndex(FormsTable.COLUMN_MF102)));

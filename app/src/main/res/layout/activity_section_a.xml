@@ -56,6 +56,17 @@
 
                     </RelativeLayout>
 
+
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                        android:id="@+id/mf101"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="dd-MM-yyyy"
+                        app:dateFormat="dd-MM-yyyy"
+                        app:maxDate="CR_DATE"
+                        app:minDate="CR_DATE" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -97,8 +108,11 @@
                     <EditText
                         android:id="@+id/mf102"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:hint="@string/mf102" />
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/name"
+                        android:inputType="text"
+                        android:maxLength="25" />
 
                 </LinearLayout>
 
@@ -135,12 +149,16 @@
                             android:layout_alignTop="@id/qtxt_mf103"
                             android:layout_alignBottom="@id/qtxt_mf103"
                             android:text="@string/Q_mf103" />
+
                     </RelativeLayout>
 
                     <EditText
                         android:id="@+id/mf103"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
                         android:hint="@string/mf103" />
 
                 </LinearLayout>
@@ -178,14 +196,20 @@
                             android:layout_alignTop="@id/qtxt_mf104"
                             android:layout_alignBottom="@id/qtxt_mf104"
                             android:text="@string/Q_mf104" />
+
                     </RelativeLayout>
 
                     <EditText
                         android:id="@+id/mf104"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
                         android:hint="@string/mf104" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -219,6 +243,7 @@
                             android:layout_alignTop="@id/qtxt_mf105"
                             android:layout_alignBottom="@id/qtxt_mf105"
                             android:text="@string/Q_mf105" />
+
                     </RelativeLayout>
 
                     <RadioGroup
@@ -261,8 +286,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mf10506" />
+
                     </RadioGroup>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -296,6 +324,7 @@
                             android:layout_alignTop="@id/qtxt_mf106"
                             android:layout_alignBottom="@id/qtxt_mf106"
                             android:text="@string/Q_mf106" />
+
                     </RelativeLayout>
 
                     <RadioGroup
@@ -342,13 +371,19 @@
                         <EditText
                             android:id="@+id/mf10696x"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="wrap_content"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                            android:inputType="text"
+                            android:maxLength="25"
                             android:hint="@string/mf10696"
                             android:tag="mf10696"
                             android:text='@{mf10696.checked ? mf10696x.getText().toString() : ""}'
                             android:visibility='@{mf10696.checked? View.VISIBLE : View.GONE}' />
+
                     </RadioGroup>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -382,18 +417,22 @@
                             android:layout_alignTop="@id/qtxt_mf107"
                             android:layout_alignBottom="@id/qtxt_mf107"
                             android:text="@string/Q_mf107" />
+
                     </RelativeLayout>
 
                     <com.edittextpicker.aliazaz.EditTextPicker
                         android:id="@+id/mf107"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:hint="@string/mf107"
-                        app:mask="##"
                         app:maxValue="500"
                         app:minValue="1"
                         app:type="range" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -427,6 +466,7 @@
                             android:layout_alignTop="@id/qtxt_mf108"
                             android:layout_alignBottom="@id/qtxt_mf108"
                             android:text="@string/Q_mf108" />
+
                     </RelativeLayout>
 
                     <RadioGroup
@@ -455,7 +495,10 @@
                         <EditText
                             android:id="@+id/mf10896x"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="wrap_content"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                            android:inputType="text"
+                            android:maxLength="25"
                             android:hint="@string/mf10896"
                             android:tag="mf10896"
                             android:text='@{mf10896.checked ? mf10896x.getText().toString() : ""}'

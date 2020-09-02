@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <!-- mp101  Input   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp101"
@@ -58,11 +59,17 @@
                     <EditText
                         android:id="@+id/mp101"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
-                        android:hint="@string/mp101" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="dd-MM-yyyy"
+                        app:dateFormat="dd-MM-yyyy"
+                        app:maxDate="CR_DATE"
+                        app:minDate="CR_DATE" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
 
             <!-- mp102  Input   -->
             <androidx.cardview.widget.CardView
@@ -94,16 +101,22 @@
                             android:layout_alignTop="@id/qtxt_mp102"
                             android:layout_alignBottom="@id/qtxt_mp102"
                             android:text="@string/Q_mp102" />
+
                     </RelativeLayout>
 
                     <EditText
                         android:id="@+id/mp102"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
-                        android:hint="@string/mp102" />
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/name"
+                        android:inputType="text"
+                        android:maxLength="25" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
 
             <!-- mp103  Input   -->
             <androidx.cardview.widget.CardView
@@ -140,10 +153,14 @@
                     <EditText
                         android:id="@+id/mp103"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
                         android:hint="@string/mp103" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mp104  Input   -->
@@ -181,11 +198,16 @@
                     <EditText
                         android:id="@+id/mp104"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
                         android:hint="@string/mp104" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
 
             <!-- mp105  Input   -->
             <androidx.cardview.widget.CardView
@@ -222,10 +244,14 @@
                     <EditText
                         android:id="@+id/mp105"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
                         android:hint="@string/mp105" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mp106  Input-Numeric   -->
@@ -263,15 +289,18 @@
                     <com.edittextpicker.aliazaz.EditTextPicker
                         android:id="@+id/mp106"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:hint="@string/mp106"
-                        app:mask="##"
                         app:maxValue="500"
                         app:minValue="1"
                         app:type="range" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
 
             <!-- mp107  Radio   -->
             <androidx.cardview.widget.CardView
@@ -303,6 +332,7 @@
                             android:layout_alignTop="@id/qtxt_mp107"
                             android:layout_alignBottom="@id/qtxt_mp107"
                             android:text="@string/Q_mp107" />
+
                     </RelativeLayout>
 
                     <RadioGroup
@@ -379,14 +409,19 @@
                         <EditText
                             android:id="@+id/mp10711x"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:layout_marginBottom="12dp"
+                            android:layout_height="wrap_content"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                            android:inputType="text"
+                            android:maxLength="25"
                             android:hint="@string/mp10711"
                             android:tag="mp10711"
                             android:text='@{mp10711.checked ? mp10711x.getText().toString() : ""}'
                             android:visibility='@{mp10711.checked? View.VISIBLE : View.GONE}' />
+
                     </RadioGroup>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mp108  Input-Numeric   -->
@@ -424,14 +459,16 @@
                     <com.edittextpicker.aliazaz.EditTextPicker
                         android:id="@+id/mp108"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:hint="@string/mp108"
-                        app:mask="##"
                         app:maxValue="500"
                         app:minValue="1"
                         app:type="range" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -467,5 +504,7 @@
 
 
         </LinearLayout>
+
     </ScrollView>
+
 </layout>

@@ -76,6 +76,7 @@ public class SectionBActivity extends AppCompatActivity {
 
         form = new Form();
         form.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        form.setFormtype("MP Form");
         form.setMf101(form.getSysdate());
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
@@ -107,8 +108,9 @@ public class SectionBActivity extends AppCompatActivity {
                 : bi.mp10710.isChecked() ? "10"
                 : bi.mp10711.isChecked() ? "11"
                 : "-1");
-        //form.setMf10711x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
-        form.setMf108(bi.mp108.getText().toString());
+        form.setMf107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
+
+        form.setMf108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
 
 
     }

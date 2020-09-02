@@ -14,11 +14,12 @@ public class FormsContract {
     public static String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.covid_dadu";
 
     public static abstract class FormsTable implements BaseColumns {
-        public static final String TABLE_NAME = "covid";
+        public static final String TABLE_NAME = "form";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECT_NAME = "projectName";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_FORMTYPE = "formtype";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
         public static final String COLUMN_MF101 = "mf101";
@@ -27,8 +28,11 @@ public class FormsContract {
         public static final String COLUMN_MF104 = "mf104";
         public static final String COLUMN_MF105 = "mf105";
         public static final String COLUMN_MF106 = "mf106";
+        public static final String COLUMN_MF106x = "mf106x";
         public static final String COLUMN_MF107 = "mf107";
+        public static final String COLUMN_MF107x = "mf107x";
         public static final String COLUMN_MF108 = "MF108";
+        public static final String COLUMN_MF108x = "MF108x";
         public static final String COLUMN_SB = "sB";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
