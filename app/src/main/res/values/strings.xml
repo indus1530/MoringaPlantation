@@ -14,10 +14,10 @@
     <string name="splashText"> </string>
     <string name="splashText2">  </string>
     <string name="check_pending_forms">CHECK PENDING FORMS</string>
-    <string name="open_new_form"> OPEN NEW FORM </string>
+    <string name="open_form"> NEW FORM </string>
     <string name="openScreening"> Screening </string>
     <string name="openPretest"> Pre Test Knowlegde </string>
-    <string name="openFollowup"> Follow Up </string>
+    <string name="openFollowup"> FOLLOW UP </string>
     <string name="records_summary">Records Summary</string>
     <string name="main_menu">Main Menu</string>
     <string name="only_for_testing">ONLY FOR TESTING</string>

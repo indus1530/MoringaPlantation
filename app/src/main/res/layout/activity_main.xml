@@ -135,6 +135,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
@@ -163,7 +164,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:drawableStart="@drawable/open_form"
                                 android:drawablePadding="12dp"
-                                android:text="@string/openScreening"
+                                android:text="@string/open_form"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                                 android:textColor="@color/white" />
 
@@ -173,40 +174,6 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/formB"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="12dp"
-                        android:layout_weight="1.4"
-                        android:clickable="true"
-                        android:elevation="@dimen/cardview_default_elevation"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:onClick="@{callback::openSpecificActivity}"
-                        app:cardCornerRadius="@dimen/cardview_default_radius">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorPrimaryDark"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_horizontal"
-                                android:drawableStart="@drawable/open_form"
-                                android:drawablePadding="12dp"
-                                android:text="@string/openPretest"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/white" />
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/formC"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
