@@ -3,11 +3,12 @@
 
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionAActivity" />
+            type="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMPActivity" />
     </data>
 
 
@@ -23,9 +24,9 @@
             android:orientation="vertical">
 
 
-            <!-- mf101     -->
+            <!-- mp101  Input   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf101"
+                android:id="@+id/fldGrpCVmp101"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -39,26 +40,24 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf101"
+                            android:id="@+id/qtxt_mp101"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf101"
-                            android:text="@string/mf101" />
+                            android:layout_toEndOf="@id/q_mp101"
+                            android:text="@string/mp101" />
 
                         <TextView
-                            android:id="@+id/q_mf101"
+                            android:id="@+id/q_mp101"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf101"
-                            android:layout_alignBottom="@id/qtxt_mf101"
-                            android:text="@string/Q_mf101" />
-
+                            android:layout_alignTop="@id/qtxt_mp101"
+                            android:layout_alignBottom="@id/qtxt_mp101"
+                            android:text="@string/Q_mp101" />
                     </RelativeLayout>
 
-
                     <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
-                        android:id="@+id/mf101"
+                        android:id="@+id/mp101"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -72,9 +71,9 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf102  Input   -->
+            <!-- mp102  Input   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf102"
+                android:id="@+id/fldGrpCVmp102"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -88,25 +87,25 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf102"
+                            android:id="@+id/qtxt_mp102"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf102"
-                            android:text="@string/mf102" />
+                            android:layout_toEndOf="@id/q_mp102"
+                            android:text="@string/mp102" />
 
                         <TextView
-                            android:id="@+id/q_mf102"
+                            android:id="@+id/q_mp102"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf102"
-                            android:layout_alignBottom="@id/qtxt_mf102"
-                            android:text="@string/Q_mf102" />
+                            android:layout_alignTop="@id/qtxt_mp102"
+                            android:layout_alignBottom="@id/qtxt_mp102"
+                            android:text="@string/Q_mp102" />
 
                     </RelativeLayout>
 
                     <EditText
-                        android:id="@+id/mf102"
+                        android:id="@+id/mp102"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
@@ -119,9 +118,9 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf103  Input   -->
+            <!-- mp103  Input   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf103"
+                android:id="@+id/fldGrpCVmp103"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -135,40 +134,38 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf103"
+                            android:id="@+id/qtxt_mp103"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf103"
-                            android:text="@string/mf103" />
+                            android:layout_toEndOf="@id/q_mp103"
+                            android:text="@string/mp103" />
 
                         <TextView
-                            android:id="@+id/q_mf103"
+                            android:id="@+id/q_mp103"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf103"
-                            android:layout_alignBottom="@id/qtxt_mf103"
-                            android:text="@string/Q_mf103" />
-
+                            android:layout_alignTop="@id/qtxt_mp103"
+                            android:layout_alignBottom="@id/qtxt_mp103"
+                            android:text="@string/Q_mp103" />
                     </RelativeLayout>
 
                     <EditText
-                        android:id="@+id/mf103"
+                        android:id="@+id/mp103"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
                         android:inputType="text"
                         android:maxLength="25"
-                        android:hint="@string/mf103" />
+                        android:hint="@string/mp103" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-
-            <!-- mf104  Input   -->
+            <!-- mp104  Input   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf104"
+                android:id="@+id/fldGrpCVmp104"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -182,40 +179,39 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf104"
+                            android:id="@+id/qtxt_mp104"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf104"
-                            android:text="@string/mf104" />
+                            android:layout_toEndOf="@id/q_mp104"
+                            android:text="@string/mp104" />
 
                         <TextView
-                            android:id="@+id/q_mf104"
+                            android:id="@+id/q_mp104"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf104"
-                            android:layout_alignBottom="@id/qtxt_mf104"
-                            android:text="@string/Q_mf104" />
-
+                            android:layout_alignTop="@id/qtxt_mp104"
+                            android:layout_alignBottom="@id/qtxt_mp104"
+                            android:text="@string/Q_mp104" />
                     </RelativeLayout>
 
                     <EditText
-                        android:id="@+id/mf104"
+                        android:id="@+id/mp104"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
                         android:inputType="text"
                         android:maxLength="25"
-                        android:hint="@string/mf104" />
+                        android:hint="@string/mp104" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf105  Radio   -->
+            <!-- mp105  Input   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf105"
+                android:id="@+id/fldGrpCVmp105"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -229,74 +225,38 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf105"
+                            android:id="@+id/qtxt_mp105"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf105"
-                            android:text="@string/mf105" />
+                            android:layout_toEndOf="@id/q_mp105"
+                            android:text="@string/mp105" />
 
                         <TextView
-                            android:id="@+id/q_mf105"
+                            android:id="@+id/q_mp105"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf105"
-                            android:layout_alignBottom="@id/qtxt_mf105"
-                            android:text="@string/Q_mf105" />
-
+                            android:layout_alignTop="@id/qtxt_mp105"
+                            android:layout_alignBottom="@id/qtxt_mp105"
+                            android:text="@string/Q_mp105" />
                     </RelativeLayout>
 
-                    <RadioGroup
-                        android:id="@+id/mf105"
+                    <EditText
+                        android:id="@+id/mp105"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/mf10501"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10501" />
-
-                        <RadioButton
-                            android:id="@+id/mf10502"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10502" />
-
-                        <RadioButton
-                            android:id="@+id/mf10503"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10503" />
-
-                        <RadioButton
-                            android:id="@+id/mf10504"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10504" />
-
-                        <RadioButton
-                            android:id="@+id/mf10505"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10505" />
-
-                        <RadioButton
-                            android:id="@+id/mf10506"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10506" />
-
-                    </RadioGroup>
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:hint="@string/mp105" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-
-            <!-- mf106  Radio   -->
+            <!-- mp106  Input-Numeric   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf106"
+                android:id="@+id/fldGrpCVmp106"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -310,123 +270,29 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf106"
+                            android:id="@+id/qtxt_mp106"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf106"
-                            android:text="@string/mf106" />
+                            android:layout_toEndOf="@id/q_mp106"
+                            android:text="@string/mp106" />
 
                         <TextView
-                            android:id="@+id/q_mf106"
+                            android:id="@+id/q_mp106"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf106"
-                            android:layout_alignBottom="@id/qtxt_mf106"
-                            android:text="@string/Q_mf106" />
-
-                    </RelativeLayout>
-
-                    <RadioGroup
-                        android:id="@+id/mf106"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/mf10601"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10601" />
-
-                        <RadioButton
-                            android:id="@+id/mf10602"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10602" />
-
-                        <RadioButton
-                            android:id="@+id/mf10603"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10603" />
-
-                        <RadioButton
-                            android:id="@+id/mf10604"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10604" />
-
-                        <RadioButton
-                            android:id="@+id/mf10605"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10605" />
-
-                        <RadioButton
-                            android:id="@+id/mf10696"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mf10696" />
-
-                        <EditText
-                            android:id="@+id/mf10696x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:hint="@string/mf10696"
-                            android:tag="mf10696"
-                            android:text='@{mf10696.checked ? mf10696x.getText().toString() : ""}'
-                            android:visibility='@{mf10696.checked? View.VISIBLE : View.GONE}' />
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <!-- mf107  Input-Numeric   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf107"
-                style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
-
-                        <TextView
-                            android:id="@+id/qtxt_mf107"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf107"
-                            android:text="@string/mf107" />
-
-                        <TextView
-                            android:id="@+id/q_mf107"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf107"
-                            android:layout_alignBottom="@id/qtxt_mf107"
-                            android:text="@string/Q_mf107" />
-
+                            android:layout_alignTop="@id/qtxt_mp106"
+                            android:layout_alignBottom="@id/qtxt_mp106"
+                            android:text="@string/Q_mp106" />
                     </RelativeLayout>
 
                     <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/mf107"
+                        android:id="@+id/mp106"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:maxLength="3"
-                        android:hint="@string/mf107"
+                        android:hint="@string/mp106"
                         app:maxValue="500"
                         app:minValue="1"
                         app:type="range" />
@@ -436,9 +302,9 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf108  Radio   -->
+            <!-- mp107  Radio   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf108"
+                android:id="@+id/fldGrpCVmp107"
                 style="@style/cardView">
 
                 <LinearLayout
@@ -452,59 +318,154 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_mf108"
+                            android:id="@+id/qtxt_mp107"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf108"
-                            android:text="@string/mf108" />
+                            android:layout_toEndOf="@id/q_mp107"
+                            android:text="@string/mp107" />
 
                         <TextView
-                            android:id="@+id/q_mf108"
+                            android:id="@+id/q_mp107"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf108"
-                            android:layout_alignBottom="@id/qtxt_mf108"
-                            android:text="@string/Q_mf108" />
+                            android:layout_alignTop="@id/qtxt_mp107"
+                            android:layout_alignBottom="@id/qtxt_mp107"
+                            android:text="@string/Q_mp107" />
 
                     </RelativeLayout>
 
                     <RadioGroup
-                        android:id="@+id/mf108"
+                        android:id="@+id/mp107"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/mf10801"
+                            android:id="@+id/mp10701"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/mf10801" />
+                            android:text="@string/mp10701" />
 
                         <RadioButton
-                            android:id="@+id/mf10802"
+                            android:id="@+id/mp10702"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/mf10802" />
+                            android:text="@string/mp10702" />
 
                         <RadioButton
-                            android:id="@+id/mf10896"
+                            android:id="@+id/mp10703"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/mf10896" />
+                            android:text="@string/mp10703" />
+
+                        <RadioButton
+                            android:id="@+id/mp1074"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp1074" />
+
+                        <RadioButton
+                            android:id="@+id/mp10705"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10705" />
+
+                        <RadioButton
+                            android:id="@+id/mp10706"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10706" />
+
+                        <RadioButton
+                            android:id="@+id/mp10707"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10707" />
+
+                        <RadioButton
+                            android:id="@+id/mp10708"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10708" />
+
+                        <RadioButton
+                            android:id="@+id/mp10709"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10709" />
+
+                        <RadioButton
+                            android:id="@+id/mp10710"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10710" />
+
+                        <RadioButton
+                            android:id="@+id/mp10711"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10711" />
 
                         <EditText
-                            android:id="@+id/mf10896x"
+                            android:id="@+id/mp10711x"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:hint="@string/mf10896"
-                            android:tag="mf10896"
-                            android:text='@{mf10896.checked ? mf10896x.getText().toString() : ""}'
-                            android:visibility='@{mf10896.checked? View.VISIBLE : View.GONE}' />
+                            android:hint="@string/mp10711"
+                            android:tag="mp10711"
+                            android:text='@{mp10711.checked ? mp10711x.getText().toString() : ""}'
+                            android:visibility='@{mp10711.checked? View.VISIBLE : View.GONE}' />
 
                     </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- mp108  Input-Numeric   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVmp108"
+                style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom">
+
+                        <TextView
+                            android:id="@+id/qtxt_mp108"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_mp108"
+                            android:text="@string/mp108" />
+
+                        <TextView
+                            android:id="@+id/q_mp108"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_mp108"
+                            android:layout_alignBottom="@id/qtxt_mp108"
+                            android:text="@string/Q_mp108" />
+                    </RelativeLayout>
+
+                    <com.edittextpicker.aliazaz.EditTextPicker
+                        android:id="@+id/mp108"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:hint="@string/mp108"
+                        app:maxValue="500"
+                        app:minValue="1"
+                        app:type="range" />
 
                 </LinearLayout>
 
@@ -544,8 +505,6 @@
 
         </LinearLayout>
 
-
     </ScrollView>
-
 
 </layout>

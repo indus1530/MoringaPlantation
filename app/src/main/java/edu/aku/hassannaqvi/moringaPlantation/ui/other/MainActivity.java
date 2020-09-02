@@ -37,8 +37,8 @@ import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
 import edu.aku.hassannaqvi.moringaPlantation.ui.list_activity.FormsReportDate;
-import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionAActivity;
-import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionBActivity;
+import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMFActivity;
+import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMPActivity;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AndroidUtilityKt;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable;
@@ -294,10 +294,10 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         Intent oF = null;
         switch (v.getId()) {
             case R.id.formA:
-                oF = new Intent(this, SectionBActivity.class);
+                oF = new Intent(this, SectionMPActivity.class);
                 break;
             case R.id.formB:
-                oF = new Intent(this, SectionAActivity.class);
+                oF = new Intent(this, SectionMFActivity.class);
                 break;
             /* case R.id.formC:
                 oF = new Intent(this, SectionEActivity.class);

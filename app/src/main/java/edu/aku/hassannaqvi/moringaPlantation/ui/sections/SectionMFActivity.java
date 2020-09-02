@@ -17,21 +17,21 @@ import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
-import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionABinding;
+import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMfBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
 
-public class SectionAActivity extends AppCompatActivity {
+public class SectionMFActivity extends AppCompatActivity {
 
-    ActivitySectionABinding bi;
+    ActivitySectionMfBinding bi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_section_a);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_section_mf);
         bi.setCallback(this);
         setupSkip();
     }
