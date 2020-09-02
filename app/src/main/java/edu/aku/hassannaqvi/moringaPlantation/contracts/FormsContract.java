@@ -31,8 +31,8 @@ public class FormsContract {
         public static final String COLUMN_MF106x = "mf106x";
         public static final String COLUMN_MF107 = "mf107";
         public static final String COLUMN_MF107x = "mf107x";
-        public static final String COLUMN_MF108 = "MF108";
-        public static final String COLUMN_MF108x = "MF108x";
+        public static final String COLUMN_MF108 = "mf108";
+        public static final String COLUMN_MF108x = "mf108x";
         public static final String COLUMN_SB = "sB";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";

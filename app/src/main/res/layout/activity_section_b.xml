@@ -56,7 +56,7 @@
                             android:text="@string/Q_mp101" />
                     </RelativeLayout>
 
-                    <EditText
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
                         android:id="@+id/mp101"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -480,7 +480,7 @@
                 android:layout_marginTop="24dp"
                 android:orientation="horizontal">
 
-                <Button
+                <!--<Button
                     android:id="@+id/btn_End"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -488,7 +488,7 @@
                     android:background="@color/red_overlay"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:text="Cancel"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white" />-->
 
                 <Button
                     android:id="@+id/btn_Continue"
