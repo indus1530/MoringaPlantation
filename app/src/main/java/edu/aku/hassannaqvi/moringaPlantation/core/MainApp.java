@@ -166,7 +166,7 @@ public class MainApp extends Application {
         //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf");
         //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "@fonts/JameelNooriNastaleeq.ttf");
 
-        TypefaceUtil.overrideFont(getApplicationContext(), "SANS_SERIF", "fonts/MBLateefi.ttf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf");
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 

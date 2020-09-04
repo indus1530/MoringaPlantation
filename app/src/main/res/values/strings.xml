@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> Moringa Plantation 2020 </string>
+    <string name="app_name"> Moringa Plantation </string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
@@ -92,7 +92,7 @@
     <string name="mp10711">ٻيو ڪجھ وضاحت ڪريو</string>
     <string name="mp108">  ٻوٽن  جي تعداد</string>
 
-    <string name="mf101">  دوري جي تاريخ    </string>
+    <string name="mf101"> دوري جي تاريخ </string>
     <string name="mf102">  ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
     <string name="mf103">ڳوٺ/پاڙو</string>
     <string name="mf104">يونين ڪائونسل</string>
