@@ -65,8 +65,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="dd-MM-yyyy"
-                        app:dateFormat="dd-MM-yyyy"
+                        android:hint="dd-MMM-yyyy"
+                        app:dateFormat="dd-MMM-yyyy"
                         app:maxDate="CR_DATE"
                         app:minDate="CR_DATE" />
 
