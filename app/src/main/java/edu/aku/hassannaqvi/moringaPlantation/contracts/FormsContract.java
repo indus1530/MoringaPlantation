@@ -11,7 +11,7 @@ import android.provider.BaseColumns;
 
 public class FormsContract {
 
-    public static String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.covid_dadu";
+    public static String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.moringaPlantation";
 
     public static abstract class FormsTable implements BaseColumns {
         public static final String TABLE_NAME = "form";

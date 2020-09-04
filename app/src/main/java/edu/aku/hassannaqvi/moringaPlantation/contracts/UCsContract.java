@@ -10,7 +10,7 @@ public class UCsContract {
 
     private static final String TAG = "UCs_CONTRACT";
 
-    public static String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.covid_dadu";
+    public static String CONTENT_AUTHORITY = "edu.aku.hassannaqvi.moringaPlantation";
 
 
     public static abstract class UCsTable implements BaseColumns {
