@@ -73,7 +73,7 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mp102  Input   -->
+            <!-- mp102  SpinnerCHW   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp102"
                 style="@style/cardView">
@@ -106,21 +106,17 @@
 
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/mp102"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/name"
-                        android:inputType="text"
-                        android:maxLength="25" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mp103  Input   -->
+            <!-- mp103  SpinnerTL   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp103"
                 style="@style/cardView">
@@ -150,68 +146,20 @@
                             android:layout_alignTop="@id/qtxt_mp103"
                             android:layout_alignBottom="@id/qtxt_mp103"
                             android:text="@string/Q_mp103" />
+
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/mp103"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:hint="@string/mp103" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- mp104  Input   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmp104"
-                style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
-
-                        <TextView
-                            android:id="@+id/qtxt_mp104"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mp104"
-                            android:text="@string/mp104" />
-
-                        <TextView
-                            android:id="@+id/q_mp104"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mp104"
-                            android:layout_alignBottom="@id/qtxt_mp104"
-                            android:text="@string/Q_mp104" />
-                    </RelativeLayout>
-
-                    <EditText
-                        android:id="@+id/mp104"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:hint="@string/mp104" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mp105  Input   -->
+            <!-- mp105  SpinnerUC   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp105"
                 style="@style/cardView">
@@ -241,20 +189,61 @@
                             android:layout_alignTop="@id/qtxt_mp105"
                             android:layout_alignBottom="@id/qtxt_mp105"
                             android:text="@string/Q_mp105" />
+
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/mp105"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:hint="@string/mp105" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+
+            <!-- mp104  SpinnerVillage   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVmp104"
+                style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom">
+
+                        <TextView
+                            android:id="@+id/qtxt_mp104"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_mp104"
+                            android:text="@string/mp104" />
+
+                        <TextView
+                            android:id="@+id/q_mp104"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_mp104"
+                            android:layout_alignBottom="@id/qtxt_mp104"
+                            android:text="@string/Q_mp104" />
+
+                    </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/mp104"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
             <!-- mp106  Input-Numeric   -->
             <androidx.cardview.widget.CardView
@@ -425,6 +414,7 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
 
             <!-- mp108  Input-Numeric   -->
             <androidx.cardview.widget.CardView

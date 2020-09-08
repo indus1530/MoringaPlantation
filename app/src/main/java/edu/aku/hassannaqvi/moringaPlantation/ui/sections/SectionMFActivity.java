@@ -101,11 +101,11 @@ public class SectionMFActivity extends AppCompatActivity {
 
         form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
 
-        form.setMf102(bi.mf102.getText().toString().trim().isEmpty() ? "-1" : bi.mf102.getText().toString());
+        form.setMf102(bi.mf102.getSelectedItem().toString());
 
-        form.setMf103(bi.mf103.getText().toString().trim().isEmpty() ? "-1" : bi.mf103.getText().toString());
+        form.setMf103(bi.mf103.getSelectedItem().toString());
 
-        form.setMf104(bi.mf104.getText().toString().trim().isEmpty() ? "-1" : bi.mf104.getText().toString());
+        form.setMf104(bi.mf104.getSelectedItem().toString());
 
         form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"

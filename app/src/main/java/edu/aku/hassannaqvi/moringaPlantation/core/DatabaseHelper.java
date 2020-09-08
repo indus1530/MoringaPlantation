@@ -19,13 +19,16 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
 import edu.aku.hassannaqvi.moringaPlantation.models.BLRandom;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
+import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_VERSION;
@@ -33,6 +36,7 @@ import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_FORMS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VERSIONAPP;
+import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VILLAGES;
 
 
 /**
@@ -51,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_FORMS);
+        db.execSQL(SQL_CREATE_VILLAGES);
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERSIONAPP);
     }
@@ -189,6 +194,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         } catch (Exception e) {
             Log.d(TAG, "syncUser(e): " + e);
+            db.close();
+        } finally {
+            db.close();
+        }
+        return insertCount;
+    }
+
+    public int syncVillage(JSONArray villageList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(VillagesContract.TableVillage.TABLE_NAME, null, null);
+        int insertCount = 0;
+        try {
+            for (int i = 0; i < villageList.length(); i++) {
+
+                JSONObject jsonObjectVil = villageList.getJSONObject(i);
+
+                Villages village = new Villages();
+                village.Sync(jsonObjectVil);
+                ContentValues values = new ContentValues();
+
+                values.put(VillagesContract.TableVillage.COLUMN_UCNAME, village.getUcname());
+                values.put(VillagesContract.TableVillage.COLUMN_VILLAGE_NAME, village.getVillagename());
+                values.put(VillagesContract.TableVillage.COLUMN_SEEM_VID, village.getSeem_vid());
+                long rowID = db.insert(VillagesContract.TableVillage.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, "syncVillage(e): " + e);
             db.close();
         } finally {
             db.close();
@@ -887,4 +921,175 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
+
+
+    public Collection<Users> getUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                UsersTable.COLUMN_USERNAME,
+                UsersTable.COLUMN_FULL_NAME
+        };
+
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = UsersTable.COLUMN_USERNAME + " ASC";
+
+        Collection<Users> alluser = new ArrayList<>();
+        try {
+            c = db.query(
+                    UsersContract.UsersTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                alluser.add(new Users().Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return alluser;
+    }
+
+
+    public Collection<Villages> getVillage() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                VillagesContract.TableVillage.COLUMN_UCNAME,
+                VillagesContract.TableVillage.COLUMN_VILLAGE_NAME,
+                VillagesContract.TableVillage.COLUMN_SEEM_VID
+        };
+
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                VillagesContract.TableVillage.COLUMN_UCNAME + " ASC";
+
+        Collection<Villages> allVil = new ArrayList<Villages>();
+        try {
+            c = db.query(
+                    VillagesContract.TableVillage.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                Villages vil = new Villages();
+                allVil.add(vil.HydrateUc(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allVil;
+    }
+
+
+    public Collection<Villages> getVillageUc() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                "DISTINCT " + VillagesContract.TableVillage.COLUMN_UCNAME
+        };
+
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                VillagesContract.TableVillage.COLUMN_UCNAME + " ASC";
+
+        Collection<Villages> allVil = new ArrayList<Villages>();
+        try {
+            c = db.query(
+                    VillagesContract.TableVillage.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                Villages vil = new Villages();
+                allVil.add(vil.HydrateUc(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allVil;
+    }
+
+
+    public Collection<Villages> getVillageByUc(String uc) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                VillagesContract.TableVillage.COLUMN_VILLAGE_NAME
+        };
+
+        String whereClause = VillagesContract.TableVillage.COLUMN_UCNAME + "=?";
+        String[] whereArgs = new String[]{uc};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                VillagesContract.TableVillage.COLUMN_UCNAME + " ASC";
+
+        Collection<Villages> allVil = new ArrayList<Villages>();
+        try {
+            c = db.query(
+                    VillagesContract.TableVillage.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                Villages vil = new Villages();
+                allVil.add(vil.HydrateVil(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allVil;
+    }
+
+
 }

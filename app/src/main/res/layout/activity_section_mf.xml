@@ -75,7 +75,7 @@
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf102  Input   -->
+            <!-- mf102  SpinnerTL   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmf102"
                 style="@style/cardView">
@@ -108,68 +108,16 @@
 
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/mf102"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/name"
-                        android:inputType="text"
-                        android:maxLength="25" />
+                        style="@style/spinner" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
 
-            <!-- mf103  Input   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmf103"
-                style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
-
-                        <TextView
-                            android:id="@+id/qtxt_mf103"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mf103"
-                            android:text="@string/mf103" />
-
-                        <TextView
-                            android:id="@+id/q_mf103"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mf103"
-                            android:layout_alignBottom="@id/qtxt_mf103"
-                            android:text="@string/Q_mf103" />
-
-                    </RelativeLayout>
-
-                    <EditText
-                        android:id="@+id/mf103"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:hint="@string/mf103" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <!-- mf104  Input   -->
+            <!-- mf104  SpinnerUC   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmf104"
                 style="@style/cardView">
@@ -202,14 +150,51 @@
 
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/mf104"
+                        style="@style/spinner" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- mf103  SpinnerVillage   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVmf103"
+                style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:hint="@string/mf104" />
+                        android:background="@drawable/bottom">
+
+                        <TextView
+                            android:id="@+id/qtxt_mf103"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_mf103"
+                            android:text="@string/mf103" />
+
+                        <TextView
+                            android:id="@+id/q_mf103"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_mf103"
+                            android:layout_alignBottom="@id/qtxt_mf103"
+                            android:text="@string/Q_mf103" />
+
+                    </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/mf103"
+                        style="@style/spinner" />
 
                 </LinearLayout>
 

@@ -4,6 +4,7 @@ import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandom
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
 
 public final class CreateTable {
 
@@ -51,6 +52,13 @@ public final class CreateTable {
             + UsersTable.COLUMN_USERNAME + " TEXT,"
             + UsersTable.COLUMN_PASSWORD + " TEXT,"
             + UsersTable.COLUMN_FULL_NAME + " TEXT"
+            + " );";
+
+    public static final String SQL_CREATE_VILLAGES = "CREATE TABLE " + VillagesContract.TableVillage.TABLE_NAME + "("
+            + VillagesContract.TableVillage._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + VillagesContract.TableVillage.COLUMN_UCNAME + " TEXT,"
+            + VillagesContract.TableVillage.COLUMN_VILLAGE_NAME + " TEXT,"
+            + VillagesContract.TableVillage.COLUMN_SEEM_VID + " TEXT"
             + " );";
 
     public static final String SQL_CREATE_VERSIONAPP = "CREATE TABLE " + VersionAppTable.TABLE_NAME + " (" +

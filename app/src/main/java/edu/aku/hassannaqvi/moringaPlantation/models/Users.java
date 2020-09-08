@@ -79,11 +79,8 @@ public class Users {
     }
 
     public Users Hydrate(Cursor cursor) {
-        this.id = cursor.getLong(cursor.getColumnIndex(UsersTable._ID));
         this.username = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_USERNAME));
-        this.password = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_PASSWORD));
         this.full_name = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_FULL_NAME));
-//        this.REGION_DSS = cursor.getString(cursor.getColumnIndex(singleUser.REGION_DSS));
         return this;
 
     }

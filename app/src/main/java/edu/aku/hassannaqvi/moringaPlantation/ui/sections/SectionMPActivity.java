@@ -1,8 +1,12 @@
 package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +16,10 @@ import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
@@ -20,6 +27,8 @@ import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMpBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
+import edu.aku.hassannaqvi.moringaPlantation.models.Users;
+import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
@@ -28,6 +37,8 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMPActivity extends AppCompatActivity {
 
     ActivitySectionMpBinding bi;
+    private List<String> usersFullName, ucNames, villageNames;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +46,107 @@ public class SectionMPActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_mp);
         bi.setCallback(this);
         setupSkip();
+        populateSpinner(this);
     }
 
 
     private void setupSkip() {
         bi.mp107.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVmp108));
+    }
+
+
+    public void populateSpinner(final Context context) {
+        db = MainApp.appInfo.getDbHelper();
+        // Spinner Drop down elements
+        usersFullName = new ArrayList<String>() {
+            {
+                add("....");
+            }
+        };
+
+        Collection<Users> dc = db.getUsers();
+        for (Users us : dc) {
+            usersFullName.add(us.getFull_name());
+        }
+
+        bi.mp102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
+        bi.mp102.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) {
+                    bi.mp103.setSelection(0);
+                    bi.mp103.setEnabled(false);
+                    return;
+                }
+
+                bi.mp103.setEnabled(true);
+                List<String> user2 = new ArrayList<String>() {
+                    {
+                        add("....");
+                    }
+                };
+
+                for (String names : usersFullName) {
+                    if (names.equals(bi.mp102.getSelectedItem().toString())) continue;
+                    user2.add(names);
+                }
+
+                bi.mp103.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, user2));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+
+            }
+        });
+
+        bi.mp103.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                ucNames = new ArrayList<>();
+                ucNames.add("....");
+
+                Collection<Villages> pc = db.getVillageUc();
+                for (Villages p : pc) {
+                    ucNames.add(p.getUcname());
+                }
+
+                bi.mp105.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bi.mp105.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                villageNames = new ArrayList<>();
+                villageNames.add("....");
+
+                Collection<Villages> pc = db.getVillageByUc(bi.mp105.getSelectedItem().toString());
+                for (Villages p : pc) {
+                    villageNames.add(p.getVillagename());
+                }
+
+                bi.mp104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
 
@@ -83,13 +190,13 @@ public class SectionMPActivity extends AppCompatActivity {
 
         form.setMf101(bi.mp101.getText().toString().trim().isEmpty() ? "-1" : bi.mp101.getText().toString());
 
-        form.setMf102(bi.mp102.getText().toString().trim().isEmpty() ? "-1" : bi.mp102.getText().toString());
+        form.setMf102(bi.mp102.getSelectedItem().toString());
 
-        form.setMf103(bi.mp103.getText().toString().trim().isEmpty() ? "-1" : bi.mp103.getText().toString());
+        form.setMf103(bi.mp103.getSelectedItem().toString());
 
-        form.setMf104(bi.mp104.getText().toString().trim().isEmpty() ? "-1" : bi.mp104.getText().toString());
+        form.setMf104(bi.mp104.getSelectedItem().toString());
 
-        form.setMf105(bi.mp105.getText().toString().trim().isEmpty() ? "-1" : bi.mp105.getText().toString());
+        form.setMf105(bi.mp105.getSelectedItem().toString());
 
         form.setMf106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
 
