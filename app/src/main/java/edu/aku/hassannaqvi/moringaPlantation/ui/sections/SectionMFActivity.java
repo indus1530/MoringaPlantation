@@ -1,9 +1,12 @@
 package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +16,10 @@ import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
@@ -21,6 +27,8 @@ import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMfBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
+import edu.aku.hassannaqvi.moringaPlantation.models.Users;
+import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
@@ -29,6 +37,8 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMFActivity extends AppCompatActivity {
 
     ActivitySectionMfBinding bi;
+    private List<String> usersFullName, ucNames, villageNames;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,7 @@ public class SectionMFActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_mf);
         bi.setCallback(this);
         setupSkip();
+        populateSpinner(this);
     }
 
 
@@ -55,6 +66,69 @@ public class SectionMFActivity extends AppCompatActivity {
                 bi.fldGrpCVmf106.setVisibility(View.VISIBLE);
             } else if (i == bi.mf10503.getId()) {
                 bi.fldGrpCVmf108.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+
+
+    public void populateSpinner(final Context context) {
+        db = MainApp.appInfo.getDbHelper();
+        // Spinner Drop down elements
+        usersFullName = new ArrayList<String>() {
+            {
+                add("....");
+            }
+        };
+
+        Collection<Users> dc = db.getUsers();
+        for (Users us : dc) {
+            usersFullName.add(us.getFull_name());
+        }
+
+        bi.mf102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
+
+        bi.mf102.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                ucNames = new ArrayList<>();
+                ucNames.add("....");
+
+                Collection<Villages> pc = db.getVillageUc();
+                for (Villages p : pc) {
+                    ucNames.add(p.getUcname());
+                }
+
+                bi.mf104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bi.mf104.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                villageNames = new ArrayList<>();
+                villageNames.add("....");
+
+                Collection<Villages> pc = db.getVillageByUc(bi.mf104.getSelectedItem().toString());
+                for (Villages p : pc) {
+                    villageNames.add(p.getVillagename());
+                }
+
+                bi.mf103.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
