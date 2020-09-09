@@ -63,14 +63,15 @@
                         android:id="@+id/pid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textDirection="ltr"
                         android:hint="##-###-#####"
                         android:inputType="number"
                         app:mask="##-###-#####"
                         app:maxValue="500"
                         app:minValue="1"
-                        app:pattern=""
-                        app:type="equal" />
+                        app:pattern="[0-9]{2}-[0-9]{3}-[0-9]{5}"
+                        app:type="range" />
 
                 </LinearLayout>
 

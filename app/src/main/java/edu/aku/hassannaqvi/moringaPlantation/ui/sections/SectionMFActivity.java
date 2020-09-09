@@ -173,6 +173,8 @@ public class SectionMFActivity extends AppCompatActivity {
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setAppversion(MainApp.appInfo.getAppVersion());
 
+        form.setPid(bi.pid.getText().toString().trim().isEmpty() ? "-1" : bi.pid.getText().toString());
+
         form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
 
         form.setMf102(bi.mf102.getSelectedItem().toString());
