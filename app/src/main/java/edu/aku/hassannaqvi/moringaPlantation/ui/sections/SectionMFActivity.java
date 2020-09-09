@@ -37,7 +37,7 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMFActivity extends AppCompatActivity {
 
     ActivitySectionMfBinding bi;
-    private List<String> usersFullName, ucNames, villageNames;
+    private List<String> usersFullName, ucNames, ucCodes, villageNames, villageCodes;
     private DatabaseHelper db;
 
     @Override
@@ -94,11 +94,14 @@ public class SectionMFActivity extends AppCompatActivity {
 
                 if (position == 0) return;
                 ucNames = new ArrayList<>();
+                ucCodes = new ArrayList<>();
                 ucNames.add("....");
+                ucCodes.add("....");
 
                 Collection<Villages> pc = db.getVillageUc();
                 for (Villages p : pc) {
                     ucNames.add(p.getUcname());
+                    ucCodes.add(p.getSeem_vid().substring(0, 1));
                 }
 
                 bi.mf104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
@@ -116,11 +119,14 @@ public class SectionMFActivity extends AppCompatActivity {
 
                 if (position == 0) return;
                 villageNames = new ArrayList<>();
+                villageCodes = new ArrayList<>();
                 villageNames.add("....");
+                villageCodes.add("....");
 
                 Collection<Villages> pc = db.getVillageByUc(bi.mf104.getSelectedItem().toString());
                 for (Villages p : pc) {
                     villageNames.add(p.getVillagename());
+                    villageCodes.add(p.getSeem_vid().substring(p.getSeem_vid().length() - 3));
                 }
 
                 bi.mf103.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
@@ -179,9 +185,9 @@ public class SectionMFActivity extends AppCompatActivity {
 
         form.setMf102(bi.mf102.getSelectedItem().toString());
 
-        form.setMf103(bi.mf103.getSelectedItem().toString());
+        form.setMf103(villageCodes.get(bi.mf103.getSelectedItemPosition()));
 
-        form.setMf104(bi.mf104.getSelectedItem().toString());
+        form.setMf104(ucCodes.get(bi.mf104.getSelectedItemPosition()));
 
         form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"

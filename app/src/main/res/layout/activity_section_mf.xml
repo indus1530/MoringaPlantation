@@ -28,7 +28,8 @@
             <!-- pid     -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVpid"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,8 +83,7 @@
                 android:id="@+id/GrpName2nd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
 
                 <!-- mf101     -->

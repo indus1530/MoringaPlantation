@@ -83,11 +83,13 @@ public class Villages {
 
     public Villages HydrateUc(Cursor cursor) {
         this.ucname = cursor.getString(cursor.getColumnIndex(VillagesContract.TableVillage.COLUMN_UCNAME));
+        this.seem_vid = cursor.getString(cursor.getColumnIndex(VillagesContract.TableVillage.COLUMN_SEEM_VID));
         return this;
     }
 
     public Villages HydrateVil(Cursor cursor) {
         this.villagename = cursor.getString(cursor.getColumnIndex(VillagesContract.TableVillage.COLUMN_VILLAGE_NAME));
+        this.seem_vid = cursor.getString(cursor.getColumnIndex(VillagesContract.TableVillage.COLUMN_SEEM_VID));
         return this;
     }
 }

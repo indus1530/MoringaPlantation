@@ -1068,7 +1068,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                "DISTINCT " + VillagesContract.TableVillage.COLUMN_UCNAME
+                "DISTINCT " + VillagesContract.TableVillage.COLUMN_UCNAME,
+                VillagesContract.TableVillage.COLUMN_SEEM_VID
         };
 
         String whereClause = null;
@@ -1077,7 +1078,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String having = null;
 
         String orderBy =
-                VillagesContract.TableVillage.COLUMN_UCNAME + " ASC";
+                VillagesContract.TableVillage.COLUMN_SEEM_VID + " ASC";
 
         Collection<Villages> allVil = new ArrayList<Villages>();
         try {
@@ -1110,7 +1111,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                VillagesContract.TableVillage.COLUMN_VILLAGE_NAME
+                VillagesContract.TableVillage.COLUMN_VILLAGE_NAME,
+                VillagesContract.TableVillage.COLUMN_SEEM_VID
         };
 
         String whereClause = VillagesContract.TableVillage.COLUMN_UCNAME + "=?";
