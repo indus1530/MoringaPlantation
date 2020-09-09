@@ -37,7 +37,7 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMPActivity extends AppCompatActivity {
 
     ActivitySectionMpBinding bi;
-    private List<String> usersFullName, ucNames, villageNames;
+    private List<String> usersFullName, ucNames, ucCode, villageNames;
     private DatabaseHelper db;
 
     @Override
@@ -188,20 +188,20 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setAppversion(MainApp.appInfo.getAppVersion());
 
-        form.setMf101(bi.mp101.getText().toString().trim().isEmpty() ? "-1" : bi.mp101.getText().toString());
+        form.setMp101(bi.mp101.getText().toString().trim().isEmpty() ? "-1" : bi.mp101.getText().toString());
 
-        form.setMf102(bi.mp102.getSelectedItem().toString());
+        form.setMp102(bi.mp102.getSelectedItem().toString());
 
-        form.setMf103(bi.mp103.getSelectedItem().toString());
+        form.setMp103(bi.mp103.getSelectedItem().toString());
 
-        form.setMf104(bi.mp104.getSelectedItem().toString());
+        form.setMp104(bi.mp104.getSelectedItem().toString());
 
-        form.setMf105(bi.mp105.getSelectedItem().toString());
+        form.setMp105(bi.mp105.getSelectedItem().toString());
 
-        form.setMf106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
+        form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
 
 
-        form.setMf107(bi.mp10701.isChecked() ? "1"
+        form.setMp107(bi.mp10701.isChecked() ? "1"
                 : bi.mp10702.isChecked() ? "2"
                 : bi.mp10703.isChecked() ? "3"
                 : bi.mp1074.isChecked() ? "4"
@@ -213,9 +213,9 @@ public class SectionMPActivity extends AppCompatActivity {
                 : bi.mp10710.isChecked() ? "10"
                 : bi.mp10711.isChecked() ? "11"
                 : "-1");
-        form.setMf107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
+        form.setMp107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
 
-        form.setMf108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
+        form.setMp108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
 
         MainApp.setGPS(this);
 

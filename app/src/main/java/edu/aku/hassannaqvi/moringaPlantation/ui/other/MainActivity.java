@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                 }
 
                 rSumText
-                        .append((form.getMf101() + "          ").substring(0, 10))
-                        .append((form.getMf102() + "      ").substring(0, 6))
+                        .append((form.getMp101() + "          ").substring(0, 10))
+                        .append((form.getMp102() + "      ").substring(0, 6))
                         .append("  \t\t")
                         .append(iStatus)
                         .append("\t\t\t\t")

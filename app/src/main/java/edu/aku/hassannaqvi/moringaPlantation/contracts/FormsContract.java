@@ -22,6 +22,16 @@ public class FormsContract {
         public static final String COLUMN_FORMTYPE = "formtype";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
+        public static final String COLUMN_MP101 = "mp101";
+        public static final String COLUMN_MP102 = "mp102";
+        public static final String COLUMN_MP103 = "mp103";
+        public static final String COLUMN_MP104 = "mp104";
+        public static final String COLUMN_MP105 = "mp105";
+        public static final String COLUMN_MP106 = "mp106";
+        public static final String COLUMN_MP107 = "mp107";
+        public static final String COLUMN_MP107x = "mp107x";
+        public static final String COLUMN_MP108 = "mp108";
+        public static final String COLUMN_PID = "pid";
         public static final String COLUMN_MF101 = "mf101";
         public static final String COLUMN_MF102 = "mf102";
         public static final String COLUMN_MF103 = "mf103";
@@ -30,10 +40,8 @@ public class FormsContract {
         public static final String COLUMN_MF106 = "mf106";
         public static final String COLUMN_MF106x = "mf106x";
         public static final String COLUMN_MF107 = "mf107";
-        public static final String COLUMN_MF107x = "mf107x";
         public static final String COLUMN_MF108 = "mf108";
         public static final String COLUMN_MF108x = "mf108x";
-        public static final String COLUMN_SB = "sB";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
         public static final String COLUMN_ENDINGDATETIME = "endingdatetime";

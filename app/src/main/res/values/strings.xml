@@ -69,6 +69,7 @@
     <string name='Q_mf106'>mf106</string>
     <string name='Q_mf107'>mf107</string>
     <string name='Q_mf108'>mf108</string>
+    <string name='Q_pid'>pid</string>
     <string name='Q_istatus'>istatus</string>
 
 
@@ -92,6 +93,7 @@
     <string name="mp10711"> ٻيو ڪجھ وضاحت ڪريو </string>
     <string name="mp108">  ٻوٽن  جي تعداد </string>
 
+    <string name="pid"> ٻوٽي جو سڃاڻپ نمبر </string>
     <string name="mf101"> دوري جي تاريخ </string>
     <string name="mf102"> ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
     <string name="mf103"> ڳوٺ / پاڙو </string>
