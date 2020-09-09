@@ -37,7 +37,7 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMPActivity extends AppCompatActivity {
 
     ActivitySectionMpBinding bi;
-    private List<String> usersFullName, ucNames, ucCode, villageNames;
+    private List<String> usersFullName, ucNames, ucCodes, villageNames, villageCodes;
     private DatabaseHelper db;
 
     @Override
@@ -109,11 +109,14 @@ public class SectionMPActivity extends AppCompatActivity {
 
                 if (position == 0) return;
                 ucNames = new ArrayList<>();
+                ucCodes = new ArrayList<>();
                 ucNames.add("....");
+                ucCodes.add("....");
 
                 Collection<Villages> pc = db.getVillageUc();
                 for (Villages p : pc) {
                     ucNames.add(p.getUcname());
+                    ucCodes.add(p.getSeem_vid().substring(0, 1));
                 }
 
                 bi.mp105.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
@@ -131,11 +134,14 @@ public class SectionMPActivity extends AppCompatActivity {
 
                 if (position == 0) return;
                 villageNames = new ArrayList<>();
+                villageCodes = new ArrayList<>();
                 villageNames.add("....");
+                villageCodes.add("....");
 
                 Collection<Villages> pc = db.getVillageByUc(bi.mp105.getSelectedItem().toString());
                 for (Villages p : pc) {
                     villageNames.add(p.getVillagename());
+                    villageCodes.add(p.getSeem_vid().substring(p.getSeem_vid().length() - 3));
                 }
 
                 bi.mp104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
@@ -194,9 +200,9 @@ public class SectionMPActivity extends AppCompatActivity {
 
         form.setMp103(bi.mp103.getSelectedItem().toString());
 
-        form.setMp104(bi.mp104.getSelectedItem().toString());
+        form.setMp104(villageCodes.get(bi.mp104.getSelectedItemPosition()));
 
-        form.setMp105(bi.mp105.getSelectedItem().toString());
+        form.setMp105("0" + ucCodes.get(bi.mp105.getSelectedItemPosition()));
 
         form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
 

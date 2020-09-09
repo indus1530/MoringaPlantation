@@ -1074,11 +1074,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String whereClause = null;
         String[] whereArgs = null;
-        String groupBy = null;
+        String groupBy = VillagesContract.TableVillage.COLUMN_UCNAME;
         String having = null;
 
         String orderBy =
-                VillagesContract.TableVillage.COLUMN_SEEM_VID + " ASC";
+                VillagesContract.TableVillage.COLUMN_UCNAME + " ASC";
 
         Collection<Villages> allVil = new ArrayList<Villages>();
         try {

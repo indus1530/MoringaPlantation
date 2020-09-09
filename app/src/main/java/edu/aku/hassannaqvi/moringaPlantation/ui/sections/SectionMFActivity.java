@@ -187,7 +187,7 @@ public class SectionMFActivity extends AppCompatActivity {
 
         form.setMf103(villageCodes.get(bi.mf103.getSelectedItemPosition()));
 
-        form.setMf104(ucCodes.get(bi.mf104.getSelectedItemPosition()));
+        form.setMf104("0" + ucCodes.get(bi.mf104.getSelectedItemPosition()));
 
         form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"
