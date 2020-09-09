@@ -144,7 +144,18 @@
         <item name="android:drawable">@drawable/arrow</item>
         <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
+    </style>
 
+
+    <style name="spinner1" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/spinner_style</item>
+        <!--<item name="android:padding">8dp</item>-->
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:spinnersShown">false</item>
     </style>
 
     <style name="spinnerDropDownItemStyle">

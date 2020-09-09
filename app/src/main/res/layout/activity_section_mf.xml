@@ -110,8 +110,7 @@
 
                     <Spinner
                         android:id="@+id/mf102"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        style="@style/spinner1" />
 
                 </LinearLayout>
 
@@ -153,7 +152,7 @@
 
                     <Spinner
                         android:id="@+id/mf104"
-                        style="@style/spinner" />
+                        style="@style/spinner1" />
 
                 </LinearLayout>
 
@@ -195,7 +194,7 @@
 
                     <Spinner
                         android:id="@+id/mf103"
-                        style="@style/spinner" />
+                        style="@style/spinner1" />
 
                 </LinearLayout>
 
