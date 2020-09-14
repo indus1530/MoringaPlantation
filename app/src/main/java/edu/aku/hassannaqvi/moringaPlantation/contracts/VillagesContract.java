@@ -21,6 +21,7 @@ public class VillagesContract {
         public static final String COLUMN_UCNAME = "ucname";
         public static final String COLUMN_VILLAGE_NAME = "villagename";
         public static final String COLUMN_SEEM_VID = "seem_vid";
+        public static final String COLUMN_UCID = "ucid";
 
         public static final String SERVER_URI = "villages.php";
 

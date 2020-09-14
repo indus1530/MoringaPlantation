@@ -65,6 +65,8 @@ public class SectionMFActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (TextUtils.isEmpty(bi.pid.getText()))
                     return;
+                /*bi.pid.getText().toString().trim().length() == 10 &&
+                        bi.GrpName2nd.setVisibility(View.VISIBLE);*/
             }
 
             @Override
@@ -122,7 +124,7 @@ public class SectionMFActivity extends AppCompatActivity {
                 Collection<Villages> pc = db.getVillageUc();
                 for (Villages p : pc) {
                     ucNames.add(p.getUcname());
-                    ucCodes.add(p.getSeem_vid().substring(0, 1));
+                    ucCodes.add(p.getUcid());
                 }
 
                 bi.mf104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
@@ -147,7 +149,7 @@ public class SectionMFActivity extends AppCompatActivity {
                 Collection<Villages> pc = db.getVillageByUc(bi.mf104.getSelectedItem().toString());
                 for (Villages p : pc) {
                     villageNames.add(p.getVillagename());
-                    villageCodes.add(p.getSeem_vid().substring(p.getSeem_vid().length() - 3));
+                    villageCodes.add(p.getSeem_vid());
                 }
 
                 bi.mf103.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
@@ -208,7 +210,7 @@ public class SectionMFActivity extends AppCompatActivity {
 
         form.setMf103(villageCodes.get(bi.mf103.getSelectedItemPosition()));
 
-        form.setMf104("0" + ucCodes.get(bi.mf104.getSelectedItemPosition()));
+        form.setMf104(ucCodes.get(bi.mf104.getSelectedItemPosition()));
 
         form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"

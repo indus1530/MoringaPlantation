@@ -17,6 +17,7 @@ public class Villages {
     String ucname;
     String villagename;
     String seem_vid;
+    String ucid;
 
     public Villages() {
         // Default Constructor
@@ -59,6 +60,15 @@ public class Villages {
     }
 
 
+    public String getUcid() {
+        return ucid;
+    }
+
+    public void setUcid(String ucid) {
+        this.ucid = ucid;
+    }
+
+
     public JSONObject toJSONObject() {
 
         JSONObject json = new JSONObject();
@@ -67,6 +77,7 @@ public class Villages {
             json.put(VillagesContract.TableVillage.COLUMN_UCNAME, this.ucname == null ? JSONObject.NULL : this.ucname);
             json.put(VillagesContract.TableVillage.COLUMN_VILLAGE_NAME, this.villagename == null ? JSONObject.NULL : this.villagename);
             json.put(VillagesContract.TableVillage.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
+            json.put(VillagesContract.TableVillage.COLUMN_UCID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
             return json;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,7 +88,9 @@ public class Villages {
     public Villages Sync(JSONObject jsonObject) throws JSONException {
         this.ucname = jsonObject.getString(VillagesContract.TableVillage.COLUMN_UCNAME);
         this.villagename = jsonObject.getString(VillagesContract.TableVillage.COLUMN_VILLAGE_NAME);
-        this.seem_vid = jsonObject.getString(VillagesContract.TableVillage.COLUMN_SEEM_VID);
+        String seemVID = jsonObject.getString(VillagesContract.TableVillage.COLUMN_SEEM_VID);
+        this.seem_vid = seemVID.substring(seemVID.length() - 3);
+        this.ucid = "0" + seemVID.substring(0, 1);
         return this;
     }
 

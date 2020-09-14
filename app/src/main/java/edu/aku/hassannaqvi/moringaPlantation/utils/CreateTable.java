@@ -66,7 +66,8 @@ public final class CreateTable {
             + VillagesContract.TableVillage._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + VillagesContract.TableVillage.COLUMN_UCNAME + " TEXT,"
             + VillagesContract.TableVillage.COLUMN_VILLAGE_NAME + " TEXT,"
-            + VillagesContract.TableVillage.COLUMN_SEEM_VID + " TEXT"
+            + VillagesContract.TableVillage.COLUMN_SEEM_VID + " TEXT,"
+            + VillagesContract.TableVillage.COLUMN_UCID + " TEXT"
             + " );";
 
     public static final String SQL_CREATE_VERSIONAPP = "CREATE TABLE " + VersionAppTable.TABLE_NAME + " (" +

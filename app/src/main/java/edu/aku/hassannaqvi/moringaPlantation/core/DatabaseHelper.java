@@ -217,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(VillagesContract.TableVillage.COLUMN_UCNAME, village.getUcname());
                 values.put(VillagesContract.TableVillage.COLUMN_VILLAGE_NAME, village.getVillagename());
                 values.put(VillagesContract.TableVillage.COLUMN_SEEM_VID, village.getSeem_vid());
+                values.put(VillagesContract.TableVillage.COLUMN_UCID, village.getUcid());
                 long rowID = db.insert(VillagesContract.TableVillage.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
@@ -1026,7 +1027,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 VillagesContract.TableVillage.COLUMN_UCNAME,
                 VillagesContract.TableVillage.COLUMN_VILLAGE_NAME,
-                VillagesContract.TableVillage.COLUMN_SEEM_VID
+                VillagesContract.TableVillage.COLUMN_SEEM_VID,
+                VillagesContract.TableVillage.COLUMN_UCID
         };
 
         String whereClause = null;
