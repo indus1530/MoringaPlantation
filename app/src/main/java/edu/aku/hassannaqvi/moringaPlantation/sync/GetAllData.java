@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.FollowUpContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
@@ -63,6 +64,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "Villages":
                 position = 2;
                 break;
+            case "FollowUp":
+                position = 3;
+                break;
         }
         list.get(position).settableName(syncClass);
     }
@@ -94,6 +98,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "Villages":
                 position = 2;
                 break;
+            case "FollowUp":
+                position = 3;
+                break;
         }
         list.get(position).setstatus("Syncing");
         list.get(position).setstatusID(2);
@@ -123,6 +130,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
                     tableName = VillagesContract.TableVillage.TABLE_NAME;
                     position = 2;
+                    break;
+                case "FollowUp":
+                    url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
+                    tableName = FollowUpContract.TableFollowUp.TABLE_NAME;
+                    position = 3;
                     break;
             }
 
@@ -210,6 +222,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             jsonArray = new JSONArray(result);
                             insertCount = db.syncVillage(jsonArray);
                             position = 2;
+                            break;
+                        case "FollowUp":
+                            jsonArray = new JSONArray(result);
+                            insertCount = db.syncFollowUp(jsonArray);
+                            position = 3;
                             break;
                     }
 

@@ -1,6 +1,7 @@
 package edu.aku.hassannaqvi.moringaPlantation.utils;
 
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.FollowUpContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
@@ -90,6 +91,13 @@ public final class CreateTable {
             + BLRandomTable.COLUMN_HH_SELECTED_STRUCT + " TEXT,"
             + BLRandomTable.COLUMN_RANDOMDT + " TEXT,"
             + BLRandomTable.COLUMN_SNO_HH + " TEXT );";
+
+    public static final String SQL_CREATE_FOLLOWUP = "CREATE TABLE " + FollowUpContract.TableFollowUp.TABLE_NAME + "("
+            + FollowUpContract.TableFollowUp._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + FollowUpContract.TableFollowUp.COLUMN_MF101 + " TEXT,"
+            + FollowUpContract.TableFollowUp.COLUMN_FSYSDATE + " TEXT,"
+            + FollowUpContract.TableFollowUp.COLUMN_FTID + " TEXT"
+            + " );";
 
 
 /*    public static final String SQL_ALTER_FORMS = "ALTER TABLE " +

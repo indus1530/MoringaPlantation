@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.FollowUpContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
@@ -25,6 +26,7 @@ import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
 import edu.aku.hassannaqvi.moringaPlantation.models.BLRandom;
+import edu.aku.hassannaqvi.moringaPlantation.models.FollowUp;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
@@ -33,6 +35,7 @@ import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_BL_RANDOM;
+import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_FOLLOWUP;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_FORMS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VERSIONAPP;
@@ -58,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_VILLAGES);
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERSIONAPP);
+        db.execSQL(SQL_CREATE_FOLLOWUP);
     }
 
     @Override
@@ -224,6 +228,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         } catch (Exception e) {
             Log.d(TAG, "syncVillage(e): " + e);
+            db.close();
+        } finally {
+            db.close();
+        }
+        return insertCount;
+    }
+
+    public int syncFollowUp(JSONArray followupList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(FollowUpContract.TableFollowUp.TABLE_NAME, null, null);
+        int insertCount = 0;
+        try {
+            for (int i = 0; i < followupList.length(); i++) {
+
+                JSONObject jsonObjectVil = followupList.getJSONObject(i);
+
+                FollowUp followUp = new FollowUp();
+                followUp.Sync(jsonObjectVil);
+                ContentValues values = new ContentValues();
+
+                values.put(FollowUpContract.TableFollowUp.COLUMN_MF101, followUp.getMf101());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE, followUp.getFsysdate());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_FTID, followUp.getFtid());
+                long rowID = db.insert(FollowUpContract.TableFollowUp.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, "syncFollowUp(e): " + e);
             db.close();
         } finally {
             db.close();
@@ -1114,6 +1147,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return allVil;
+    }
+
+    public Collection<FollowUp> getFollowUp() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FollowUpContract.TableFollowUp.COLUMN_MF101,
+                FollowUpContract.TableFollowUp.COLUMN_FSYSDATE,
+                FollowUpContract.TableFollowUp.COLUMN_FTID,
+        };
+
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FollowUpContract.TableFollowUp.COLUMN_MF101 + " ASC";
+
+        Collection<FollowUp> allfollowUp = new ArrayList<FollowUp>();
+        try {
+            c = db.query(
+                    FollowUpContract.TableFollowUp.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FollowUp followUp = new FollowUp();
+                allfollowUp.add(followUp.HydrateFP(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allfollowUp;
     }
 
 
