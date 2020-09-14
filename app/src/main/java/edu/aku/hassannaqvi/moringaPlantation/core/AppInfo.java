@@ -26,7 +26,7 @@ public final class AppInfo {
             installedOn = context.getPackageManager().getPackageInfo(context.getApplicationContext().getPackageName(), 0).lastUpdateTime;
             versionCode = context.getPackageManager().getPackageInfo(context.getApplicationContext().getPackageName(), 0).versionCode;
             versionName = context.getPackageManager().getPackageInfo(context.getApplicationContext().getPackageName(), 0).versionName;
-            dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+            dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
             deviceID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             appVersion = versionName + "." + versionCode;
             tagName = getTagName(context);

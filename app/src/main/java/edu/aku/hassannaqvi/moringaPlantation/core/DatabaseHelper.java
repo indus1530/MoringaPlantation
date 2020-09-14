@@ -463,7 +463,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allForms;
     }
 
-    public Collection<Form> getUnsyncedForms() {
+    public Collection<Form> getUnsyncedForms(String formtype) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -504,9 +504,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_APPVERSION,
         };
 
+        String whereClause;
+        String[] whereArgs;
 
-        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == '' ";
-        String[] whereArgs = null;
+        if (formtype == null) {
+            whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == ''";
+            whereArgs = null;
+        } else {
+            whereClause = FormsTable.COLUMN_FORMTYPE + " =? AND (" + FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == '')";
+            whereArgs = new String[]{formtype};
+        }
+
         String groupBy = null;
         String having = null;
         String orderBy = FormsTable.COLUMN_ID + " ASC";

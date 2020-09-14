@@ -87,7 +87,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     public void onSyncDataClick() {
 
-        bi.activityTitle.setText("Download Data");
+        bi.activityTitle.setText(getString(R.string.btnSync));
         // Require permissions INTERNET & ACCESS_NETWORK_STATE
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -117,7 +117,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     }
 
     public void syncServer() {
-        bi.activityTitle.setText("Upload Data");
+        bi.activityTitle.setText(getString(R.string.btnUpload));
         // Require permissions INTERNET & ACCESS_NETWORK_STATE
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -128,21 +128,24 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             new SyncDevice(this, false).execute();
 //  *******************************************************Forms*********************************
-            Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
-            if (uploadlistActivityCreated) {
-                uploadmodel = new SyncModel();
-                uploadmodel.setstatusID(0);
-                uploadlist.add(uploadmodel);
+            String[] syncValues = new String[]{"MP", "MF"};
+            for (int i = 0; i < syncValues.length; i++) {
+                Toast.makeText(getApplicationContext(), String.format("Syncing Forms %s", syncValues[i]), Toast.LENGTH_SHORT).show();
+                if (uploadlistActivityCreated) {
+                    uploadmodel = new SyncModel();
+                    uploadmodel.setstatusID(0);
+                    uploadlist.add(uploadmodel);
+                }
+                new SyncAllData(
+                        this,
+                        "Forms",
+                        "updateSyncedForms",
+                        Form.class,
+                        MainApp._HOST_URL + MainApp._SERVER_URL,
+                        FormsContract.FormsTable.TABLE_NAME,
+                        db.getUnsyncedForms(syncValues[i]), i, syncListAdapter, uploadlist
+                ).execute();
             }
-            new SyncAllData(
-                    this,
-                    "Forms",
-                    "updateSyncedForms",
-                    Form.class,
-                    MainApp._HOST_URL + MainApp._SERVER_URL,
-                    FormsContract.FormsTable.TABLE_NAME,
-                    db.getUnsyncedForms(), 0, syncListAdapter, uploadlist
-            ).execute();
 
             bi.noDataItem.setVisibility(View.GONE);
 

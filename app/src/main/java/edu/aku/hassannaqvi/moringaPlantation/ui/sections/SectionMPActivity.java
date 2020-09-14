@@ -81,11 +81,7 @@ public class SectionMPActivity extends AppCompatActivity {
                 }
 
                 bi.mp103.setEnabled(true);
-                List<String> user2 = new ArrayList<String>() {
-                    {
-                        add("....");
-                    }
-                };
+                List<String> user2 = new ArrayList<>();
 
                 for (String names : usersFullName) {
                     if (names.equals(bi.mp102.getSelectedItem().toString())) continue;
@@ -187,8 +183,8 @@ public class SectionMPActivity extends AppCompatActivity {
     private void SaveDraft() {
 
         form = new Form();
-        form.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        form.setFormtype("MP Form");
+        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
+        form.setFormtype("MP");
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());

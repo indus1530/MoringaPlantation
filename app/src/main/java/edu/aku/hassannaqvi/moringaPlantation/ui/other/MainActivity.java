@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
 
     static File file;
     ActivityMainBinding bi;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+    String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     String sysdateToday = new SimpleDateFormat("dd-MM-yy").format(new Date());
     SharedPreferences sharedPrefDownload;
     SharedPreferences.Editor editorDownload;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
 
         //bi.txtinstalldate.setText(appInfo.getAppInfo());
         Collection<Form> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
-        Collection<Form> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
+        Collection<Form> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms(null);
         Collection<Form> unclosedForms = appInfo.getDbHelper().getUnclosedForms();
 
         StringBuilder rSumText = new StringBuilder()

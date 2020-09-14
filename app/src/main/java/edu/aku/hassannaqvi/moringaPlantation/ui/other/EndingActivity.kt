@@ -52,7 +52,7 @@ class EndingActivity : AppCompatActivity() {
         else "-1"
         form.istatus = statusValue
         form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
-        form.endingdatetime = SimpleDateFormat("dd-MM-yy HH:mm").format(Date().time)
+        form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm").format(Date().time)
 
     }
 

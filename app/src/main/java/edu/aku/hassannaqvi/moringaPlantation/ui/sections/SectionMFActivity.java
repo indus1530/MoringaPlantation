@@ -40,7 +40,10 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMFActivity extends AppCompatActivity {
 
     ActivitySectionMfBinding bi;
-    private List<String> usersFullName, ucNames, ucCodes, villageNames, villageCodes;
+    private List<String> ucNames;
+    private List<String> ucCodes;
+    private List<String> villageNames;
+    private List<String> villageCodes;
     private DatabaseHelper db;
 
     @Override
@@ -98,7 +101,7 @@ public class SectionMFActivity extends AppCompatActivity {
     public void populateSpinner(final Context context) {
         db = MainApp.appInfo.getDbHelper();
         // Spinner Drop down elements
-        usersFullName = new ArrayList<String>() {
+        List<String> usersFullName = new ArrayList<String>() {
             {
                 add("....");
             }
@@ -195,8 +198,8 @@ public class SectionMFActivity extends AppCompatActivity {
     private void SaveDraft() {
 
         form = new Form();
-        form.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        form.setFormtype("Follow Up");
+        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
+        form.setFormtype("MF");
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());

@@ -176,8 +176,8 @@
 
                 </androidx.cardview.widget.CardView>
 
-
-                <!-- mf104  SpinnerUC   -->
+<!--
+                &lt;!&ndash; mf104  SpinnerUC   &ndash;&gt;
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVmf104"
                     style="@style/cardView">
@@ -219,7 +219,7 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <!-- mf103  SpinnerVillage   -->
+                &lt;!&ndash; mf103  SpinnerVillage   &ndash;&gt;
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVmf103"
                     style="@style/cardView">
@@ -255,6 +255,52 @@
                         <Spinner
                             android:id="@+id/mf103"
                             style="@style/spinner1" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>-->
+
+
+                <!-- mf103  Input-Numeric   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVmf103"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom">
+
+                            <TextView
+                                android:id="@+id/qtxt_mf103"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/q_mf103"
+                                android:text="@string/mf103" />
+
+                            <TextView
+                                android:id="@+id/q_mf103"
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/qtxt_mf103"
+                                android:layout_alignBottom="@id/qtxt_mf103"
+                                android:text="@string/Q_mf103" />
+
+                        </RelativeLayout>
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/mf103"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:hint="@string/mf103" />
 
                     </LinearLayout>
 
