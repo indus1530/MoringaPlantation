@@ -1,10 +1,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMFActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMFActivity">
 
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -24,12 +25,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <!-- pid     -->
+            <!-- mf103  Input-Numeric   -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVpid"
-                style="@style/cardView"
-                android:visibility="gone">
+                android:id="@+id/fldGrpCVmf103"
+                style="@style/cardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -42,37 +41,55 @@
                         android:background="@drawable/bottom">
 
                         <TextView
-                            android:id="@+id/qtxt_pid"
+                            android:id="@+id/qtxt_mf103"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_pid"
-                            android:text="@string/pid" />
+                            android:layout_toEndOf="@id/q_mf103"
+                            android:text="@string/mf103" />
 
                         <TextView
-                            android:id="@+id/q_pid"
+                            android:id="@+id/q_mf103"
                             style="@style/quesNum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_pid"
-                            android:layout_alignBottom="@id/qtxt_pid"
-                            android:text="@string/Q_pid" />
+                            android:layout_alignTop="@id/qtxt_mf103"
+                            android:layout_alignBottom="@id/qtxt_mf103"
+                            android:text="@string/Q_mf103" />
 
                     </RelativeLayout>
 
-
-                    <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/pid"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textDirection="ltr"
-                        android:hint="##-###-#####"
-                        android:inputType="number"
-                        app:mask="##-###-#####"
-                        app:maxValue="500"
-                        app:minValue="1"
-                        app:pattern="[0-9]{2}-[0-9]{3}-[0-9]{5}"
-                        app:type="range" />
+                        android:orientation="horizontal">
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/mf103"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:hint="####"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:onTextChanged="@{callback.mf103OnTextChanged}"
+                            app:pattern="[0-9]{4}" />
+
+                        <Button
+                            style="@style/button"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/green_overlay"
+                            android:drawableEnd="@drawable/search"
+                            android:onClick="@{callback::BtnCheckFUP}"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="10dp"
+                            android:text="CHECK ID"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -80,11 +97,10 @@
 
 
             <LinearLayout
-                android:id="@+id/GrpName2nd"
+                android:id="@+id/GrpName02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
                 <!-- mf101     -->
                 <androidx.cardview.widget.CardView
@@ -171,136 +187,6 @@
                         <Spinner
                             android:id="@+id/mf102"
                             style="@style/spinner1" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-<!--
-                &lt;!&ndash; mf104  SpinnerUC   &ndash;&gt;
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/fldGrpCVmf104"
-                    style="@style/cardView">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom">
-
-                            <TextView
-                                android:id="@+id/qtxt_mf104"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/q_mf104"
-                                android:text="@string/mf104" />
-
-                            <TextView
-                                android:id="@+id/q_mf104"
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignTop="@id/qtxt_mf104"
-                                android:layout_alignBottom="@id/qtxt_mf104"
-                                android:text="@string/Q_mf104" />
-
-                        </RelativeLayout>
-
-                        <Spinner
-                            android:id="@+id/mf104"
-                            style="@style/spinner1" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-
-                &lt;!&ndash; mf103  SpinnerVillage   &ndash;&gt;
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/fldGrpCVmf103"
-                    style="@style/cardView">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom">
-
-                            <TextView
-                                android:id="@+id/qtxt_mf103"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/q_mf103"
-                                android:text="@string/mf103" />
-
-                            <TextView
-                                android:id="@+id/q_mf103"
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignTop="@id/qtxt_mf103"
-                                android:layout_alignBottom="@id/qtxt_mf103"
-                                android:text="@string/Q_mf103" />
-
-                        </RelativeLayout>
-
-                        <Spinner
-                            android:id="@+id/mf103"
-                            style="@style/spinner1" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>-->
-
-
-                <!-- mf103  Input-Numeric   -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/fldGrpCVmf103"
-                    style="@style/cardView">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom">
-
-                            <TextView
-                                android:id="@+id/qtxt_mf103"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/q_mf103"
-                                android:text="@string/mf103" />
-
-                            <TextView
-                                android:id="@+id/q_mf103"
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignTop="@id/qtxt_mf103"
-                                android:layout_alignBottom="@id/qtxt_mf103"
-                                android:text="@string/Q_mf103" />
-
-                        </RelativeLayout>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/mf103"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="4"
-                            android:hint="@string/mf103" />
 
                     </LinearLayout>
 
@@ -467,9 +353,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                                android:hint="@string/mf10696"
                                 android:inputType="text"
                                 android:maxLength="25"
-                                android:hint="@string/mf10696"
                                 android:tag="mf10696"
                                 android:text='@{mf10696.checked ? mf10696x.getText().toString() : ""}'
                                 android:visibility='@{mf10696.checked? View.VISIBLE : View.GONE}' />
@@ -518,9 +404,9 @@
                             android:id="@+id/mf107"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="@string/mf107"
                             android:inputType="number"
                             android:maxLength="3"
-                            android:hint="@string/mf107"
                             app:maxValue="500"
                             app:minValue="1"
                             app:type="range" />
@@ -591,9 +477,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                                android:hint="@string/mf10896"
                                 android:inputType="text"
                                 android:maxLength="25"
-                                android:hint="@string/mf10896"
                                 android:tag="mf10896"
                                 android:text='@{mf10896.checked ? mf10896x.getText().toString() : ""}'
                                 android:visibility='@{mf10896.checked? View.VISIBLE : View.GONE}' />
@@ -605,34 +491,34 @@
                 </androidx.cardview.widget.CardView>
 
 
-            <!--EndButton LinearLayout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal">
-
-                <!--<Button
-                    android:id="@+id/btn_End"
-                    android:layout_width="wrap_content"
+                <!--EndButton LinearLayout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:background="@color/red_overlay"
-                    android:onClick="@{() -> callback.BtnEnd()}"
-                    android:text="Cancel"
-                    android:textColor="@color/white" />-->
+                    android:layout_gravity="end"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_Continue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:background="@color/green_overlay"
-                    android:onClick="@{() -> callback.BtnContinue()}"
-                    android:text="Save"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                    <!--<Button
+                        android:id="@+id/btn_End"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/red_overlay"
+                        android:onClick="@{() -> callback.BtnEnd()}"
+                        android:text="Cancel"
+                        android:textColor="@color/white" />-->
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/green_overlay"
+                        android:onClick="@{() -> callback.BtnContinue()}"
+                        android:text="Save"
+                        android:textColor="@color/white" />
+                </LinearLayout>
                 <!--EndButton LinearLayout-->
 
 

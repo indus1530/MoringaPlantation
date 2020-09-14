@@ -1149,7 +1149,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allVil;
     }
 
-    public Collection<FollowUp> getFollowUp() {
+
+    public FollowUp getFollowUp(String fUP) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -1158,15 +1159,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FollowUpContract.TableFollowUp.COLUMN_FTID,
         };
 
-        String whereClause = null;
-        String[] whereArgs = null;
+        String whereClause = FollowUpContract.TableFollowUp.COLUMN_MF101 + "=?";
+        String[] whereArgs = {fUP};
         String groupBy = null;
         String having = null;
 
-        String orderBy =
-                FollowUpContract.TableFollowUp.COLUMN_MF101 + " ASC";
+        String orderBy = FollowUpContract.TableFollowUp.COLUMN_MF101 + " ASC";
 
-        Collection<FollowUp> allfollowUp = new ArrayList<FollowUp>();
+        FollowUp allfollowUp = null;
         try {
             c = db.query(
                     FollowUpContract.TableFollowUp.TABLE_NAME,  // The table to query
@@ -1178,8 +1178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                FollowUp followUp = new FollowUp();
-                allfollowUp.add(followUp.HydrateFP(c));
+                allfollowUp = new FollowUp().HydrateFP(c);
             }
         } finally {
             if (c != null) {

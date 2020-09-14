@@ -4,11 +4,7 @@ package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -29,22 +25,23 @@ import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMfBinding;
+import edu.aku.hassannaqvi.moringaPlantation.models.FollowUp;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
-import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
+import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.appInfo;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
 
 public class SectionMFActivity extends AppCompatActivity {
 
     ActivitySectionMfBinding bi;
-    private List<String> ucNames;
-    private List<String> ucCodes;
-    private List<String> villageNames;
-    private List<String> villageCodes;
-    private DatabaseHelper db;
+    FollowUp fup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +54,6 @@ public class SectionMFActivity extends AppCompatActivity {
 
 
     private void setupSkip() {
-
-        bi.pid.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (TextUtils.isEmpty(bi.pid.getText()))
-                    return;
-                /*bi.pid.getText().toString().trim().length() == 10 &&
-                        bi.GrpName2nd.setVisibility(View.VISIBLE);*/
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
-
 
         bi.mf105.setOnCheckedChangeListener((radioGroup, i) -> {
             Clear.clearAllFields(bi.fldGrpCVmf106);
@@ -98,8 +75,7 @@ public class SectionMFActivity extends AppCompatActivity {
     }
 
 
-    public void populateSpinner(final Context context) {
-        db = MainApp.appInfo.getDbHelper();
+    private void populateSpinner(final Context context) {
         // Spinner Drop down elements
         List<String> usersFullName = new ArrayList<String>() {
             {
@@ -107,62 +83,12 @@ public class SectionMFActivity extends AppCompatActivity {
             }
         };
 
-        Collection<Users> dc = db.getUsers();
+        Collection<Users> dc = MainApp.appInfo.getDbHelper().getUsers();
         for (Users us : dc) {
             usersFullName.add(us.getFull_name());
         }
 
         bi.mf102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
-
-        bi.mf102.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if (position == 0) return;
-                ucNames = new ArrayList<>();
-                ucCodes = new ArrayList<>();
-                ucNames.add("....");
-                ucCodes.add("....");
-
-                Collection<Villages> pc = db.getVillageUc();
-                for (Villages p : pc) {
-                    ucNames.add(p.getUcname());
-                    ucCodes.add(p.getUcid());
-                }
-
-                bi.mf104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        bi.mf104.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if (position == 0) return;
-                villageNames = new ArrayList<>();
-                villageCodes = new ArrayList<>();
-                villageNames.add("....");
-                villageCodes.add("....");
-
-                Collection<Villages> pc = db.getVillageByUc(bi.mf104.getSelectedItem().toString());
-                for (Villages p : pc) {
-                    villageNames.add(p.getVillagename());
-                    villageCodes.add(p.getSeem_vid());
-                }
-
-                bi.mf103.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
     }
 
@@ -180,7 +106,6 @@ public class SectionMFActivity extends AppCompatActivity {
 
 
     private boolean UpdateDB() {
-
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         long updcount = db.addForm(form);
         form.set_ID(String.valueOf(updcount));
@@ -204,17 +129,9 @@ public class SectionMFActivity extends AppCompatActivity {
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setAppversion(MainApp.appInfo.getAppVersion());
-
-        form.setPid(bi.pid.getText().toString().trim().isEmpty() ? "-1" : bi.pid.getText().toString());
-
+        form.setPid(bi.mf103.getText().toString());
         form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
-
         form.setMf102(bi.mf102.getSelectedItem().toString());
-
-        form.setMf103(villageCodes.get(bi.mf103.getSelectedItemPosition()));
-
-        form.setMf104(ucCodes.get(bi.mf104.getSelectedItemPosition()));
-
         form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"
                 : bi.mf10503.isChecked() ? "3"
@@ -222,7 +139,6 @@ public class SectionMFActivity extends AppCompatActivity {
                 : bi.mf10505.isChecked() ? "5"
                 : bi.mf10506.isChecked() ? "6"
                 : "-1");
-
         form.setMf106(bi.mf10601.isChecked() ? "1"
                 : bi.mf10602.isChecked() ? "2"
                 : bi.mf10603.isChecked() ? "3"
@@ -231,17 +147,19 @@ public class SectionMFActivity extends AppCompatActivity {
                 : bi.mf10696.isChecked() ? "96"
                 : "-1");
         form.setMf106x(bi.mf10696x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10696x.getText().toString());
-
         form.setMf107(bi.mf107.getText().toString().trim().isEmpty() ? "-1" : bi.mf107.getText().toString());
-
         form.setMf108(bi.mf10801.isChecked() ? "1"
                 : bi.mf10802.isChecked() ? "2"
                 : bi.mf10896.isChecked() ? "96"
                 : "-1");
         form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
         MainApp.setGPS(this);
+    }
 
 
+    private void setupFields(int view) {
+        bi.GrpName02.setVisibility(view);
+        Clear.clearAllFields(bi.GrpName02);
     }
 
 
@@ -249,8 +167,36 @@ public class SectionMFActivity extends AppCompatActivity {
         return Validator.emptyCheckingContainer(this, bi.GrpName);
     }
 
-    /*public void BtnEnd() {
-        AppUtilsKt.openEndActivity(this);
-    }*/
+
+    public void mf103OnTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        setupFields(View.GONE);
+    }
+
+
+    public void BtnCheckFUP(View view) {
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
+
+        Disposable disposable = getFupByID(bi.mf103.getText().toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(fupcontract -> {
+                    fup = fupcontract;
+                    setupFields(View.VISIBLE);
+
+                }, error -> {
+                    Toast.makeText(this, "No Follow up found!!", Toast.LENGTH_SHORT).show();
+                    setupFields(View.GONE);
+                });
+
+    }
+
+
+    private Observable<FollowUp> getFupByID(String pid) {
+        return Observable.create(emitter -> {
+            emitter.onNext(appInfo.getDbHelper().getFollowUp(pid));
+            emitter.onComplete();
+        });
+    }
+
 
 }

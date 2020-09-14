@@ -25,7 +25,7 @@ android {
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.moringaPlantation"
             minSdkVersion 22
-            targetSdkVersion 22
+            targetSdkVersion 30
             versionCode code
             versionName "0.1"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -52,14 +52,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // androidx
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -68,12 +68,12 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     // Kotlin
-    def kotlin_version = '1.3.72'
+    def kotlin_version = '1.4.0'
     implementation "androidx.core:core-ktx:1.3.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Coroutine
-    def coroutine_version = '1.3.4'
+    def coroutine_version = '1.3.7'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
@@ -109,5 +109,11 @@ dependencies {
 
     // optional - GCMNetworkManager support
     implementation "androidx.work:work-gcm:$work_version"
+
+
+    //RxJava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation "io.reactivex.rxjava3:rxjava:3.0.3"
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
 }
