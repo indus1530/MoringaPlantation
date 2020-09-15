@@ -18,7 +18,7 @@ public class FollowUpContract {
         public static final String TABLE_NAME = "followup";
 
         public static final String _ID = "id";
-        public static final String COLUMN_MF101 = "mf101";
+        public static final String COLUMN_MP101 = "mp101";
         public static final String COLUMN_FSYSDATE = "fsysdate";
         public static final String COLUMN_FTID = "ftid";
 

@@ -138,11 +138,11 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 }
                 new SyncAllData(
                         this,
-                        "Forms",
+                        String.format("Forms - %s", syncValues[i]),
                         "updateSyncedForms",
                         Form.class,
                         MainApp._HOST_URL + MainApp._SERVER_URL,
-                        FormsContract.FormsTable.TABLE_NAME,
+                        FormsContract.FormsTable.TABLE_NAME + syncValues[i],
                         db.getUnsyncedForms(syncValues[i]), i, syncListAdapter, uploadlist
                 ).execute();
             }
@@ -293,31 +293,14 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         protected String doInBackground(Boolean... booleans) {
             runOnUiThread(() -> {
 
-                if (booleans[0]) {
-//                  getting Users!!
+                String[] syncItems = {"User", "VersionApp", "Villages", "FollowUp"};
+                for (String syncItem : syncItems) {
                     if (listActivityCreated) {
                         model = new SyncModel();
                         model.setstatusID(0);
                         list.add(model);
                     }
-                    new GetAllData(mContext, "User", syncListAdapter, list).execute();
-
-//                    Getting App Version
-                    if (listActivityCreated) {
-                        model = new SyncModel();
-                        model.setstatusID(0);
-                        list.add(model);
-                    }
-                    new GetAllData(mContext, "VersionApp", syncListAdapter, list).execute();
-
-//                    Getting App Version
-                    if (listActivityCreated) {
-                        model = new SyncModel();
-                        model.setstatusID(0);
-                        list.add(model);
-                    }
-                    new GetAllData(mContext, "Villages", syncListAdapter, list).execute();
-
+                    new GetAllData(mContext, syncItem, syncListAdapter, list).execute();
                 }
 
                 listActivityCreated = false;

@@ -117,6 +117,7 @@
                     android:layout_margin="12dp"
                     android:background="@color/colorPrimary"
                     android:onClick="@{() -> callback.BtnEnd()}"
+                    android:padding="10dp"
                     android:text="End Interview"
                     android:textColor="@color/white" />
                 <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->

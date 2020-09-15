@@ -248,7 +248,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 followUp.Sync(jsonObjectVil);
                 ContentValues values = new ContentValues();
 
-                values.put(FollowUpContract.TableFollowUp.COLUMN_MF101, followUp.getMf101());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_MP101, followUp.getMf101());
                 values.put(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE, followUp.getFsysdate());
                 values.put(FollowUpContract.TableFollowUp.COLUMN_FTID, followUp.getFtid());
                 long rowID = db.insert(FollowUpContract.TableFollowUp.TABLE_NAME, null, values);
@@ -1154,17 +1154,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                FollowUpContract.TableFollowUp.COLUMN_MF101,
+                FollowUpContract.TableFollowUp.COLUMN_MP101,
                 FollowUpContract.TableFollowUp.COLUMN_FSYSDATE,
                 FollowUpContract.TableFollowUp.COLUMN_FTID,
         };
 
-        String whereClause = FollowUpContract.TableFollowUp.COLUMN_MF101 + "=?";
+        String whereClause = FollowUpContract.TableFollowUp.COLUMN_FTID + "=?";
         String[] whereArgs = {fUP};
         String groupBy = null;
         String having = null;
 
-        String orderBy = FollowUpContract.TableFollowUp.COLUMN_MF101 + " ASC";
+        String orderBy = FollowUpContract.TableFollowUp.COLUMN_FTID + " ASC";
 
         FollowUp allfollowUp = null;
         try {

@@ -64,7 +64,7 @@ public class FollowUp {
         JSONObject json = new JSONObject();
         try {
             json.put(FollowUpContract.TableFollowUp._ID, this.id == null ? JSONObject.NULL : this.id);
-            json.put(FollowUpContract.TableFollowUp.COLUMN_MF101, this.mf101 == null ? JSONObject.NULL : this.mf101);
+            json.put(FollowUpContract.TableFollowUp.COLUMN_MP101, this.mf101 == null ? JSONObject.NULL : this.mf101);
             json.put(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE, this.fsysdate == null ? JSONObject.NULL : this.fsysdate);
             json.put(FollowUpContract.TableFollowUp.COLUMN_FTID, this.ftid == null ? JSONObject.NULL : this.ftid);
             return json;
@@ -75,7 +75,7 @@ public class FollowUp {
     }
 
     public FollowUp Sync(JSONObject jsonObject) throws JSONException {
-        this.mf101 = jsonObject.getString(FollowUpContract.TableFollowUp.COLUMN_MF101);
+        this.mf101 = jsonObject.getString(FollowUpContract.TableFollowUp.COLUMN_MP101);
         this.fsysdate = jsonObject.getString(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE);
         this.ftid = jsonObject.getString(FollowUpContract.TableFollowUp.COLUMN_FTID);
 
@@ -83,7 +83,7 @@ public class FollowUp {
     }
 
     public FollowUp HydrateFP(Cursor cursor) {
-        this.mf101 = cursor.getString(cursor.getColumnIndex(FollowUpContract.TableFollowUp.COLUMN_MF101));
+        this.mf101 = cursor.getString(cursor.getColumnIndex(FollowUpContract.TableFollowUp.COLUMN_MP101));
         this.fsysdate = cursor.getString(cursor.getColumnIndex(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE));
         this.ftid = cursor.getString(cursor.getColumnIndex(FollowUpContract.TableFollowUp.COLUMN_FTID));
 

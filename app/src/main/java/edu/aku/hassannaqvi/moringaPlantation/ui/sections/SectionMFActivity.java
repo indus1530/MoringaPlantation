@@ -193,7 +193,7 @@ public class SectionMFActivity extends AppCompatActivity {
 
     private Observable<FollowUp> getFupByID(String pid) {
         return Observable.create(emitter -> {
-            emitter.onNext(appInfo.getDbHelper().getFollowUp(pid));
+            emitter.onNext(appInfo.getDbHelper().getFollowUp(Integer.valueOf(pid).toString()));
             emitter.onComplete();
         });
     }
