@@ -291,6 +291,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_PROJECT_NAME, form.getProjectName());
         values.put(FormsTable.COLUMN_UID, form.get_UID());
+        values.put(FormsTable.COLUMN_SEEM_VID, form.getSeem_vid());
+        values.put(FormsTable.COLUMN__LUID, form.get_luid());
+        values.put(FormsTable.COLUMN_MPSYSDATE, form.getMpsysdate());
         values.put(FormsTable.COLUMN_FORMTYPE, form.getFormtype());
         values.put(FormsTable.COLUMN_USERNAME, form.getUsername());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysdate());
@@ -358,6 +361,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
@@ -431,6 +437,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
@@ -504,6 +513,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
@@ -589,6 +601,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
@@ -686,6 +701,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_MP101,
@@ -745,6 +763,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_MP102,
@@ -873,6 +894,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SEEM_VID,
+                FormsTable.COLUMN__LUID,
+                FormsTable.COLUMN_MPSYSDATE,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,

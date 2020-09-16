@@ -19,6 +19,9 @@ public class FormsContract {
         public static final String COLUMN_PROJECT_NAME = "projectName";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_SEEM_VID = "seem_vid";
+        public static final String COLUMN__LUID = "_luid";
+        public static final String COLUMN_MPSYSDATE = "mpsysdate";
         public static final String COLUMN_FORMTYPE = "formtype";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
