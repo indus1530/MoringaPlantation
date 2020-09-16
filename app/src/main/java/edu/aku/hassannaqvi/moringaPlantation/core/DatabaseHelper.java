@@ -248,9 +248,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 followUp.Sync(jsonObjectVil);
                 ContentValues values = new ContentValues();
 
-                values.put(FollowUpContract.TableFollowUp.COLUMN_MP101, followUp.getMf101());
-                values.put(FollowUpContract.TableFollowUp.COLUMN_FSYSDATE, followUp.getFsysdate());
-                values.put(FollowUpContract.TableFollowUp.COLUMN_FTID, followUp.getFtid());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_MP101, followUp.getMp101());
+                values.put(FollowUpContract.TableFollowUp.COLUMN__LUID, followUp.get_luid());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_MPSYSDATE, followUp.getMpsysdate());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_PID, followUp.getPid());
+                values.put(FollowUpContract.TableFollowUp.COLUMN_SEEM_VID, followUp.getSeem_vid());
                 long rowID = db.insert(FollowUpContract.TableFollowUp.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
@@ -1155,16 +1157,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FollowUpContract.TableFollowUp.COLUMN_MP101,
-                FollowUpContract.TableFollowUp.COLUMN_FSYSDATE,
-                FollowUpContract.TableFollowUp.COLUMN_FTID,
+                FollowUpContract.TableFollowUp.COLUMN__LUID,
+                FollowUpContract.TableFollowUp.COLUMN_MPSYSDATE,
+                FollowUpContract.TableFollowUp.COLUMN_PID,
+                FollowUpContract.TableFollowUp.COLUMN_SEEM_VID,
         };
 
-        String whereClause = FollowUpContract.TableFollowUp.COLUMN_FTID + "=?";
+        String whereClause = FollowUpContract.TableFollowUp.COLUMN_PID + "=?";
         String[] whereArgs = {fUP};
         String groupBy = null;
         String having = null;
 
-        String orderBy = FollowUpContract.TableFollowUp.COLUMN_FTID + " ASC";
+        String orderBy = FollowUpContract.TableFollowUp.COLUMN_PID + " ASC";
 
         FollowUp allfollowUp = null;
         try {

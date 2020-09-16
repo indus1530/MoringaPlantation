@@ -95,8 +95,10 @@ public final class CreateTable {
     public static final String SQL_CREATE_FOLLOWUP = "CREATE TABLE " + FollowUpContract.TableFollowUp.TABLE_NAME + "("
             + FollowUpContract.TableFollowUp._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + FollowUpContract.TableFollowUp.COLUMN_MP101 + " TEXT,"
-            + FollowUpContract.TableFollowUp.COLUMN_FSYSDATE + " TEXT,"
-            + FollowUpContract.TableFollowUp.COLUMN_FTID + " TEXT"
+            + FollowUpContract.TableFollowUp.COLUMN__LUID + " TEXT,"
+            + FollowUpContract.TableFollowUp.COLUMN_MPSYSDATE + " TEXT,"
+            + FollowUpContract.TableFollowUp.COLUMN_PID + " TEXT,"
+            + FollowUpContract.TableFollowUp.COLUMN_SEEM_VID + " TEXT"
             + " );";
 
 
