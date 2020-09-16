@@ -29,6 +29,7 @@ public class FormsReportDate extends AppCompatActivity {
     private RecyclerView.Adapter formsAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class FormsReportDate extends AppCompatActivity {
         formsAdapter = new FormsAdapter((List<Form>) form, this);
         recyclerView.setAdapter(formsAdapter);
     }
+
 
     public void filterForms(View view) {
         Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show();
