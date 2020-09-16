@@ -30,6 +30,7 @@ import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -176,17 +177,36 @@ public class SectionMFActivity extends AppCompatActivity {
     public void BtnCheckFUP(View view) {
         if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
 
-        Disposable disposable = getFupByID(bi.mf103.getText().toString())
+        getFupByID(bi.mf103.getText().toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(fupcontract -> {
-                    fup = fupcontract;
-                    setupFields(View.VISIBLE);
+                .subscribe(new Observer<FollowUp>() {
+                    Disposable disposable;
 
-                }, error -> {
-                    Toast.makeText(this, "No Follow up found!!", Toast.LENGTH_SHORT).show();
-                    setupFields(View.GONE);
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(FollowUp fupContract) {
+                        fup = fupContract;
+                        setupFields(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(SectionMFActivity.this, "No Follow up found!!", Toast.LENGTH_SHORT).show();
+                        setupFields(View.GONE);
+                        disposable.dispose();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        disposable.dispose();
+                    }
                 });
+
 
     }
 

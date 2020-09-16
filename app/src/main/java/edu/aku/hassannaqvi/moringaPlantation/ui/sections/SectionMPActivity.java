@@ -55,7 +55,7 @@ public class SectionMPActivity extends AppCompatActivity {
     }
 
 
-    public void populateSpinner(final Context context) {
+    private void populateSpinner(final Context context) {
         db = MainApp.appInfo.getDbHelper();
         // Spinner Drop down elements
         usersFullName = new ArrayList<String>() {
