@@ -15,7 +15,7 @@ public class FollowUpContract {
 
     public static abstract class TableFollowUp implements BaseColumns {
 
-        public static final String TABLE_NAME = "followup";
+        public static final String TABLE_NAME = "folowupslist";
 
         public static final String _ID = "id";
         public static final String COLUMN_MP101 = "mp101";
@@ -26,7 +26,7 @@ public class FollowUpContract {
 
         public static final String SERVER_URI = "followup.php";
 
-        public static String PATH = "followup";
+        public static String PATH = "folowupslist";
 
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH;

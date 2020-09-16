@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
@@ -125,7 +126,7 @@ public class SectionMFActivity extends AppCompatActivity {
 
         form = new Form();
         form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
-        form.setFormtype("MF");
+        form.setFormtype(CONSTANTS.FORM_MF);
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
@@ -154,6 +155,9 @@ public class SectionMFActivity extends AppCompatActivity {
                 : bi.mf10896.isChecked() ? "96"
                 : "-1");
         form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
+        form.set_luid(fup.get_luid());
+        form.setSeem_vid(fup.getSeem_vid());
+        form.setMpsysdate(fup.getMpsysdate());
         MainApp.setGPS(this);
     }
 

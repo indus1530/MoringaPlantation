@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
@@ -112,7 +113,7 @@ public class SectionMPActivity extends AppCompatActivity {
                 Collection<Villages> pc = db.getVillageUc();
                 for (Villages p : pc) {
                     ucNames.add(p.getUcname());
-                    ucCodes.add(p.getSeem_vid().substring(0, 1));
+                    ucCodes.add(p.getUcid());
                 }
 
                 bi.mp105.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
@@ -137,7 +138,7 @@ public class SectionMPActivity extends AppCompatActivity {
                 Collection<Villages> pc = db.getVillageByUc(bi.mp105.getSelectedItem().toString());
                 for (Villages p : pc) {
                     villageNames.add(p.getVillagename());
-                    villageCodes.add(p.getSeem_vid().substring(p.getSeem_vid().length() - 3));
+                    villageCodes.add(p.getSeem_vid());
                 }
 
                 bi.mp104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
@@ -184,7 +185,7 @@ public class SectionMPActivity extends AppCompatActivity {
 
         form = new Form();
         form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
-        form.setFormtype("MP");
+        form.setFormtype(CONSTANTS.FORM_MP);
         form.setUsername(MainApp.userName);
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
@@ -198,7 +199,7 @@ public class SectionMPActivity extends AppCompatActivity {
 
         form.setMp104(villageCodes.get(bi.mp104.getSelectedItemPosition()));
 
-        form.setMp105("0" + ucCodes.get(bi.mp105.getSelectedItemPosition()));
+        form.setMp105(ucCodes.get(bi.mp105.getSelectedItemPosition()));
 
         form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
 
@@ -218,6 +219,8 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setMp107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
 
         form.setMp108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
+
+        form.setSeem_vid(ucCodes.get(bi.mp105.getSelectedItemPosition()) + villageCodes.get(bi.mp104.getSelectedItemPosition()));
 
         MainApp.setGPS(this);
 

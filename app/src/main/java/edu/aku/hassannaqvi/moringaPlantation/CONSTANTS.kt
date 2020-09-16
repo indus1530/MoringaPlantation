@@ -41,5 +41,9 @@ class CONSTANTS {
         const val CHILD_NO_ANSWER = "childNoAns"
         const val CHILD_SERIAL = "serial_extra"
 
+        //MP & MF variables
+        const val FORM_MP = "MP"
+        const val FORM_MF = "MF"
+
     }
 }

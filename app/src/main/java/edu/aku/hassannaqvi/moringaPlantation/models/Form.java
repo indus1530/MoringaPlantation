@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
 
 /**
@@ -549,35 +550,8 @@ public class Form extends LiveData<Form> {
     public Form Hydrate(Cursor cursor) {
         this._ID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
-        this.seem_vid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEEM_VID));
-        this._luid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN__LUID));
-        this.mpsysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MPSYSDATE));
-        this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
         this.username = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USERNAME));
         this.sysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYSDATE));
-        this.mp101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP101));
-        this.mp102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP102));
-        this.mp103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP103));
-        this.mp104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP104));
-        this.mp105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP105));
-        this.mp106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP106));
-        this.mp107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107));
-        this.mp107x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107x));
-        this.mp108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP108));
-        this.pid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PID));
-        this.mf101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF101));
-        this.mf102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF102));
-        this.mf103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF103));
-        this.mf104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF104));
-        this.mf105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF105));
-        this.mf106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106));
-        this.mf106x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106x));
-        this.mf107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF107));
-        this.mf108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108));
-        this.mf108x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108x));
-        this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
-        this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
-        this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
         this.gpsDT = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSDATE));
@@ -585,6 +559,39 @@ public class Form extends LiveData<Form> {
         this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
         this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
+        this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
+        this.pid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PID));
+        this.seem_vid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEEM_VID));
+        this.mf101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF101));
+
+        if (this.formtype.equals(CONSTANTS.FORM_MP)) {
+            this.mp101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP101));
+            this.mp102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP102));
+            this.mp103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP103));
+            this.mp104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP104));
+            this.mp105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP105));
+            this.mp106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP106));
+            this.mp107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107));
+            this.mp107x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107x));
+            this.mp108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP108));
+        } else {
+            this.mf102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF102));
+            this.mf103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF103));
+            this.mf104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF104));
+            this.mf105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF105));
+            this.mf106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106));
+            this.mf106x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106x));
+            this.mf107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF107));
+            this.mf108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108));
+            this.mf108x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108x));
+            this._luid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN__LUID));
+            this.mpsysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MPSYSDATE));
+        }
+
+
+        this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
+        this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
+        this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
 
         return this;
     }
