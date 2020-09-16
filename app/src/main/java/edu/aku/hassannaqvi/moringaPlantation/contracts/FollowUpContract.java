@@ -19,8 +19,10 @@ public class FollowUpContract {
 
         public static final String _ID = "id";
         public static final String COLUMN_MP101 = "mp101";
-        public static final String COLUMN_FSYSDATE = "fsysdate";
-        public static final String COLUMN_FTID = "ftid";
+        public static final String COLUMN__LUID = "_luid";
+        public static final String COLUMN_MPSYSDATE = "mpsysdate";
+        public static final String COLUMN_PID = "pid";
+        public static final String COLUMN_SEEM_VID = "seem_vid";
 
         public static final String SERVER_URI = "followup.php";
 
