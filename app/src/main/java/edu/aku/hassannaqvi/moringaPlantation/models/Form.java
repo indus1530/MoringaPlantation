@@ -562,31 +562,30 @@ public class Form extends LiveData<Form> {
         this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
         this.pid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PID));
         this.seem_vid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEEM_VID));
-        this.mf101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF101));
+        this.mp101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP101));
 
-        if (this.formtype.equals(CONSTANTS.FORM_MP)) {
-            this.mp101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP101));
-            this.mp102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP102));
-            this.mp103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP103));
-            this.mp104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP104));
-            this.mp105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP105));
-            this.mp106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP106));
-            this.mp107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107));
-            this.mp107x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107x));
-            this.mp108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP108));
-        } else {
-            this.mf102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF102));
-            this.mf103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF103));
-            this.mf104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF104));
-            this.mf105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF105));
-            this.mf106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106));
-            this.mf106x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106x));
-            this.mf107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF107));
-            this.mf108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108));
-            this.mf108x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108x));
-            this._luid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN__LUID));
-            this.mpsysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MPSYSDATE));
-        }
+
+        this.mp102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP102));
+        this.mp103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP103));
+        this.mp104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP104));
+        this.mp105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP105));
+        this.mp106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP106));
+        this.mp107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107));
+        this.mp107x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107x));
+        this.mp108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP108));
+
+        this.mf101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF101));
+        this.mf102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF102));
+        this.mf103 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF103));
+        this.mf104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF104));
+        this.mf105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF105));
+        this.mf106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106));
+        this.mf106x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF106x));
+        this.mf107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF107));
+        this.mf108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108));
+        this.mf108x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108x));
+        this._luid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN__LUID));
+        this.mpsysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MPSYSDATE));
 
 
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
@@ -681,33 +680,37 @@ public class Form extends LiveData<Form> {
         try {
             json.put(FormsTable.COLUMN_ID, this._ID == null ? JSONObject.NULL : this._ID);
             json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
-            json.put(FormsTable.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
-            json.put(FormsTable.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
-            json.put(FormsTable.COLUMN_MPSYSDATE, this.mpsysdate == null ? JSONObject.NULL : this.mpsysdate);
             json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
             json.put(FormsTable.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
-            json.put(FormsTable.COLUMN_MP101, this.mp101 == null ? JSONObject.NULL : this.mp101);
-            json.put(FormsTable.COLUMN_MP102, this.mp102 == null ? JSONObject.NULL : this.mp102);
-            json.put(FormsTable.COLUMN_MP103, this.mp103 == null ? JSONObject.NULL : this.mp103);
-            json.put(FormsTable.COLUMN_MP104, this.mp104 == null ? JSONObject.NULL : this.mp104);
-            json.put(FormsTable.COLUMN_MP105, this.mp105 == null ? JSONObject.NULL : this.mp105);
-            json.put(FormsTable.COLUMN_MP106, this.mp106 == null ? JSONObject.NULL : this.mp106);
-            json.put(FormsTable.COLUMN_MP107, this.mp107 == null ? JSONObject.NULL : this.mp107);
-            json.put(FormsTable.COLUMN_MP107x, this.mp107x == null ? JSONObject.NULL : this.mp107x);
-            json.put(FormsTable.COLUMN_MP108, this.mp108 == null ? JSONObject.NULL : this.mp108);
-
+            json.put(FormsTable.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
             json.put(FormsTable.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
-            json.put(FormsTable.COLUMN_MF101, this.mf101 == null ? JSONObject.NULL : this.mf101);
-            json.put(FormsTable.COLUMN_MF102, this.mf102 == null ? JSONObject.NULL : this.mf102);
-            json.put(FormsTable.COLUMN_MF103, this.mf103 == null ? JSONObject.NULL : this.mf103);
-            json.put(FormsTable.COLUMN_MF104, this.mf104 == null ? JSONObject.NULL : this.mf104);
-            json.put(FormsTable.COLUMN_MF105, this.mf105 == null ? JSONObject.NULL : this.mf105);
-            json.put(FormsTable.COLUMN_MF106, this.mf106 == null ? JSONObject.NULL : this.mf106);
-            json.put(FormsTable.COLUMN_MF106x, this.mf106x == null ? JSONObject.NULL : this.mf106x);
-            json.put(FormsTable.COLUMN_MF107, this.mf107 == null ? JSONObject.NULL : this.mf107);
-            json.put(FormsTable.COLUMN_MF108, this.mf108 == null ? JSONObject.NULL : this.mf108);
-            json.put(FormsTable.COLUMN_MF108x, this.mf108x == null ? JSONObject.NULL : this.mf108x);
+            json.put(FormsTable.COLUMN_MP101, this.mp101 == null ? JSONObject.NULL : this.mp101);
+
+
+            if (this.formtype.equals(CONSTANTS.FORM_MP)) {
+                json.put(FormsTable.COLUMN_MP102, this.mp102 == null ? JSONObject.NULL : this.mp102);
+                json.put(FormsTable.COLUMN_MP103, this.mp103 == null ? JSONObject.NULL : this.mp103);
+                json.put(FormsTable.COLUMN_MP104, this.mp104 == null ? JSONObject.NULL : this.mp104);
+                json.put(FormsTable.COLUMN_MP105, this.mp105 == null ? JSONObject.NULL : this.mp105);
+                json.put(FormsTable.COLUMN_MP106, this.mp106 == null ? JSONObject.NULL : this.mp106);
+                json.put(FormsTable.COLUMN_MP107, this.mp107 == null ? JSONObject.NULL : this.mp107);
+                json.put(FormsTable.COLUMN_MP107x, this.mp107x == null ? JSONObject.NULL : this.mp107x);
+                json.put(FormsTable.COLUMN_MP108, this.mp108 == null ? JSONObject.NULL : this.mp108);
+            } else {
+                json.put(FormsTable.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
+                json.put(FormsTable.COLUMN_MPSYSDATE, this.mpsysdate == null ? JSONObject.NULL : this.mpsysdate);
+                json.put(FormsTable.COLUMN_MF101, this.mf101 == null ? JSONObject.NULL : this.mf101);
+                json.put(FormsTable.COLUMN_MF102, this.mf102 == null ? JSONObject.NULL : this.mf102);
+                json.put(FormsTable.COLUMN_MF103, this.mf103 == null ? JSONObject.NULL : this.mf103);
+                json.put(FormsTable.COLUMN_MF104, this.mf104 == null ? JSONObject.NULL : this.mf104);
+                json.put(FormsTable.COLUMN_MF105, this.mf105 == null ? JSONObject.NULL : this.mf105);
+                json.put(FormsTable.COLUMN_MF106, this.mf106 == null ? JSONObject.NULL : this.mf106);
+                json.put(FormsTable.COLUMN_MF106x, this.mf106x == null ? JSONObject.NULL : this.mf106x);
+                json.put(FormsTable.COLUMN_MF107, this.mf107 == null ? JSONObject.NULL : this.mf107);
+                json.put(FormsTable.COLUMN_MF108, this.mf108 == null ? JSONObject.NULL : this.mf108);
+                json.put(FormsTable.COLUMN_MF108x, this.mf108x == null ? JSONObject.NULL : this.mf108x);
+            }
 
 
             json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);

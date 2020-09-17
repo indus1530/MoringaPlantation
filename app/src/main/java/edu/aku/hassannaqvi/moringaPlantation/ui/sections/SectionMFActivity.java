@@ -158,6 +158,7 @@ public class SectionMFActivity extends AppCompatActivity {
         form.set_luid(fup.get_luid());
         form.setSeem_vid(fup.getSeem_vid());
         form.setMpsysdate(fup.getMpsysdate());
+        form.setMp101(fup.getMp101());
         MainApp.setGPS(this);
     }
 
