@@ -1138,7 +1138,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 "DISTINCT " + VillagesContract.TableVillage.COLUMN_UCNAME,
-                VillagesContract.TableVillage.COLUMN_SEEM_VID
+                VillagesContract.TableVillage.COLUMN_SEEM_VID,
+                VillagesContract.TableVillage.COLUMN_UCID,
         };
 
         String whereClause = null;
