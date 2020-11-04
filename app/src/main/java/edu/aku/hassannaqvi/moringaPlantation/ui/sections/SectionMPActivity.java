@@ -221,6 +221,27 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setMp108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
 
         form.setSeem_vid(ucCodes.get(bi.mp105.getSelectedItemPosition()) + villageCodes.get(bi.mp104.getSelectedItemPosition()));
+        form.setMp109(bi.mp10901.isChecked() ? "1"
+                : bi.mp10902.isChecked() ? "2"
+                : bi.mp10903.isChecked() ? "3"
+                : bi.mp10904.isChecked() ? "4"
+                : bi.mp10905.isChecked() ? "5"
+                : bi.mp10906.isChecked() ? "6"
+                : bi.mp10907.isChecked() ? "7"
+                : bi.mp10908.isChecked() ? "8"
+                : bi.mp10909.isChecked() ? "9"
+                : bi.mp10910.isChecked() ? "10"
+                : "-1");
+
+        form.setMp10910x(bi.mp10910x.getText().toString());
+        form.setMp110a(bi.mp110a.getText().toString());
+
+        form.setMp110b(bi.mp110b.getText().toString());
+
+        form.setMp110c(bi.mp110c.getText().toString());
+
+        form.setMp110d(bi.mp110d.getText().toString());
+
 
         MainApp.setGPS(this);
 

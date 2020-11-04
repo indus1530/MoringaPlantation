@@ -47,6 +47,7 @@ public final class CreateTable {
             + FormsTable.COLUMN_MF107 + " TEXT,"
             + FormsTable.COLUMN_MF108 + " TEXT,"
             + FormsTable.COLUMN_MF108x + " TEXT,"
+
             + FormsTable.COLUMN_GPSLAT + " TEXT,"
             + FormsTable.COLUMN_GPSLNG + " TEXT,"
             + FormsTable.COLUMN_GPSDATE + " TEXT,"

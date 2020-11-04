@@ -27,26 +27,38 @@ public class Form extends LiveData<Form> {
     private String formtype = "";
     private String username;
     private String sysdate = "";
-    private String mp101 = "-2";
-    private String mp102 = "-2";
-    private String mp103 = "-2";
-    private String mp104 = "-2";
-    private String mp105 = "-2";
-    private String mp106 = "-2";
-    private String mp107 = "-2";
-    private String mp107x = "-2";
-    private String mp108 = "-2";
-    private String pid = "-2";
-    private String mf101 = "-2";
-    private String mf102 = "-2";
-    private String mf103 = "-2";
-    private String mf104 = "-2";
-    private String mf105 = "-2";
-    private String mf106 = "-2";
-    private String mf106x = "-2";
-    private String mf107 = "-2";
-    private String mf108 = "-2";
-    private String mf108x = "-2";
+    private String mp101 = "";
+    private String mp102 = "";
+    private String mp103 = "";
+    private String mp104 = "";
+    private String mp105 = "";
+    private String mp106 = "";
+    private String mp107 = "";
+    private String mp107x = "";
+    private String mp108 = "";
+    private String mp109 = "";
+    private String mp10910x = "";
+    private String mp110a = "";
+    private String mp110b = "";
+    private String mp110c = "";
+    private String mp110d = "";
+
+    // private String                     = "-2";
+    private String pid = "";
+    private String mf101 = "";
+    private String mf102 = "";
+    private String mf103 = "";
+    private String mf104 = "";
+    private String mf105 = "";
+    private String mf106 = "";
+    private String mf106x = "";
+    private String mf107 = "";
+    private String mf108 = "";
+    private String mf108x = "";
+
+    private String ma104 = "";
+    private String ma105 = "";
+    private String ma106 = "";
     private String istatus = ""; // Interview Status
     private String istatus96x = ""; // Interview Status
     private String endingdatetime = "";
@@ -182,6 +194,55 @@ public class Form extends LiveData<Form> {
     }
 
 
+    public String getMp109() {
+        return mp109;
+    }
+
+    public void setMp109(String mp109) {
+        this.mp109 = mp109;
+    }
+
+    public void setMp10910x(String mp10910x) {
+        this.mp10910x = mp10910x;
+    }
+
+    public String getmp10910x() {
+        return mp10910x;
+    }
+
+    public String getMp110a() {
+        return mp110a;
+    }
+
+    public void setMp110a(String mp110a) {
+        this.mp110a = mp110a;
+    }
+
+    public String getmp110b() {
+        return mp110b;
+    }
+
+    public void setMp110b(String mp110b) {
+        this.mp110b = mp110b;
+    }
+
+    public String getmp110c() {
+        return mp110c;
+    }
+
+    public void setMp110c(String mp110c) {
+        this.mp110c = mp110c;
+    }
+
+
+    public String getmp110d() {
+        return mp110d;
+    }
+
+    public void setMp110d(String mp110d) {
+        this.mp110d = mp110d;
+    }
+
     public String getPid() {
         return pid;
     }
@@ -280,6 +341,29 @@ public class Form extends LiveData<Form> {
         this.mf108x = mf108x;
     }
 
+    public String getMa104() {
+        return ma104;
+    }
+
+    public void setMa104(String ma104) {
+        this.ma104 = ma104;
+    }
+
+    public String getMa105() {
+        return ma105;
+    }
+
+    public void setMa105(String ma105) {
+        this.ma105 = ma105;
+    }
+
+    public String getMa106() {
+        return ma106;
+    }
+
+    public void setMa106(String ma106) {
+        this.ma106 = ma106;
+    }
 
     public String getGpslat() {
         return gpslat;
@@ -519,6 +603,12 @@ public class Form extends LiveData<Form> {
         this.mp107 = jsonObject.getString(FormsTable.COLUMN_MP107);
         this.mp107x = jsonObject.getString(FormsTable.COLUMN_MP107x);
         this.mp108 = jsonObject.getString(FormsTable.COLUMN_MP108);
+        this.mp109 = jsonObject.getString(FormsTable.COLUMN_MP109);
+        this.mp10910x = jsonObject.getString(FormsTable.COLUMN_MP10910x);
+        this.mp110a = jsonObject.getString(FormsTable.COLUMN_MP110a);
+        this.mp110b = jsonObject.getString(FormsTable.COLUMN_MP110b);
+        this.mp110c = jsonObject.getString(FormsTable.COLUMN_MP110c);
+        this.mp110d = jsonObject.getString(FormsTable.COLUMN_MP110d);
         this.pid = jsonObject.getString(FormsTable.COLUMN_PID);
         this.mf101 = jsonObject.getString(FormsTable.COLUMN_MF101);
         this.mf102 = jsonObject.getString(FormsTable.COLUMN_MF102);
@@ -530,6 +620,9 @@ public class Form extends LiveData<Form> {
         this.mf107 = jsonObject.getString(FormsTable.COLUMN_MF107);
         this.mf108 = jsonObject.getString(FormsTable.COLUMN_MF108);
         this.mf108x = jsonObject.getString(FormsTable.COLUMN_MF108x);
+        this.ma104 = jsonObject.getString(FormsTable.COLUMN_MA104);
+        this.ma105 = jsonObject.getString(FormsTable.COLUMN_MA105);
+        this.ma106 = jsonObject.getString(FormsTable.COLUMN_MA106);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
@@ -573,6 +666,12 @@ public class Form extends LiveData<Form> {
         this.mp107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107));
         this.mp107x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP107x));
         this.mp108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP108));
+        this.mp109 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP109));
+        this.mp10910x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP10910x));
+        this.mp110a = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP110a));
+        this.mp110b = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP110b));
+        this.mp110c = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP110c));
+        this.mp110d = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP110d));
 
         this.mf101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF101));
         this.mf102 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF102));
@@ -584,6 +683,9 @@ public class Form extends LiveData<Form> {
         this.mf107 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF107));
         this.mf108 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108));
         this.mf108x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MF108x));
+        this.ma104 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MA104));
+        this.ma105 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MA105));
+        this.ma106 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MA106));
         this._luid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN__LUID));
         this.mpsysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MPSYSDATE));
 
@@ -697,6 +799,12 @@ public class Form extends LiveData<Form> {
                 json.put(FormsTable.COLUMN_MP107, this.mp107 == null ? JSONObject.NULL : this.mp107);
                 json.put(FormsTable.COLUMN_MP107x, this.mp107x == null ? JSONObject.NULL : this.mp107x);
                 json.put(FormsTable.COLUMN_MP108, this.mp108 == null ? JSONObject.NULL : this.mp108);
+                json.put(FormsTable.COLUMN_MP109, this.mp109 == null ? JSONObject.NULL : this.mp109);
+                json.put(FormsTable.COLUMN_MP10910x, this.mp10910x == null ? JSONObject.NULL : this.mp10910x);
+                json.put(FormsTable.COLUMN_MP110a, this.mp110a == null ? JSONObject.NULL : this.mp110a);
+                json.put(FormsTable.COLUMN_MP110b, this.mp110b == null ? JSONObject.NULL : this.mp110b);
+                json.put(FormsTable.COLUMN_MP110c, this.mp110c == null ? JSONObject.NULL : this.mp110c);
+                json.put(FormsTable.COLUMN_MP110d, this.mp110d == null ? JSONObject.NULL : this.mp110d);
             } else {
                 json.put(FormsTable.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
                 json.put(FormsTable.COLUMN_MPSYSDATE, this.mpsysdate == null ? JSONObject.NULL : this.mpsysdate);
@@ -710,6 +818,15 @@ public class Form extends LiveData<Form> {
                 json.put(FormsTable.COLUMN_MF107, this.mf107 == null ? JSONObject.NULL : this.mf107);
                 json.put(FormsTable.COLUMN_MF108, this.mf108 == null ? JSONObject.NULL : this.mf108);
                 json.put(FormsTable.COLUMN_MF108x, this.mf108x == null ? JSONObject.NULL : this.mf108x);
+                json.put(FormsTable.COLUMN_MF109, this.mp109 == null ? JSONObject.NULL : this.mp109);
+                json.put(FormsTable.COLUMN_MP10910x, this.mp10910x == null ? JSONObject.NULL : this.mp10910x);
+                json.put(FormsTable.COLUMN_MP110a, this.mp110a == null ? JSONObject.NULL : this.mp110a);
+                json.put(FormsTable.COLUMN_MP110b, this.mp110b == null ? JSONObject.NULL : this.mp110b);
+                json.put(FormsTable.COLUMN_MP110c, this.mp110c == null ? JSONObject.NULL : this.mp110c);
+                json.put(FormsTable.COLUMN_MP110d, this.mp110d == null ? JSONObject.NULL : this.mp110d);
+                json.put(FormsTable.COLUMN_MA104, this.ma104 == null ? JSONObject.NULL : this.ma104);
+                json.put(FormsTable.COLUMN_MA105, this.ma105 == null ? JSONObject.NULL : this.ma105);
+                json.put(FormsTable.COLUMN_MA106, this.ma106 == null ? JSONObject.NULL : this.ma106);
             }
 
 

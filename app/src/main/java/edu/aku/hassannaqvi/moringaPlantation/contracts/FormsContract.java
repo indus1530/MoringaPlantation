@@ -34,6 +34,12 @@ public class FormsContract {
         public static final String COLUMN_MP107 = "mp107";
         public static final String COLUMN_MP107x = "mp107x";
         public static final String COLUMN_MP108 = "mp108";
+        public static final String COLUMN_MP109 = "mp109";
+        public static final String COLUMN_MP10910x = "mp10910x";
+        public static final String COLUMN_MP110a = "mp110a";
+        public static final String COLUMN_MP110b = "mp110b";
+        public static final String COLUMN_MP110c = "mp110c";
+        public static final String COLUMN_MP110d = "mp110d";
         public static final String COLUMN_PID = "pid";
         public static final String COLUMN_MF101 = "mf101";
         public static final String COLUMN_MF102 = "mf102";
@@ -45,6 +51,11 @@ public class FormsContract {
         public static final String COLUMN_MF107 = "mf107";
         public static final String COLUMN_MF108 = "mf108";
         public static final String COLUMN_MF108x = "mf108x";
+        public static final String COLUMN_MA104 = "ma104";
+        public static final String COLUMN_MF109 = "mf109";
+
+        public static final String COLUMN_MA105 = "ma105";
+        public static final String COLUMN_MA106 = "ma106";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
         public static final String COLUMN_ENDINGDATETIME = "endingdatetime";

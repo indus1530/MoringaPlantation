@@ -50,7 +50,16 @@
     <string name="name"> نالو </string>
     <string name="contactnum"> رابطہ نمبر </string>
     <string name="checkHHpresent"> گھر کے سربراہ کا نام لائن لسٹنگ ڈیٹا سے مطابقت رکھتا ہے۔ </string>
-
+    <string name="ma104">ڇا اهي  لڳايل ٻوٽا هدايتن جي مطابق لڳل آھن؟</string>
+    <string name="ma10401">ها</string>
+    <string name="ma10402"> نه</string>
+    <string name="ma105">ٻوٽن  جي تعداد </string>
+    <string name="ma106">ٻوٽن جي تصوير</string>
+    <string name="ma106a">مهرباني ڪري 4 تصويرن جي اجازت ڏيو</string>
+    <string name='Q_ma104'>ma104</string>
+    <string name='Q_ma105'>ma105</string>
+    <string name='Q_ma106'>ma106</string>
+    <string name='Q_ma106a'>ma106a</string>
 
     <string name='Q_mp101'>mp101</string>
     <string name='Q_mp102'>mp102</string>
@@ -60,6 +69,26 @@
     <string name='Q_mp106'>mp106</string>
     <string name='Q_mp107'>mp107</string>
     <string name='Q_mp108'>mp108</string>
+    <string name="mp109">ٻوٽي جي لڳائڻ جي جاءِ جي قسم ۽ وضاحت</string>
+    <string name="mp10901">ننڍا زميندار</string>
+    <string name="mp10902">وڏا زميندار </string>
+    <string name="mp10903">اسڪول</string>
+    <string name="mp10904">مسجد</string>
+    <string name="mp10905">درگاه </string>
+    <string name="mp10906">مندر</string>
+    <string name="mp10907">قبرستان</string>
+    <string name="mp10908">اسپتال</string>
+    <string name="mp10909">عوامي هنڌ </string>
+    <string name="mp10910">ٻيو ڪجھ وضاحت ڪريو</string>
+    <string name="mp110">ٻوٽي حاصل ڪرڻ وارا  جا تفصيل</string>
+    <string name="mp110a">رابطي ڪرڻ واري  جو نالو</string>
+    <string name="mp110b">ذات</string>
+    <string name="mp110c">فون نمبر </string>
+    <string name="mp110d">پتو\ڳوٺ جو نالو</string>
+    <string name="mptitle1">مهرباني ڪري انهن تفصيل جو رڪارڊ رکو پلانٽيشن سائيٽ جو دورو ڪرڻ ۽ تصويرون وٺڻ لاءِ</string>
+    <string name="mptitle2">آئينده دوري جي لاءِ وڻ جي آءِ ڊي نوٽ ڪريو</string>
+    <string name="mptitle3">جيڪو وڻ چونڊيو ويندو ان جو 36 مهينن تائين ٻيهر دورو ڪري سگھجي ٿو</string>
+
 
     <string name='Q_mf101'>mf101</string>
     <string name='Q_mf102'>mf102</string>
@@ -69,6 +98,12 @@
     <string name='Q_mf106'>mf106</string>
     <string name='Q_mf107'>mf107</string>
     <string name='Q_mf108'>mf108</string>
+    <string name='Q_mp109'>mp109</string>
+    <string name='Q_mp110'>mp110</string>
+    <string name='Q_mptitle1'>mptitle1</string>
+    <string name='Q_mptitle2'>mptitle2</string>
+    <string name='Q_mptitle3'>mptitle3</string>
+    <string name='Q_pmtitle'>pmtitle</string>
     <string name='Q_pid'>pid</string>
     <string name='Q_istatus'>istatus</string>
 
@@ -92,6 +127,7 @@
     <string name="mp10710"> عوامي هنڌ </string>
     <string name="mp10711"> ٻيو ڪجھ وضاحت ڪريو </string>
     <string name="mp108">  ٻوٽن  جي تعداد </string>
+
 
     <string name="pid"> ٻوٽي جو سڃاڻپ نمبر </string>
     <string name="mf101"> دوري جي تاريخ </string>
