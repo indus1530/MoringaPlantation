@@ -57,7 +57,7 @@ public class SectionMFActivity extends AppCompatActivity {
 
     private void setupSkip() {
 
-        bi.mf105.setOnCheckedChangeListener((radioGroup, i) -> {
+       /* bi.mf105.setOnCheckedChangeListener((radioGroup, i) -> {
             Clear.clearAllFields(bi.fldGrpCVmf106);
             Clear.clearAllFields(bi.fldGrpCVmf107);
             Clear.clearAllFields(bi.fldGrpCVmf108);
@@ -72,7 +72,7 @@ public class SectionMFActivity extends AppCompatActivity {
             } else if (i == bi.mf10503.getId()) {
                 bi.fldGrpCVmf108.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
     }
 
@@ -134,7 +134,17 @@ public class SectionMFActivity extends AppCompatActivity {
         form.setPid(bi.mf103.getText().toString());
         form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
         form.setMf102(bi.mf102.getSelectedItem().toString());
-        form.setMf105(bi.mf10501.isChecked() ? "1"
+
+        form.setMa104(bi.ma10401.isChecked() ? "1"
+                : bi.ma10402.isChecked() ? "2"
+                : "-1");
+
+        form.setMa105(bi.ma105.getText().toString());
+
+        form.setMa106(bi.ma106.getText().toString());
+
+
+      /*  form.setMf105(bi.mf10501.isChecked() ? "1"
                 : bi.mf10502.isChecked() ? "2"
                 : bi.mf10503.isChecked() ? "3"
                 : bi.mf10504.isChecked() ? "4"
@@ -154,7 +164,7 @@ public class SectionMFActivity extends AppCompatActivity {
                 : bi.mf10802.isChecked() ? "2"
                 : bi.mf10896.isChecked() ? "96"
                 : "-1");
-        form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());
+        form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());*/
         form.set_luid(fup.get_luid());
         form.setSeem_vid(fup.getSeem_vid());
         form.setMpsysdate(fup.getMpsysdate());
@@ -180,6 +190,8 @@ public class SectionMFActivity extends AppCompatActivity {
 
 
     public void BtnCheckFUP(View view) {
+
+
         if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
 
         getFupByID(bi.mf103.getText().toString())
@@ -204,6 +216,42 @@ public class SectionMFActivity extends AppCompatActivity {
                         Toast.makeText(SectionMFActivity.this, "No Follow up found!!", Toast.LENGTH_SHORT).show();
                         setupFields(View.GONE);
                         disposable.dispose();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        disposable.dispose();
+                    }
+                });
+
+
+    }
+
+    public void BtnCheckFUP2(View view) {
+
+
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
+
+        getFupByID(bi.mf103.getText().toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FollowUp>() {
+                    Disposable disposable;
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(FollowUp fupContract) {
+                        fup = fupContract;
+                        setupFields(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        bi.GrpName02.setVisibility(View.VISIBLE);
                     }
 
                     @Override
