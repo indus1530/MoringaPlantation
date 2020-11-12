@@ -128,7 +128,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             new SyncDevice(this, false).execute();
 //  *******************************************************Forms*********************************
-            String[] syncValues = new String[]{CONSTANTS.FORM_MP, CONSTANTS.FORM_MF};
+            String[] syncValues = new String[]{CONSTANTS.FORM_MP, CONSTANTS.FORM_MA};
             for (int i = 0; i < syncValues.length; i++) {
                 Toast.makeText(getApplicationContext(), String.format("Syncing Forms %s", syncValues[i]), Toast.LENGTH_SHORT).show();
                 if (uploadlistActivityCreated) {
@@ -293,7 +293,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         protected String doInBackground(Boolean... booleans) {
             runOnUiThread(() -> {
 
-                String[] syncItems = {"User", "VersionApp", "Villages", "FollowUp"};
+                String[] syncItems = {"User", "VersionApp", "Villages"};
                 for (String syncItem : syncItems) {
                     if (listActivityCreated) {
                         model = new SyncModel();

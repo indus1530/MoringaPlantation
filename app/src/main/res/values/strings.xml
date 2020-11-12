@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name"> Moringa Plantation </string>
 
+    <!-- App/Reusable Variables Start -->
+    <string name="app_name"> Moringa Plantation </string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-
     <string name="btnSync">Download Data</string>
     <string name="btnUpload">Upload Data</string>
     <string name="prompt_email">Email</string>
@@ -17,7 +17,7 @@
     <string name="open_form"> NEW FORM </string>
     <string name="openScreening"> Screening </string>
     <string name="openPretest"> Pre Test Knowlegde </string>
-    <string name="openFollowup"> FOLLOW UP </string>
+    <string name="openAssessment"> Assessment </string>
     <string name="records_summary">Records Summary</string>
     <string name="main_menu">Main Menu</string>
     <string name="only_for_testing">ONLY FOR TESTING</string>
@@ -50,25 +50,38 @@
     <string name="name"> نالو </string>
     <string name="contactnum"> رابطہ نمبر </string>
     <string name="checkHHpresent"> گھر کے سربراہ کا نام لائن لسٹنگ ڈیٹا سے مطابقت رکھتا ہے۔ </string>
-    <string name="ma104">ڇا اهي  لڳايل ٻوٽا هدايتن جي مطابق لڳل آھن؟</string>
-    <string name="ma10401">ها</string>
-    <string name="ma10402"> نه</string>
-    <string name="ma105">ٻوٽن  جي تعداد </string>
-    <string name="ma106">ٻوٽن جي تصوير</string>
-    <string name="ma106a">مهرباني ڪري 4 تصويرن جي اجازت ڏيو</string>
-    <string name='Q_ma104'>ma104</string>
-    <string name='Q_ma105'>ma105</string>
-    <string name='Q_ma106'>ma106</string>
-    <string name='Q_ma106a'>ma106a</string>
+    <!-- App/Reusable Variables End -->
 
+
+    <!-- Forms Start -->
+    <!-- Moringa Plantation Form Start -->
     <string name='Q_mp101'>mp101</string>
+    <string name="mp101"> دوري جي تاريخ </string>
+
     <string name='Q_mp102'>mp102</string>
+    <string name="mp102"> سي ايڇ ڊبليو جو نالو ۽ ڪوڊ نمبر </string>
+
     <string name='Q_mp103'>mp103</string>
+    <string name="mp103"> ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
+
     <string name='Q_mp104'>mp104</string>
+    <string name="mp104"> ڳوٺ / پاڙو </string>
+
     <string name='Q_mp105'>mp105</string>
+    <string name="mp105"> يونين ڪائونسل </string>
+
     <string name='Q_mp106'>mp106</string>
+    <string name="mp106"> فرد جي آئي ڊي </string>
+
     <string name='Q_mp107'>mp107</string>
+    <string name="mp107"> ٻوٽن  جي تعداد </string>
+
     <string name='Q_mp108'>mp108</string>
+    <string name="mp108">  ٻوٽي لڳائڻ جي جاءِ </string>
+    <string name="mp10801"> گھر </string>
+    <string name="mp10802"> گھر کان سواءَ ٻي ڪا جاءِ </string>
+
+    <string name='Q_mp109'>mp109</string>
     <string name="mp109">ٻوٽي جي لڳائڻ جي جاءِ جي قسم ۽ وضاحت</string>
     <string name="mp10901">ننڍا زميندار</string>
     <string name="mp10902">وڏا زميندار </string>
@@ -80,85 +93,62 @@
     <string name="mp10908">اسپتال</string>
     <string name="mp10909">عوامي هنڌ </string>
     <string name="mp10910">ٻيو ڪجھ وضاحت ڪريو</string>
-    <string name="mp110">ٻوٽي حاصل ڪرڻ وارا  جا تفصيل</string>
+
+    <string name='Q_mp110'>mp110</string>
+    <string name="mp110"> ٻوٽي حاصل ڪرڻ وارا  جا تفصيل</string>
     <string name="mp110a">رابطي ڪرڻ واري  جو نالو</string>
     <string name="mp110b">ذات</string>
     <string name="mp110c">فون نمبر </string>
     <string name="mp110d">پتو\ڳوٺ جو نالو</string>
-    <string name="mptitle1">مهرباني ڪري انهن تفصيل جو رڪارڊ رکو پلانٽيشن سائيٽ جو دورو ڪرڻ ۽ تصويرون وٺڻ لاءِ</string>
-    <string name="mptitle2">آئينده دوري جي لاءِ وڻ جي آءِ ڊي نوٽ ڪريو</string>
-    <string name="mptitle3">جيڪو وڻ چونڊيو ويندو ان جو 36 مهينن تائين ٻيهر دورو ڪري سگھجي ٿو</string>
 
+    <string name='Q_mptitle'>mptitle</string>
 
-    <string name='Q_mf101'>mf101</string>
-    <string name='Q_mf102'>mf102</string>
-    <string name='Q_mf103'>mf103</string>
-    <string name='Q_mf104'>mf104</string>
-    <string name='Q_mf105'>mf105</string>
-    <string name='Q_mf106'>mf106</string>
-    <string name='Q_mf107'>mf107</string>
-    <string name='Q_mf108'>mf108</string>
-    <string name='Q_mp109'>mp109</string>
-    <string name='Q_mp110'>mp110</string>
     <string name='Q_mptitle1'>mptitle1</string>
+    <string name="mptitle1">مهرباني ڪري انهن تفصيل جو رڪارڊ رکو پلانٽيشن سائيٽ جو دورو ڪرڻ ۽ تصويرون وٺڻ لاءِ</string>
+
     <string name='Q_mptitle2'>mptitle2</string>
+    <string name="mptitle2">آئينده دوري جي لاءِ وڻ جي آءِ ڊي نوٽ ڪريو</string>
+
     <string name='Q_mptitle3'>mptitle3</string>
-    <string name='Q_pmtitle'>pmtitle</string>
+    <string name="mptitle3">جيڪو وڻ چونڊيو ويندو ان جو 36 مهينن تائين ٻيهر دورو ڪري سگھجي ٿو</string>
+    <!-- Moringa Plantation Form End -->
+
+    <!-- Moringa Assessment Form Start -->
+    <string name='Q_ma101'>ma101</string>
+    <string name="ma101"> دوري جي تاريخ </string>
+
+    <string name='Q_ma102'>ma102</string>
+    <string name="ma102"> سي ايڇ ڊبليو جو نالو ۽ ڪوڊ نمبر </string>
+
+    <string name='Q_ma103'>ma103</string>
+    <string name="ma103"> ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
+
+    <string name='Q_ma104'>ma104</string>
+    <string name="ma104"> ڇا اهي  لڳايل ٻوٽا هدايتن جي مطابق لڳل آھن؟ </string>
+    <string name="ma10401"> ها </string>
+    <string name="ma10402"> نه </string>
+
+    <string name='Q_ma105'>ma105</string>
+    <string name="ma105"> ٻوٽن  جي تعداد </string>
+
+    <string name='Q_ma106'>ma106</string>
+    <string name="ma106"> ٻوٽن جي تصوير </string>
+
+    <string name='Q_ma106a'>ma106a</string>
+    <string name="ma106a"> مهرباني ڪري 4 تصويرن جي اجازت ڏيو </string>
+
+    <string name='Q_matitle'>mftitle1</string>
+    <!-- Moringa Assessment Form End -->
+    <!-- Forms Start -->
+
+    <!-- Moringa Other/Derived Variable Start -->
     <string name='Q_pid'>pid</string>
     <string name='Q_istatus'>istatus</string>
-
-
-    <string name="mp101"> دوري جي تاريخ </string>
-    <string name="mp102"> سي ايڇ ڊبليو جو نالو ۽ ڪوڊ نمبر </string>
-    <string name="mp103"> ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
-    <string name="mp104"> ڳوٺ / پاڙو </string>
-    <string name="mp105"> يونين ڪائونسل </string>
-    <string name="mp106"> ٻوٽي جي سائيز (انچن ۾) </string>
-    <string name="mp107"> ٻوٽي لڳائڻ جي جاءِ </string>
-    <string name="mp10701"> ننڍا زميندار </string>
-    <string name="mp10702"> وڏا زميندار </string>
-    <string name="mp10703"> گھر </string>
-    <string name="mp1074"> اسڪول </string>
-    <string name="mp10705"> مسجد </string>
-    <string name="mp10706"> درگاه </string>
-    <string name="mp10707"> مندر </string>
-    <string name="mp10708"> قبرستان </string>
-    <string name="mp10709"> اسپتال </string>
-    <string name="mp10710"> عوامي هنڌ </string>
-    <string name="mp10711"> ٻيو ڪجھ وضاحت ڪريو </string>
-    <string name="mp108">  ٻوٽن  جي تعداد </string>
-
-
-    <string name="pid"> ٻوٽي جو سڃاڻپ نمبر </string>
-    <string name="mf101"> دوري جي تاريخ </string>
-    <string name="mf102"> ٽيم ليڊر جو نالو ۽ ڪوڊ </string>
-    <string name="mf103"> ڪوڊ نمبر </string>
-    <string name="mf104"> يونين ڪائونسل </string>
-    <string name="mf105"> مورنگا وڻ جو نتيجو </string>
-    <string name="mf10501"> موجود ۽ سائو آهي </string>
-    <string name="mf10502"> موجود آهي پر سائو ناهي </string>
-    <string name="mf10503"> موجود ناهي </string>
-    <string name="mf10504"> انڪار ڪيو </string>
-    <string name="mf10505"> خالي گهر / بغير رهائش </string>
-    <string name="mf10506"> گھر نه مليو </string>
-    <string name="mf106"> پوئين دوري جو نتيجو ڇا آهي </string>
-    <string name="mf10601"> ٻارن پاران راند ڪرڻ دوران نقصان ٿيو </string>
-    <string name="mf10602"> ڪا به قابل ذڪر ناهي </string>
-    <string name="mf10603"> ڪي به پن موجود ناهن </string>
-    <string name="mf10604"> جانور کائي ويا </string>
-    <string name="mf10605"> خبر ناهي </string>
-    <string name="mf10696"> ٻيو ڪجھ وضاحت ڪريو </string>
-    <string name="mf107"> ٻوٽي جي سائيز (انچن ۾) </string>
-    <string name="mf108"> موجود نه هجڻ جو سبب ڇا آهي </string>
-    <string name="mf10801"> انسانن پاران تباه ٿيل </string>
-    <string name="mf10802"> ڪلر واري زمين </string>
-    <string name="mf10896"> ٻيو ڪجھ وضاحت ڪريو </string>
-
     <string name="istatus"> انٽرويو جو نتيجو </string>
     <string name="istatusa"> مڪمل </string>
     <string name="istatusb"> نامڪمل </string>
     <string name="istatus96"> ٻيو ڪجھ </string>
     <string name="istatus96x"> وضاحت ڪريو </string>
-
+    <!-- Moringa Other/Derived Variable End -->
 
 </resources>

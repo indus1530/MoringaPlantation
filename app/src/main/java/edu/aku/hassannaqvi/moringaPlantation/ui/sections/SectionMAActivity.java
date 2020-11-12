@@ -22,12 +22,11 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
-import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMfBinding;
-import edu.aku.hassannaqvi.moringaPlantation.models.FollowUp;
-import edu.aku.hassannaqvi.moringaPlantation.models.Form;
+import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMaBinding;
+import edu.aku.hassannaqvi.moringaPlantation.models.Assessment;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 import io.reactivex.Observable;
@@ -36,19 +35,22 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.FORM_MA;
+import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.FORM_MP;
+import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.SELECTED_MODEL;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.appInfo;
+import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.assessment;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
 
-public class SectionMFActivity extends AppCompatActivity {
+public class SectionMAActivity extends AppCompatActivity {
 
-    ActivitySectionMfBinding bi;
-    FollowUp fup;
+    ActivitySectionMaBinding bi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_section_mf);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_section_ma);
         bi.setCallback(this);
         setupSkip();
         populateSpinner(this);
@@ -57,20 +59,20 @@ public class SectionMFActivity extends AppCompatActivity {
 
     private void setupSkip() {
 
-       /* bi.mf105.setOnCheckedChangeListener((radioGroup, i) -> {
-            Clear.clearAllFields(bi.fldGrpCVmf106);
-            Clear.clearAllFields(bi.fldGrpCVmf107);
-            Clear.clearAllFields(bi.fldGrpCVmf108);
-            bi.fldGrpCVmf106.setVisibility(View.GONE);
-            bi.fldGrpCVmf107.setVisibility(View.GONE);
-            bi.fldGrpCVmf108.setVisibility(View.GONE);
+       /* bi.ma105.setOnCheckedChangeListener((radioGroup, i) -> {
+            Clear.clearAllFields(bi.fldGrpCVma106);
+            Clear.clearAllFields(bi.fldGrpCVma107);
+            Clear.clearAllFields(bi.fldGrpCVma108);
+            bi.fldGrpCVma106.setVisibility(View.GONE);
+            bi.fldGrpCVma107.setVisibility(View.GONE);
+            bi.fldGrpCVma108.setVisibility(View.GONE);
 
-            if (i == bi.mf10501.getId()) {
-                bi.fldGrpCVmf107.setVisibility(View.VISIBLE);
-            } else if (i == bi.mf10502.getId()) {
-                bi.fldGrpCVmf106.setVisibility(View.VISIBLE);
-            } else if (i == bi.mf10503.getId()) {
-                bi.fldGrpCVmf108.setVisibility(View.VISIBLE);
+            if (i == bi.ma10501.getId()) {
+                bi.fldGrpCVma107.setVisibility(View.VISIBLE);
+            } else if (i == bi.ma10502.getId()) {
+                bi.fldGrpCVma106.setVisibility(View.VISIBLE);
+            } else if (i == bi.ma10503.getId()) {
+                bi.fldGrpCVma108.setVisibility(View.VISIBLE);
             }
         });*/
 
@@ -90,7 +92,7 @@ public class SectionMFActivity extends AppCompatActivity {
             usersFullName.add(us.getFull_name());
         }
 
-        bi.mf102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
+        bi.ma102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
 
     }
 
@@ -100,7 +102,7 @@ public class SectionMFActivity extends AppCompatActivity {
         SaveDraft();
         if (UpdateDB()) {
             finish();
-            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true).putExtra(SELECTED_MODEL, FORM_MA));
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
         }
@@ -109,11 +111,11 @@ public class SectionMFActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        long updcount = db.addForm(form);
-        form.set_ID(String.valueOf(updcount));
+        long updcount = db.addAssessment(assessment);
+        assessment.set_ID(String.valueOf(updcount));
         if (updcount > 0) {
-            form.set_UID(form.getDeviceID() + form.get_ID());
-            db.updatesFormColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
+            assessment.set_ID(assessment.getDeviceid() + assessment.get_ID());
+            db.updatesAssessmentColumn(AssessmentContract.TableAssessment._ID, assessment.get_ID());
             return true;
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
@@ -124,51 +126,33 @@ public class SectionMFActivity extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        form = new Form();
-        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
-        form.setFormtype(CONSTANTS.FORM_MF);
-        form.setUsername(MainApp.userName);
-        form.setDeviceID(MainApp.appInfo.getDeviceID());
-        form.setDevicetagID(MainApp.appInfo.getTagName());
-        form.setAppversion(MainApp.appInfo.getAppVersion());
-        form.setPid(bi.mf103.getText().toString());
-        form.setMf101(bi.mf101.getText().toString().trim().isEmpty() ? "-1" : bi.mf101.getText().toString());
-        form.setMf102(bi.mf102.getSelectedItem().toString());
+        assessment = new Assessment();
 
-        form.setMa104(bi.ma10401.isChecked() ? "1"
+        assessment.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
+        assessment.setFormtype(CONSTANTS.FORM_MA);
+        assessment.setUsername(MainApp.userName);
+        assessment.setDeviceid(MainApp.appInfo.getDeviceID());
+
+        assessment.setDeviceTagId(MainApp.appInfo.getTagName());
+
+
+        assessment.setAppversion(MainApp.appInfo.getAppVersion());
+        assessment.setSeem_vid(assessment.getSeem_vid());
+        assessment.setMasysdate(assessment.getMasysdate());
+
+        assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
+
+        assessment.setMa101(bi.ma101.getText().toString().trim().isEmpty() ? "-1" : bi.ma101.getText().toString());
+        assessment.setMa102(bi.ma102.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.ma102.getSelectedItem().toString());
+        assessment.setMa103(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
+
+        assessment.setMa104(bi.ma10401.isChecked() ? "1"
                 : bi.ma10402.isChecked() ? "2"
                 : "-1");
 
-        form.setMa105(bi.ma105.getText().toString());
+        assessment.setMa105(bi.ma105.getText().toString().trim().isEmpty() ? "-1" : bi.ma105.getText().toString());
+        assessment.setMa106(bi.ma106.getText().toString().trim().isEmpty() ? "-1" : bi.ma106.getText().toString());
 
-        form.setMa106(bi.ma106.getText().toString());
-
-
-      /*  form.setMf105(bi.mf10501.isChecked() ? "1"
-                : bi.mf10502.isChecked() ? "2"
-                : bi.mf10503.isChecked() ? "3"
-                : bi.mf10504.isChecked() ? "4"
-                : bi.mf10505.isChecked() ? "5"
-                : bi.mf10506.isChecked() ? "6"
-                : "-1");
-        form.setMf106(bi.mf10601.isChecked() ? "1"
-                : bi.mf10602.isChecked() ? "2"
-                : bi.mf10603.isChecked() ? "3"
-                : bi.mf10604.isChecked() ? "4"
-                : bi.mf10605.isChecked() ? "5"
-                : bi.mf10696.isChecked() ? "96"
-                : "-1");
-        form.setMf106x(bi.mf10696x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10696x.getText().toString());
-        form.setMf107(bi.mf107.getText().toString().trim().isEmpty() ? "-1" : bi.mf107.getText().toString());
-        form.setMf108(bi.mf10801.isChecked() ? "1"
-                : bi.mf10802.isChecked() ? "2"
-                : bi.mf10896.isChecked() ? "96"
-                : "-1");
-        form.setMf108x(bi.mf10896x.getText().toString().trim().isEmpty() ? "-1" : bi.mf10896x.getText().toString());*/
-        form.set_luid(fup.get_luid());
-        form.setSeem_vid(fup.getSeem_vid());
-        form.setMpsysdate(fup.getMpsysdate());
-        form.setMp101(fup.getMp101());
         MainApp.setGPS(this);
     }
 
@@ -184,7 +168,7 @@ public class SectionMFActivity extends AppCompatActivity {
     }
 
 
-    public void mf103OnTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    public void ma103OnTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         setupFields(View.GONE);
     }
 
@@ -194,10 +178,10 @@ public class SectionMFActivity extends AppCompatActivity {
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
 
-        getFupByID(bi.mf103.getText().toString())
+        getFupByID(bi.ma103.getText().toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FollowUp>() {
+                .subscribe(new Observer<Assessment>() {
                     Disposable disposable;
 
                     @Override
@@ -206,14 +190,14 @@ public class SectionMFActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(FollowUp fupContract) {
-                        fup = fupContract;
+                    public void onNext(Assessment fupContract) {
+                        assessment = fupContract;
                         setupFields(View.VISIBLE);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(SectionMFActivity.this, "No Follow up found!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SectionMAActivity.this, "No Assessment up found!!", Toast.LENGTH_SHORT).show();
                         setupFields(View.GONE);
                         disposable.dispose();
                     }
@@ -232,10 +216,10 @@ public class SectionMFActivity extends AppCompatActivity {
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
 
-        getFupByID(bi.mf103.getText().toString())
+        getFupByID(bi.ma103.getText().toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FollowUp>() {
+                .subscribe(new Observer<Assessment>() {
                     Disposable disposable;
 
                     @Override
@@ -244,8 +228,8 @@ public class SectionMFActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(FollowUp fupContract) {
-                        fup = fupContract;
+                    public void onNext(Assessment fupContract) {
+                        assessment = fupContract;
                         setupFields(View.VISIBLE);
                     }
 
@@ -264,9 +248,9 @@ public class SectionMFActivity extends AppCompatActivity {
     }
 
 
-    private Observable<FollowUp> getFupByID(String pid) {
+    private Observable<Assessment> getFupByID(String pid) {
         return Observable.create(emitter -> {
-            emitter.onNext(appInfo.getDbHelper().getFollowUp(Integer.valueOf(pid).toString()));
+            emitter.onNext(appInfo.getDbHelper().getAssessment(Integer.valueOf(pid).toString()));
             emitter.onComplete();
         });
     }

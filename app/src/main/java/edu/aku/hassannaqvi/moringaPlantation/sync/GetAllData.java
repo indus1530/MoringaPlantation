@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.FollowUpContract;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
@@ -64,9 +64,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "Villages":
                 position = 2;
                 break;
-            case "FollowUp":
+            /*case "Assessment":
                 position = 3;
-                break;
+                break;*/
         }
         list.get(position).settableName(syncClass);
     }
@@ -98,9 +98,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "Villages":
                 position = 2;
                 break;
-            case "FollowUp":
+            /*case "Assessment":
                 position = 3;
-                break;
+                break;*/
         }
         list.get(position).setstatus("Syncing");
         list.get(position).setstatusID(2);
@@ -131,11 +131,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     tableName = VillagesContract.TableVillage.TABLE_NAME;
                     position = 2;
                     break;
-                case "FollowUp":
+                /*case "Assessment":
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
-                    tableName = FollowUpContract.TableFollowUp.TABLE_NAME;
+                    tableName = AssessmentContract.TableAssessment.TABLE_NAME;
                     position = 3;
-                    break;
+                    break;*/
             }
 
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -145,7 +145,7 @@ public class GetAllData extends AsyncTask<String, String, String> {
             switch (syncClass) {
                 case "User":
                 case "Villages":
-                case "FollowUp":
+                /*case "Assessment":*/
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setDoOutput(true);
                     urlConnection.setDoInput(true);
@@ -224,11 +224,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             insertCount = db.syncVillage(jsonArray);
                             position = 2;
                             break;
-                        case "FollowUp":
+                        /*case "Assessment":
                             jsonArray = new JSONArray(result);
-                            insertCount = db.syncFollowUp(jsonArray);
+                            insertCount = db.syncAssessment(jsonArray);
                             position = 3;
-                            break;
+                            break;*/
                     }
 
                     pd.setMessage("Received: " + jsonArray.length());

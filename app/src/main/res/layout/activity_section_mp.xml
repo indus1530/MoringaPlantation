@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <!-- mp101  Input   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp101"
@@ -73,7 +72,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <!-- mp102  SpinnerCHW   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp102"
@@ -114,7 +112,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- mp103  SpinnerTL   -->
             <androidx.cardview.widget.CardView
@@ -157,7 +154,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <!-- mp105  SpinnerUC   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp105"
@@ -198,7 +194,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- mp104  SpinnerVillage   -->
             <androidx.cardview.widget.CardView
@@ -241,7 +236,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <!-- mp106  Input-Numeric   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp106"
@@ -280,15 +274,15 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mp106"
                         android:inputType="number"
-                        android:maxLength="3"
-                        app:maxValue="500"
+                        android:maxLength="4"
+                        app:maxValue="9999"
                         app:minValue="1"
+                        app:mask="####"
                         app:type="range" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- mp107  Radio   -->
             <androidx.cardview.widget.CardView
@@ -323,101 +317,25 @@
 
                     </RelativeLayout>
 
-                    <RadioGroup
+                    <com.edittextpicker.aliazaz.EditTextPicker
                         android:id="@+id/mp107"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/mp10701"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10701" />
-
-                        <RadioButton
-                            android:id="@+id/mp10702"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10702" />
-
-                        <RadioButton
-                            android:id="@+id/mp10703"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10703" />
-
-                        <RadioButton
-                            android:id="@+id/mp1074"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp1074" />
-
-                        <RadioButton
-                            android:id="@+id/mp10705"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10705" />
-
-                        <RadioButton
-                            android:id="@+id/mp10706"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10706" />
-
-                        <RadioButton
-                            android:id="@+id/mp10707"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10707" />
-
-                        <RadioButton
-                            android:id="@+id/mp10708"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10708" />
-
-                        <RadioButton
-                            android:id="@+id/mp10709"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10709" />
-
-                        <RadioButton
-                            android:id="@+id/mp10710"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10710" />
-
-                        <RadioButton
-                            android:id="@+id/mp10711"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mp10711" />
-
-                        <EditText
-                            android:id="@+id/mp10711x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                            android:hint="@string/mp10711"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:tag="mp10711"
-                            android:text='@{mp10711.checked ? mp10711x.getText().toString() : ""}'
-                            android:visibility='@{mp10711.checked? View.VISIBLE : View.GONE}' />
-
-                    </RadioGroup>
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mp107"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        app:maxValue="500"
+                        app:minValue="1"
+                        app:type="range" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-
             <!-- mp108  Input-Numeric   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp108"
-                style="@style/cardView"
-                android:visibility='@{mp10701.checked || mp10702.checked ? View.VISIBLE : View.GONE}'>
+                style="@style/cardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -444,23 +362,31 @@
                             android:layout_alignTop="@id/qtxt_mp108"
                             android:layout_alignBottom="@id/qtxt_mp108"
                             android:text="@string/Q_mp108" />
+
                     </RelativeLayout>
 
-                    <com.edittextpicker.aliazaz.EditTextPicker
+                    <RadioGroup
                         android:id="@+id/mp108"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/mp108"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        app:maxValue="500"
-                        app:minValue="1"
-                        app:type="range" />
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/mp10801"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10801" />
+
+                        <RadioButton
+                            android:id="@+id/mp10802"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mp10802" />
+
+                    </RadioGroup>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- mp109  Radio   -->
             <androidx.cardview.widget.CardView
@@ -492,6 +418,7 @@
                             android:layout_alignTop="@id/qtxt_mp109"
                             android:layout_alignBottom="@id/qtxt_mp109"
                             android:text="@string/Q_mp109" />
+
                     </RelativeLayout>
 
                     <RadioGroup
@@ -568,8 +495,11 @@
                             android:tag="mp10910"
                             android:text='@{mp10910.checked ? mp10910x.getText().toString() : ""}'
                             android:visibility='@{mp10910.checked? View.VISIBLE : View.GONE}' />
+
                     </RadioGroup>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mp110  Title   -->
@@ -582,11 +512,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/qtxt_mp110"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/mp110" />
+                        android:background="@drawable/bottom">
+
+                        <TextView
+                            android:id="@+id/qtxt_mp110"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_mp110"
+                            android:text="@string/mp110" />
+
+                        <TextView
+                            android:id="@+id/q_mp110"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_mp110"
+                            android:layout_alignBottom="@id/qtxt_mp110"
+                            android:text="@string/Q_mp110" />
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -639,7 +585,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/mp110d" />
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <!-- mptitle1  Title   -->

@@ -43,7 +43,9 @@ class CONSTANTS {
 
         //MP & MF variables
         const val FORM_MP = "MP"
-        const val FORM_MF = "MF"
+        const val FORM_MA = "MA"
+
+        const val SELECTED_MODEL = "sel_model"
 
     }
 }

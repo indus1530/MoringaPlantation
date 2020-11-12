@@ -28,6 +28,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract;
 import edu.aku.hassannaqvi.moringaPlantation.location.LocationLiveData;
+import edu.aku.hassannaqvi.moringaPlantation.models.Assessment;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 import kotlin.Pair;
@@ -40,8 +41,8 @@ import kotlin.Pair;
 public class MainApp extends Application {
 
     public static final String TAG = "AppMain";
-    public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
-    //    public static final String _IP = "http://f38158";// .TEST server
+    //public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
+    public static final String _IP = "http://f38158";// .TEST server
     public static final String _HOST_URL = MainApp._IP + "/moringa/api/";// .TEST server;
     public static final String _SERVER_URL = "sync.php";
     public static final String _SERVER_GET_URL = "getData.php";
@@ -81,6 +82,7 @@ public class MainApp extends Application {
     public static String userName = "0000";
     public static UsersContract user;
     public static Form form;
+    public static Assessment assessment;
     public static int deathCount = 0;
     public static String DeviceURL = "devices.php";
     public static String IMEI;
