@@ -211,14 +211,6 @@ public class Form extends LiveData<Form> {
         this.mp110d = mp110d;
     }
 
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getGpslat() {
         return gpslat;
     }
@@ -451,7 +443,7 @@ public class Form extends LiveData<Form> {
         this.mp110b = jsonObject.getString(FormsTable.COLUMN_MP110b);
         this.mp110c = jsonObject.getString(FormsTable.COLUMN_MP110c);
         this.mp110d = jsonObject.getString(FormsTable.COLUMN_MP110d);
-        this.pid = jsonObject.getString(FormsTable.COLUMN_PID);
+        //this.pid = jsonObject.getString(FormsTable.COLUMN_PID);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
@@ -482,7 +474,7 @@ public class Form extends LiveData<Form> {
         this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
         this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
-        this.pid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PID));
+        //this.pid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PID));
         this.seem_vid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEEM_VID));
         this.mp101 = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MP101));
 
@@ -599,7 +591,7 @@ public class Form extends LiveData<Form> {
             json.put(FormsTable.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
             json.put(FormsTable.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
-            json.put(FormsTable.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
+            //json.put(FormsTable.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
             json.put(FormsTable.COLUMN_MP101, this.mp101 == null ? JSONObject.NULL : this.mp101);
 
 

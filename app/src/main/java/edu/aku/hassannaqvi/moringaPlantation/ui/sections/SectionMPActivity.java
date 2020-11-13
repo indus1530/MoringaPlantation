@@ -73,9 +73,10 @@ public class SectionMPActivity extends AppCompatActivity {
 
 
     private void populateSpinner(final Context context) {
+
         db = MainApp.appInfo.getDbHelper();
         // Spinner Drop down elements
-        usersFullName = new ArrayList<String>() {
+        /*usersFullName = new ArrayList<String>() {
             {
                 add("....");
             }
@@ -139,7 +140,19 @@ public class SectionMPActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+
+        ucNames = new ArrayList<>();
+        ucCodes = new ArrayList<>();
+        ucNames.add("....");
+        ucCodes.add("....");
+
+        Collection<Villages> pc = db.getVillageUc();
+        for (Villages p : pc) {
+            ucNames.add(p.getUcname());
+            ucCodes.add(p.getUcid());
+        }
+        bi.mp105.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
 
         bi.mp105.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -208,12 +221,11 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setAppversion(MainApp.appInfo.getAppVersion());
         //form.set_luid(form.get_luid());
         form.setMp101(bi.mp101.getText().toString().trim().isEmpty() ? "-1" : bi.mp101.getText().toString());
-        form.setMp102(bi.mp102.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.mp102.getSelectedItem().toString());
-        form.setMp103(bi.mp103.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.mp103.getSelectedItem().toString());
+        form.setMp102(MainApp.userName);
+        form.setMp103(MainApp.userName);
         form.setMp104(villageCodes.get(bi.mp104.getSelectedItemPosition()));
         form.setMp105(ucCodes.get(bi.mp105.getSelectedItemPosition()));
-        form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
-        form.setPid(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
+        form.setMp106(MainApp.userName);
         form.setMp107(bi.mp107.getText().toString().trim().isEmpty() ? "-1" : bi.mp107.getText().toString());
 
         form.setMp108(bi.mp10801.isChecked() ? "1"
@@ -240,7 +252,10 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setMp110c(bi.mp110c.getText().toString().trim().isEmpty() ? "-1" : bi.mp110c.getText().toString());
         form.setMp110d(bi.mp110d.getText().toString().trim().isEmpty() ? "-1" : bi.mp110d.getText().toString());
 
-        MainApp.setGPS(this);
+
+        Toast.makeText(getApplicationContext(), ""+this, Toast.LENGTH_SHORT).show();
+
+        MainApp.setGPS(this, FORM_MP);
     }
 
 

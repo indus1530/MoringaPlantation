@@ -34,7 +34,9 @@ class EndingActivity : AppCompatActivity() {
             bi.istatus96.isEnabled = true
         }
 
-        flag = intent.getStringExtra(CONSTANTS.SELECTED_MODEL).toString()
+        flag = intent.getStringExtra(CONSTANTS.SELECTED_MODEL).toString();
+
+        //Toast.makeText(applicationContext, ""+flag, Toast.LENGTH_SHORT).show();
     }
 
     fun BtnEnd() {
@@ -49,10 +51,26 @@ class EndingActivity : AppCompatActivity() {
     }
 
     private fun saveDraft() {
+
         val statusValue = if (bi.istatusa.isChecked) "1"
         else if (bi.istatusb.isChecked) "2"
         else if (bi.istatus96.isChecked) "96"
         else "-1"
+
+
+        /*when (flag) {
+            CONSTANTS.FORM_MP -> {
+                form.istatus = statusValue
+                form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+            CONSTANTS.FORM_MA -> {
+                assessment.istatus = statusValue
+                assessment.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                assessment.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+        }*/
+
 
 
         when (flag) {
@@ -61,7 +79,7 @@ class EndingActivity : AppCompatActivity() {
                 form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
                 form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
             }
-            CONSTANTS.FORM_MA -> {
+            else -> {
                 assessment.istatus = statusValue
                 assessment.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
                 assessment.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)

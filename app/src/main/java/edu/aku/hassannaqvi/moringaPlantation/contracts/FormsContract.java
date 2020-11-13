@@ -39,7 +39,7 @@ public class FormsContract {
         public static final String COLUMN_MP110c = "mp110c";
         public static final String COLUMN_MP110d = "mp110d";
 
-        public static final String COLUMN_PID = "pid";
+        //public static final String COLUMN_PID = "pid";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
         public static final String COLUMN_ENDINGDATETIME = "endingdatetime";

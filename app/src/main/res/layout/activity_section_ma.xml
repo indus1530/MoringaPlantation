@@ -154,7 +154,7 @@
 
 
                 <!-- ma102  SpinnerTL   -->
-                <androidx.cardview.widget.CardView
+                <!--<androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVma102"
                     style="@style/cardView">
 
@@ -192,10 +192,7 @@
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-
-
-
+                </androidx.cardview.widget.CardView>-->
 
                 <!--&lt;!&ndash; ma105  Radio   &ndash;&gt;
                 <androidx.cardview.widget.CardView

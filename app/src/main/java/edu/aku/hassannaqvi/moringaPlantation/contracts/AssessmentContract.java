@@ -18,15 +18,15 @@ public class AssessmentContract {
         public static final String TABLE_NAME = "assessment";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECT_NAME = "projectName";
-
-        public static final String _ID = "id";
+        public static final String _ID = "_id";
+        public static final String COLUMN_UID = "_uid";
         public static final String COLUMN__LUID = "_luid";
         public static final String COLUMN_SEEM_VID = "seem_vid";
         //public static final String COLUMN_MASYSDATE = "mpsysdate";
         public static final String COLUMN_FORMTYPE = "formtype";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_PID = "pid";
+        //public static final String COLUMN_PID = "pid";
         public static final String COLUMN_MA101 = "ma101";
         public static final String COLUMN_MA102 = "ma102";
         public static final String COLUMN_MA103 = "ma103";

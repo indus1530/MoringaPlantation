@@ -250,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ContentValues values = new ContentValues();
                 values.put(AssessmentContract.TableAssessment.COLUMN__LUID, assessment.get_luid());
                 //values.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, assessment.getMasysdate());
-                values.put(AssessmentContract.TableAssessment.COLUMN_PID, assessment.getPid());
+                //values.put(AssessmentContract.TableAssessment.COLUMN_PID, assessment.getPid());
                 values.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, assessment.getSeem_vid());
                 long rowID = db.insert(AssessmentContract.TableAssessment.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
@@ -309,7 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_MP110b, form.getmp110b());
         values.put(FormsTable.COLUMN_MP110c, form.getmp110c());
         values.put(FormsTable.COLUMN_MP110d, form.getmp110d());
-        values.put(FormsTable.COLUMN_PID, form.getPid());
+        //values.put(FormsTable.COLUMN_PID, form.getPid());
         values.put(FormsTable.COLUMN_ISTATUS, form.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS96x, form.getIstatus96x());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, form.getEndingdatetime());
@@ -339,6 +339,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(AssessmentContract.TableAssessment.COLUMN_PROJECT_NAME, assessment.getProjectName());
         values.put(AssessmentContract.TableAssessment.COLUMN__LUID, assessment.get_luid());
+        values.put(AssessmentContract.TableAssessment.COLUMN_UID, assessment.getUid());
         values.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, assessment.getSeem_vid());
         //values.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, assessment.getMasysdate());
         values.put(AssessmentContract.TableAssessment.COLUMN_FORMTYPE, assessment.getFormtype());
@@ -350,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(AssessmentContract.TableAssessment.COLUMN_MA104, assessment.getMa104());
         values.put(AssessmentContract.TableAssessment.COLUMN_MA105, assessment.getMa105());
         values.put(AssessmentContract.TableAssessment.COLUMN_MA106, assessment.getMa106());
-        values.put(AssessmentContract.TableAssessment.COLUMN_PID, assessment.getPid());
+        //values.put(AssessmentContract.TableAssessment.COLUMN_PID, assessment.getPid());
         values.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS, assessment.getIstatus());
         values.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x, assessment.getIstatus96x());
         values.put(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME, assessment.getEndingdatetime());
@@ -394,11 +395,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(AssessmentContract.TableAssessment._ID, assessment.get_ID());
+        values.put(AssessmentContract.TableAssessment._ID, assessment.getUid());
 
         // Which row to update, based on the ID
         String selection = AssessmentContract.TableAssessment._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(assessment.get_ID())};
+        String[] selectionArgs = {String.valueOf(assessment.getUid())};
 
         int count = db.update(AssessmentContract.TableAssessment.TABLE_NAME,
                 values,
@@ -432,7 +433,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MP110b,
                 FormsTable.COLUMN_MP110c,
                 FormsTable.COLUMN_MP110d,
-                FormsTable.COLUMN_PID,
+                //FormsTable.COLUMN_PID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
@@ -496,7 +497,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MP106,
                 FormsTable.COLUMN_MP107,
                 FormsTable.COLUMN_MP108,
-                FormsTable.COLUMN_PID,
+                //FormsTable.COLUMN_PID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
@@ -566,7 +567,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MP110b,
                 FormsTable.COLUMN_MP110c,
                 FormsTable.COLUMN_MP110d,
-                FormsTable.COLUMN_PID,
+                //FormsTable.COLUMN_PID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_ISTATUS96x,
                 FormsTable.COLUMN_GPSLAT,
@@ -642,7 +643,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MP106,
                 FormsTable.COLUMN_MP107,
                 FormsTable.COLUMN_MP108,
-                FormsTable.COLUMN_PID,
+                //FormsTable.COLUMN_PID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_SYNCED,
 
@@ -682,7 +683,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 form.setMp106(c.getString(c.getColumnIndex(FormsTable.COLUMN_MP106)));
                 form.setMp107(c.getString(c.getColumnIndex(FormsTable.COLUMN_MP107)));
                 form.setMp108(c.getString(c.getColumnIndex(FormsTable.COLUMN_MP108)));
-                form.setPid(c.getString(c.getColumnIndex(FormsTable.COLUMN_PID)));
+                //form.setPid(c.getString(c.getColumnIndex(FormsTable.COLUMN_PID)));
                 form.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
                 form.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
                 allForms.add(form);
@@ -929,7 +930,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MP106,
                 FormsTable.COLUMN_MP107,
                 FormsTable.COLUMN_MP108,
-                FormsTable.COLUMN_PID,
+                //FormsTable.COLUMN_PID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_ISTATUS96x,
                 FormsTable.COLUMN_ENDINGDATETIME,
@@ -998,7 +999,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(column, value);
 
         String selection = AssessmentContract.TableAssessment._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(assessment.get_ID())};
+        String[] selectionArgs = {String.valueOf(assessment.getUid())};
 
         return db.update(AssessmentContract.TableAssessment.TABLE_NAME,
                 values,
@@ -1210,16 +1211,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 AssessmentContract.TableAssessment.COLUMN__LUID,
                 //AssessmentContract.TableAssessment.COLUMN_MASYSDATE,
-                AssessmentContract.TableAssessment.COLUMN_PID,
+                //AssessmentContract.TableAssessment.COLUMN_PID,
                 AssessmentContract.TableAssessment.COLUMN_SEEM_VID,
         };
 
-        String whereClause = AssessmentContract.TableAssessment.COLUMN_PID + "=?";
+        String whereClause = AssessmentContract.TableAssessment._ID + "=?";
         String[] whereArgs = {fUP};
         String groupBy = null;
         String having = null;
 
-        String orderBy = AssessmentContract.TableAssessment.COLUMN_PID + " ASC";
+        String orderBy = AssessmentContract.TableAssessment._ID + " ASC";
 
         Assessment allAssessment = null;
         try {

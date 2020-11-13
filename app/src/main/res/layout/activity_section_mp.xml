@@ -73,7 +73,7 @@
             </androidx.cardview.widget.CardView>
 
             <!-- mp102  SpinnerCHW   -->
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp102"
                 style="@style/cardView">
 
@@ -111,10 +111,10 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
             <!-- mp103  SpinnerTL   -->
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp103"
                 style="@style/cardView">
 
@@ -152,7 +152,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
             <!-- mp105  SpinnerUC   -->
             <androidx.cardview.widget.CardView
@@ -237,7 +237,7 @@
             </androidx.cardview.widget.CardView>
 
             <!-- mp106  Input-Numeric   -->
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp106"
                 style="@style/cardView">
 
@@ -282,7 +282,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
             <!-- mp107  Radio   -->
             <androidx.cardview.widget.CardView

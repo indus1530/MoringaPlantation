@@ -80,8 +80,10 @@ public class SectionMAActivity extends AppCompatActivity {
 
 
     private void populateSpinner(final Context context) {
+
+
         // Spinner Drop down elements
-        List<String> usersFullName = new ArrayList<String>() {
+        /*List<String> usersFullName = new ArrayList<String>() {
             {
                 add("....");
             }
@@ -92,7 +94,7 @@ public class SectionMAActivity extends AppCompatActivity {
             usersFullName.add(us.getFull_name());
         }
 
-        bi.ma102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));
+        bi.ma102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));*/
 
     }
 
@@ -114,8 +116,8 @@ public class SectionMAActivity extends AppCompatActivity {
         long updcount = db.addAssessment(assessment);
         assessment.set_ID(String.valueOf(updcount));
         if (updcount > 0) {
-            assessment.set_ID(assessment.getDeviceid() + assessment.get_ID());
-            db.updatesAssessmentColumn(AssessmentContract.TableAssessment._ID, assessment.get_ID());
+            assessment.setUid(assessment.getDeviceid() + assessment.getUid());
+            db.updatesAssessmentColumn(AssessmentContract.TableAssessment._ID, assessment.getUid());
             return true;
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
@@ -140,10 +142,10 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setSeem_vid(assessment.getSeem_vid());
         assessment.setMasysdate(assessment.getMasysdate());
 
-        assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
+        //assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
 
         assessment.setMa101(bi.ma101.getText().toString().trim().isEmpty() ? "-1" : bi.ma101.getText().toString());
-        assessment.setMa102(bi.ma102.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.ma102.getSelectedItem().toString());
+        assessment.setMa102(MainApp.userName);
         assessment.setMa103(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
 
         assessment.setMa104(bi.ma10401.isChecked() ? "1"
@@ -153,7 +155,7 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setMa105(bi.ma105.getText().toString().trim().isEmpty() ? "-1" : bi.ma105.getText().toString());
         assessment.setMa106(bi.ma106.getText().toString().trim().isEmpty() ? "-1" : bi.ma106.getText().toString());
 
-        MainApp.setGPS(this);
+        MainApp.setGPS(this, FORM_MA);
     }
 
 

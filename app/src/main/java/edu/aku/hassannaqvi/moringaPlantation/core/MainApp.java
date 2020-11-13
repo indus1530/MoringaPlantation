@@ -97,8 +97,11 @@ public class MainApp extends Application {
         MainApp.itemClick = itemClick;
     }
 
-    public static void setGPS(Activity activity) {
+    public static void setGPS(Activity activity, String form) {
         SharedPreferences GPSPref = activity.getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+
+
+        //Toast.makeText(activity, ""+form, Toast.LENGTH_SHORT).show();
 
         try {
             String lat = GPSPref.getString("Latitude", "0");
@@ -114,11 +117,22 @@ public class MainApp extends Application {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
 
-            MainApp.form.setGpsLat(GPSPref.getString("Latitude", "0"));
-            MainApp.form.setGpsLng(GPSPref.getString("Longitude", "0"));
-            MainApp.form.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            MainApp.form.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            MainApp.form.setGpsDT(date); // Timestamp is converted to date above
+            if (form == "MP") {
+
+                MainApp.form.setGpsLat(GPSPref.getString("Latitude", "0"));
+                MainApp.form.setGpsLng(GPSPref.getString("Longitude", "0"));
+                MainApp.form.setGpsAcc(GPSPref.getString("Accuracy", "0"));
+                //MainApp.form.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+                MainApp.form.setGpsDT(date); // Timestamp is converted to date above
+
+            } else {
+
+                MainApp.assessment.setGpslat(GPSPref.getString("Latitude", "0"));
+                MainApp.assessment.setGpslng(GPSPref.getString("Longitude", "0"));
+                MainApp.assessment.setGpsacc(GPSPref.getString("Accuracy", "0"));
+                //MainApp.form.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+                MainApp.assessment.setGpsdate(date); // Timestamp is converted to date above
+            }
 
         } catch (Exception e) {
             Log.e("GPS", "setGPS: " + e.getMessage());

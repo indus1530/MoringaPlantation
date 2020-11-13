@@ -17,6 +17,7 @@ public class Assessment extends LiveData<Assessment> {
 
     private final String projectName = "moringa_plantation";
     private String _ID = "";
+    private String uid = "";
     private String _luid = "";
     private String seem_vid = "";
     private String masysdate = "";
@@ -53,6 +54,14 @@ public class Assessment extends LiveData<Assessment> {
     }
     public void set_ID(String _ID) {
         this._ID = _ID;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String get_luid() {
@@ -243,14 +252,6 @@ public class Assessment extends LiveData<Assessment> {
         this.devicetagid = devicetagid;
     }
 
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getSeem_vid() {
         return seem_vid;
     }
@@ -271,7 +272,7 @@ public class Assessment extends LiveData<Assessment> {
            json.put(AssessmentContract.TableAssessment.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
            json.put(AssessmentContract.TableAssessment.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
            json.put(AssessmentContract.TableAssessment.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
-           json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
+           //json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
            json.put(AssessmentContract.TableAssessment.COLUMN_MA101, this.ma101 == null ? JSONObject.NULL : this.ma101);
            json.put(AssessmentContract.TableAssessment.COLUMN_MA102, this.ma102 == null ? JSONObject.NULL : this.ma102);
            json.put(AssessmentContract.TableAssessment.COLUMN_MA103, this.ma103 == null ? JSONObject.NULL : this.ma103);
@@ -336,7 +337,7 @@ public class Assessment extends LiveData<Assessment> {
     public Assessment HydrateA(Cursor cursor) {
         this._luid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN__LUID));
         //this.masysdate = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MASYSDATE));
-        this.pid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_PID));
+        //this.pid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_PID));
         this.seem_vid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SEEM_VID));
 
         return this;
