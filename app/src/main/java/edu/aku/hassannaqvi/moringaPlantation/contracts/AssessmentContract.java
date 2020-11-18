@@ -22,11 +22,13 @@ public class AssessmentContract {
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN__LUID = "_luid";
         public static final String COLUMN_SEEM_VID = "seem_vid";
+        public static final String COLUMN_MAUC = "mauc";
+        public static final String COLUMN_MAVI = "mavi";
         //public static final String COLUMN_MASYSDATE = "mpsysdate";
         public static final String COLUMN_FORMTYPE = "formtype";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
-        //public static final String COLUMN_PID = "pid";
+        public static final String COLUMN_PID = "pid";
         public static final String COLUMN_MA101 = "ma101";
         public static final String COLUMN_MA102 = "ma102";
         public static final String COLUMN_MA103 = "ma103";

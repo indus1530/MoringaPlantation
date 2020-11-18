@@ -340,6 +340,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(AssessmentContract.TableAssessment.COLUMN_PROJECT_NAME, assessment.getProjectName());
         values.put(AssessmentContract.TableAssessment.COLUMN__LUID, assessment.get_luid());
         values.put(AssessmentContract.TableAssessment.COLUMN_UID, assessment.getUid());
+
+        values.put(AssessmentContract.TableAssessment.COLUMN_MAUC, assessment.getMauc());
+        values.put(AssessmentContract.TableAssessment.COLUMN_MAVI, assessment.getMavi());
+        values.put(AssessmentContract.TableAssessment.COLUMN_PID, assessment.getPid());
+
+
         values.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, assessment.getSeem_vid());
         //values.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, assessment.getMasysdate());
         values.put(AssessmentContract.TableAssessment.COLUMN_FORMTYPE, assessment.getFormtype());
@@ -542,7 +548,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allForms;
     }
 
-    public Collection<Form> getUnsyncedForms(String formtype) {
+    public Collection<Form> getUnsyncedForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -583,13 +589,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String whereClause;
         String[] whereArgs;
 
-        if (formtype == null) {
-            whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == ''";
-            whereArgs = null;
-        } else {
-            whereClause = FormsTable.COLUMN_FORMTYPE + " =? AND (" + FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == '')";
-            whereArgs = new String[]{formtype};
-        }
+        whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " == ''";
+        whereArgs = null;
 
         String groupBy = null;
         String having = null;
@@ -620,6 +621,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return allForms;
+    }
+
+    //Generic Un-Synced Forms
+    public void updateSyncedForms(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_SYNCED, true);
+        values.put(FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = FormsTable.COLUMN_ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                FormsTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
     }
 
     public Collection<Form> getTodayForms(String sysdate) {
@@ -999,7 +1020,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(column, value);
 
         String selection = AssessmentContract.TableAssessment._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(assessment.getUid())};
+        String[] selectionArgs = {String.valueOf(MainApp.assessment.get_ID())};
 
         return db.update(AssessmentContract.TableAssessment.TABLE_NAME,
                 values,
@@ -1052,26 +1073,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             alc.set(1, Cursor2);
             return alc;
         }
-    }
-
-    //Generic Un-Synced Forms
-    public void updateSyncedForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_SYNCED, true);
-        values.put(FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
-
-// Which row to update, based on the title
-        String where = FormsTable.COLUMN_ID + " = ?";
-        String[] whereArgs = {id};
-
-        int count = db.update(
-                FormsTable.TABLE_NAME,
-                values,
-                where,
-                whereArgs);
     }
 
 
@@ -1289,6 +1290,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allVil;
     }
+
+
+    public Collection<Assessment> getUnsyncedAssesmentForms() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                AssessmentContract.TableAssessment._ID,
+                AssessmentContract.TableAssessment.COLUMN_UID,
+                AssessmentContract.TableAssessment.COLUMN__LUID,
+                AssessmentContract.TableAssessment.COLUMN_SEEM_VID,
+                AssessmentContract.TableAssessment.COLUMN_MAUC,
+                AssessmentContract.TableAssessment.COLUMN_MAVI,
+                AssessmentContract.TableAssessment.COLUMN_FORMTYPE,
+                AssessmentContract.TableAssessment.COLUMN_USERNAME,
+                AssessmentContract.TableAssessment.COLUMN_SYSDATE,
+                AssessmentContract.TableAssessment.COLUMN_PID,
+                AssessmentContract.TableAssessment.COLUMN_MA101,
+                AssessmentContract.TableAssessment.COLUMN_MA102,
+                AssessmentContract.TableAssessment.COLUMN_MA103,
+                AssessmentContract.TableAssessment.COLUMN_MA104,
+                AssessmentContract.TableAssessment.COLUMN_MA105,
+                AssessmentContract.TableAssessment.COLUMN_MA106,
+                AssessmentContract.TableAssessment.COLUMN_ISTATUS,
+                AssessmentContract.TableAssessment.COLUMN_ISTATUS96x,
+                AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME,
+                AssessmentContract.TableAssessment.COLUMN_GPSLAT,
+                AssessmentContract.TableAssessment.COLUMN_GPSLNG,
+                AssessmentContract.TableAssessment.COLUMN_GPSDATE,
+                AssessmentContract.TableAssessment.COLUMN_GPSACC,
+                AssessmentContract.TableAssessment.COLUMN_DEVICEID,
+                AssessmentContract.TableAssessment.COLUMN_DEVICETAGID,
+                AssessmentContract.TableAssessment.COLUMN_SYNCED,
+                AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE,
+                AssessmentContract.TableAssessment.COLUMN_APPVERSION,
+        };
+
+        String whereClause;
+        String[] whereArgs;
+
+        whereClause = AssessmentContract.TableAssessment.COLUMN_SYNCED + " is null OR " + AssessmentContract.TableAssessment.COLUMN_SYNCED + " == ''";
+        whereArgs = null;
+
+        String groupBy = null;
+        String having = null;
+        String orderBy = AssessmentContract.TableAssessment._ID + " ASC";
+
+        Collection<Assessment> allForms = new ArrayList<>();
+        try {
+            c = db.query(
+                    AssessmentContract.TableAssessment.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                Assessment form = new Assessment();
+                allForms.add(form.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allForms;
+    }
+
+    //Generic Un-Synced Forms
+    public void updateSyncedAssesmentForms(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(AssessmentContract.TableAssessment.COLUMN_SYNCED, true);
+        values.put(AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = AssessmentContract.TableAssessment._ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                AssessmentContract.TableAssessment.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
 
     public void resetAll() {
 

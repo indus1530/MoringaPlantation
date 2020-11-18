@@ -152,6 +152,136 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <!-- mauc  SpinnerUC   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVmauc"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom">
+
+                            <TextView
+                                android:id="@+id/qtxt_mp105"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/q_mp105"
+                                android:text="@string/mauc" />
+
+                            <TextView
+                                android:id="@+id/q_mp105"
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/qtxt_mp105"
+                                android:layout_alignBottom="@id/qtxt_mp105"
+                                android:text="@string/Q_mauc" />
+
+                        </RelativeLayout>
+
+                        <Spinner
+                            android:id="@+id/mauc"
+                            style="@style/spinner1" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- mp104  SpinnerVillage   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVmavi"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom">
+
+                            <TextView
+                                android:id="@+id/qtxt_mp104"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/q_mp104"
+                                android:text="@string/mavi" />
+
+                            <TextView
+                                android:id="@+id/q_mp104"
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/qtxt_mp104"
+                                android:layout_alignBottom="@id/qtxt_mp104"
+                                android:text="@string/Q_mavi" />
+
+                        </RelativeLayout>
+
+                        <Spinner
+                            android:id="@+id/mavi"
+                            style="@style/spinner1" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- mp106  Input-Numeric   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVmapid"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom">
+
+                            <TextView
+                                android:id="@+id/qtxt_mp106"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/q_mp106"
+                                android:text="@string/mapid" />
+
+                            <TextView
+                                android:id="@+id/q_mp106"
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/qtxt_mp106"
+                                android:layout_alignBottom="@id/qtxt_mp106"
+                                android:text="@string/Q_mapid" />
+                        </RelativeLayout>
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/mapid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/mapid"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            app:maxValue="9999"
+                            app:minValue="1"
+                            app:mask="####"
+                            app:type="range" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
 
                 <!-- ma102  SpinnerTL   -->
                 <!--<androidx.cardview.widget.CardView

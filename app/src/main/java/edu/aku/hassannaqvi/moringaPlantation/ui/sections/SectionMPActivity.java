@@ -225,7 +225,8 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setMp103(MainApp.userName);
         form.setMp104(villageCodes.get(bi.mp104.getSelectedItemPosition()));
         form.setMp105(ucCodes.get(bi.mp105.getSelectedItemPosition()));
-        form.setMp106(MainApp.userName);
+        //form.setMp106(MainApp.userName);
+        form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
         form.setMp107(bi.mp107.getText().toString().trim().isEmpty() ? "-1" : bi.mp107.getText().toString());
 
         form.setMp108(bi.mp10801.isChecked() ? "1"

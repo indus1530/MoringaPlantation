@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -23,11 +24,13 @@ import java.util.List;
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMaBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Assessment;
 import edu.aku.hassannaqvi.moringaPlantation.models.Users;
+import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -46,6 +49,8 @@ import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 public class SectionMAActivity extends AppCompatActivity {
 
     ActivitySectionMaBinding bi;
+    private List<String> ucNames, ucCodes, villageNames, villageCodes;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,20 +86,47 @@ public class SectionMAActivity extends AppCompatActivity {
 
     private void populateSpinner(final Context context) {
 
+        db = MainApp.appInfo.getDbHelper();
 
-        // Spinner Drop down elements
-        /*List<String> usersFullName = new ArrayList<String>() {
-            {
-                add("....");
-            }
-        };
 
-        Collection<Users> dc = MainApp.appInfo.getDbHelper().getUsers();
-        for (Users us : dc) {
-            usersFullName.add(us.getFull_name());
+
+        ucNames = new ArrayList<>();
+        ucCodes = new ArrayList<>();
+        ucNames.add("....");
+        ucCodes.add("....");
+
+        Collection<Villages> pc = db.getVillageUc();
+        for (Villages p : pc) {
+            ucNames.add(p.getUcname());
+            ucCodes.add(p.getUcid());
         }
+        bi.mauc.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
 
-        bi.ma102.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, usersFullName));*/
+        bi.mauc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                villageNames = new ArrayList<>();
+                villageCodes = new ArrayList<>();
+                villageNames.add("....");
+                villageCodes.add("....");
+
+                Collection<Villages> pc = db.getVillageByUc(bi.mauc.getSelectedItem().toString());
+                for (Villages p : pc) {
+                    villageNames.add(p.getVillagename());
+                    villageCodes.add(p.getSeem_vid());
+                }
+
+                bi.mavi.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
     }
 
@@ -117,7 +149,7 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.set_ID(String.valueOf(updcount));
         if (updcount > 0) {
             assessment.setUid(assessment.getDeviceid() + assessment.getUid());
-            db.updatesAssessmentColumn(AssessmentContract.TableAssessment._ID, assessment.getUid());
+            db.updatesAssessmentColumn(AssessmentContract.TableAssessment.COLUMN_UID, assessment.getUid());
             return true;
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
@@ -137,7 +169,6 @@ public class SectionMAActivity extends AppCompatActivity {
 
         assessment.setDeviceTagId(MainApp.appInfo.getTagName());
 
-
         assessment.setAppversion(MainApp.appInfo.getAppVersion());
         assessment.setSeem_vid(assessment.getSeem_vid());
         assessment.setMasysdate(assessment.getMasysdate());
@@ -154,6 +185,10 @@ public class SectionMAActivity extends AppCompatActivity {
 
         assessment.setMa105(bi.ma105.getText().toString().trim().isEmpty() ? "-1" : bi.ma105.getText().toString());
         assessment.setMa106(bi.ma106.getText().toString().trim().isEmpty() ? "-1" : bi.ma106.getText().toString());
+
+        assessment.setMavi(villageCodes.get(bi.mavi.getSelectedItemPosition()));
+        assessment.setMauc(ucCodes.get(bi.mauc.getSelectedItemPosition()));
+        assessment.setPid(bi.mapid.getText().toString().trim().isEmpty() ? "-1" : bi.mapid.getText().toString());
 
         MainApp.setGPS(this, FORM_MA);
     }

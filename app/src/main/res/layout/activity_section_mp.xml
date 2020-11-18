@@ -237,7 +237,7 @@
             </androidx.cardview.widget.CardView>
 
             <!-- mp106  Input-Numeric   -->
-            <!--<androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp106"
                 style="@style/cardView">
 
@@ -282,7 +282,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>-->
+            </androidx.cardview.widget.CardView>
 
             <!-- mp107  Radio   -->
             <androidx.cardview.widget.CardView

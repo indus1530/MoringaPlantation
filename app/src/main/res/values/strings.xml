@@ -14,7 +14,7 @@
     <string name="splashText"> </string>
     <string name="splashText2">  </string>
     <string name="check_pending_forms">CHECK PENDING FORMS</string>
-    <string name="open_form"> NEW FORM </string>
+    <string name="open_form"> Plant Receipiant Record </string>
     <string name="openScreening"> Screening </string>
     <string name="openPretest"> Pre Test Knowlegde </string>
     <string name="openAssessment"> Assessment </string>
@@ -114,6 +114,16 @@
     <!-- Moringa Plantation Form End -->
 
     <!-- Moringa Assessment Form Start -->
+
+    <string name='Q_mavi'>Village</string>
+    <string name="mavi"> ڳوٺ / پاڙو </string>
+
+    <string name='Q_mauc'>UC</string>
+    <string name="mauc"> يونين ڪائونسل </string>
+
+    <string name='Q_mapid'>PID</string>
+    <string name="mapid"> فرد جي آئي ڊي </string>
+
     <string name='Q_ma101'>ma101</string>
     <string name="ma101"> دوري جي تاريخ </string>
 

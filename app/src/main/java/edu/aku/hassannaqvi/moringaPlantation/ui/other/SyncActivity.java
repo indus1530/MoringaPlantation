@@ -32,6 +32,7 @@ import java.util.List;
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
@@ -127,10 +128,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             DatabaseHelper db = new DatabaseHelper(this);
 
             new SyncDevice(this, false).execute();
-//  *******************************************************Forms*********************************
-            String[] syncValues = new String[]{CONSTANTS.FORM_MP, CONSTANTS.FORM_MA};
-            for (int i = 0; i < syncValues.length; i++) {
-                Toast.makeText(getApplicationContext(), String.format("Syncing Forms %s", syncValues[i]), Toast.LENGTH_SHORT).show();
+                //  *******************************************************Forms*********************************
+                Toast.makeText(getApplicationContext(), String.format("Syncing Forms %s", CONSTANTS.FORM_MP), Toast.LENGTH_SHORT).show();
                 if (uploadlistActivityCreated) {
                     uploadmodel = new SyncModel();
                     uploadmodel.setstatusID(0);
@@ -138,14 +137,30 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 }
                 new SyncAllData(
                         this,
-                        String.format("Forms - %s", syncValues[i]),
+                        String.format("Forms - %s", CONSTANTS.FORM_MP),
                         "updateSyncedForms",
                         Form.class,
                         MainApp._HOST_URL + MainApp._SERVER_URL,
-                        FormsContract.FormsTable.TABLE_NAME + syncValues[i],
-                        db.getUnsyncedForms(syncValues[i]), i, syncListAdapter, uploadlist
+                        FormsContract.FormsTable.TABLE_NAME + CONSTANTS.FORM_MP,
+                        db.getUnsyncedForms(), 0, syncListAdapter, uploadlist
                 ).execute();
-            }
+
+                //  *******************************************************Forms*********************************
+                Toast.makeText(getApplicationContext(), String.format("Syncing Forms %s", CONSTANTS.FORM_MA), Toast.LENGTH_SHORT).show();
+                if (uploadlistActivityCreated) {
+                    uploadmodel = new SyncModel();
+                    uploadmodel.setstatusID(0);
+                    uploadlist.add(uploadmodel);
+                }
+                new SyncAllData(
+                        this,
+                        String.format("Forms - %s", CONSTANTS.FORM_MA),
+                        "updateSyncedAssesmentForms",
+                        Form.class,
+                        MainApp._HOST_URL + MainApp._SERVER_URL,
+                        AssessmentContract.TableAssessment.TABLE_NAME + CONSTANTS.FORM_MA,
+                        db.getUnsyncedAssesmentForms(), 1, syncListAdapter, uploadlist
+                ).execute();
 
             bi.noDataItem.setVisibility(View.GONE);
 

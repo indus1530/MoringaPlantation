@@ -30,7 +30,11 @@ public class Assessment extends LiveData<Assessment> {
     private String ma104 = "";
     private String ma105 = "";
     private String ma106 = "";
+
+    private String mauc = "";
+    private String mavi = "";
     String pid = "";
+
     private String istatus = ""; // Interview Status
     private String istatus96x = ""; // Interview Status
     private String endingdatetime = "";
@@ -59,6 +63,40 @@ public class Assessment extends LiveData<Assessment> {
     public String getUid() {
         return uid;
     }
+
+
+    public String getMauc() {
+        return mauc;
+    }
+
+    public void setMauc(String mauc) {
+        this.mauc = mauc;
+    }
+
+    public String getMavi() {
+        return mavi;
+    }
+
+    public void setMavi(String mavi) {
+        this.mavi = mavi;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getDevicetagid() {
+        return devicetagid;
+    }
+
+    public void setDevicetagid(String devicetagid) {
+        this.devicetagid = devicetagid;
+    }
+
 
     public void setUid(String uid) {
         this.uid = uid;
@@ -266,6 +304,10 @@ public class Assessment extends LiveData<Assessment> {
         try {
 
            json.put(AssessmentContract.TableAssessment._ID, this._ID == null ? JSONObject.NULL : this._ID);
+           json.put(AssessmentContract.TableAssessment.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
+           json.put(AssessmentContract.TableAssessment.COLUMN_MAUC, this.mauc == null ? JSONObject.NULL : this.mauc);
+           json.put(AssessmentContract.TableAssessment.COLUMN_MAVI, this.mavi == null ? JSONObject.NULL : this.mavi);
+           json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
            json.put(AssessmentContract.TableAssessment.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
            json.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
            //json.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, this.masysdate == null ? JSONObject.NULL : this.masysdate);
@@ -307,8 +349,11 @@ public class Assessment extends LiveData<Assessment> {
         this.seem_vid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_SEEM_VID);*/
 
        this._luid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN__LUID);
+       this.uid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_UID);
+       this.mauc = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_MAUC);
+       this.mavi = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_MAVI);
+       this.pid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_PID);
        this.seem_vid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_SEEM_VID);
-       //this.masysdate = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_MASYSDATE);
        this.formtype = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_FORMTYPE);
        this.username = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_USERNAME);
        this.sysdate = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_SYSDATE);
@@ -330,6 +375,39 @@ public class Assessment extends LiveData<Assessment> {
        this.gpsacc = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_GPSACC);
        this.deviceid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_DEVICEID);
        this.devicetagid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN_DEVICETAGID);
+
+        return this;
+    }
+
+    public Assessment Hydrate(Cursor cursor) {
+
+        this._luid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN__LUID));
+        this.uid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_UID));
+        this.mauc = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MAUC));
+        this.mavi = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MAVI));
+        this.pid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_PID));
+        this.seem_vid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SEEM_VID));
+        this.formtype = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_FORMTYPE));
+        this.username = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_USERNAME));
+        this.sysdate = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYSDATE));
+        this.ma101 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA101));
+        this.ma102 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA102));
+        this.ma103 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA103));
+        this.ma104 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA104));
+        this.ma105 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA105));
+        this.ma106 = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_MA106));
+        this.istatus = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS));
+        this.istatus96x = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x));
+        this.endingdatetime = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME));
+        this.synced = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED));
+        this.synced_date = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE));
+        this.appversion = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_APPVERSION));
+        this.gpslat = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLAT));
+        this.gpslng = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLNG));
+        this.gpsdate = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSDATE));
+        this.gpsacc = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSACC));
+        this.deviceid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_DEVICEID));
+        this.devicetagid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_DEVICETAGID));
 
         return this;
     }
