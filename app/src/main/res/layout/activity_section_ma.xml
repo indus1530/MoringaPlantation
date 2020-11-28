@@ -758,9 +758,9 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- ma106a  Title   -->
+                          <!-- Take Photo   -->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/fldGrpCVma106a"
+                    android:id="@+id/fldGrpCVtakePhoto"
                     style="@style/cardView">
 
                     <LinearLayout
@@ -773,7 +773,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/ma106a" />
+
+                        <Button
+                            android:id="@+id/btnBackCamera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="12dp"
+                            android:drawableStart="@drawable/camera"
+                            android:drawablePadding="8dp"
+                            android:onClick="@{(v) -> callback.TakePhoto(2)}"
+                            android:text="Take Photo" />
+
+
+                        <EditText
+                            android:id="@+id/fileName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:padding="12dp"
+                            android:textColor="#7f7f7f7f"
+                            android:textSize="14dp" />
+
+
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
 

@@ -24,14 +24,13 @@ import java.util.List;
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivitySectionMaBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Assessment;
-import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
+import edu.aku.hassannaqvi.moringaPlantation.ui.other.TakePhoto;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -39,16 +38,15 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.FORM_MA;
-import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.FORM_MP;
 import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.SELECTED_MODEL;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.appInfo;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.assessment;
-import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
 
 public class SectionMAActivity extends AppCompatActivity {
 
     ActivitySectionMaBinding bi;
+    private int PhotoSerial;
     private List<String> ucNames, ucCodes, villageNames, villageCodes;
     private DatabaseHelper db;
 
@@ -59,6 +57,8 @@ public class SectionMAActivity extends AppCompatActivity {
         bi.setCallback(this);
         setupSkip();
         populateSpinner(this);
+
+        PhotoSerial = 1;
     }
 
 
@@ -87,7 +87,6 @@ public class SectionMAActivity extends AppCompatActivity {
     private void populateSpinner(final Context context) {
 
         db = MainApp.appInfo.getDbHelper();
-
 
 
         ucNames = new ArrayList<>();
@@ -295,5 +294,59 @@ public class SectionMAActivity extends AppCompatActivity {
         });
     }
 
+    public void TakePhoto(int id) {
+        if (bi.mauc.getSelectedItemPosition() == 0 || bi.mavi.getSelectedItemPosition() == 0 || bi.mapid.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please fill the form first", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(this, TakePhoto.class);
+            intent.putExtra("picID",
+                    ucCodes.get(bi.mauc.getSelectedItemPosition())
+                            + "_" + villageCodes.get(bi.mavi.getSelectedItemPosition())
+                            + "_" + (bi.mapid.getText().toString().trim().isEmpty() ? "-1" : bi.mapid.getText().toString())
+                            + PhotoSerial + "_"
+            );
+
+            intent.putExtra("childName", "");
+
+            intent.putExtra("picView", "Trees".toUpperCase());
+            if (id == 1) {
+                intent.putExtra("viewFacing", "1");
+            } else {
+                intent.putExtra("viewFacing", "2");
+            }
+
+            startActivityForResult(intent, 1); // Activity is started with requestCode 1 = Front
+        }
+    }
+
+     /* onActivityResult(resultCode) 0= Photo Cancel, 1=Photo Taken
+        if resultCode = 1 than also returns -> Intent Extra (FileName)*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        // Toast.makeText(this, requestCode + "_" + resultCode, Toast.LENGTH_SHORT).show();
+        if (resultCode == 1) {
+            Toast.makeText(this, "Photo Taken", Toast.LENGTH_SHORT).show();
+            String fileName = data.getStringExtra("FileName");
+            bi.fileName.setText(bi.fileName.getText() + String.valueOf(PhotoSerial) + " - " + fileName + ";\r\n");
+            PhotoSerial++;
+
+           /* try {
+                SaveDraft(fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                PhotoSerial++;
+            }*/
+
+        } else {
+            Toast.makeText(this, "Photo Cancelled", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
