@@ -1315,16 +1315,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AssessmentContract.TableAssessment.COLUMN_MA106,
                 AssessmentContract.TableAssessment.COLUMN_ISTATUS,
                 AssessmentContract.TableAssessment.COLUMN_ISTATUS96x,
-                AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME,
                 AssessmentContract.TableAssessment.COLUMN_GPSLAT,
                 AssessmentContract.TableAssessment.COLUMN_GPSLNG,
                 AssessmentContract.TableAssessment.COLUMN_GPSDATE,
                 AssessmentContract.TableAssessment.COLUMN_GPSACC,
-                AssessmentContract.TableAssessment.COLUMN_DEVICEID,
-                AssessmentContract.TableAssessment.COLUMN_DEVICETAGID,
-                AssessmentContract.TableAssessment.COLUMN_SYNCED,
-                AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE,
                 AssessmentContract.TableAssessment.COLUMN_APPVERSION,
+                AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME,
+                AssessmentContract.TableAssessment.COLUMN_DEVICETAGID,
+                AssessmentContract.TableAssessment.COLUMN_DEVICEID,
         };
 
         String whereClause;

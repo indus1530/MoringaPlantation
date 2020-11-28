@@ -399,8 +399,6 @@ public class Assessment extends LiveData<Assessment> {
         this.istatus = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS));
         this.istatus96x = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME));
-        this.synced = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE));
         this.appversion = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_APPVERSION));
         this.gpslat = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLAT));
         this.gpslng = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLNG));

@@ -170,7 +170,10 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setDeviceTagId(MainApp.appInfo.getTagName());
 
         assessment.setAppversion(MainApp.appInfo.getAppVersion());
-        assessment.setSeem_vid(assessment.getSeem_vid());
+        //assessment.setSeem_vid(assessment.getSeem_vid());
+
+        assessment.setSeem_vid(ucCodes.get(bi.mauc.getSelectedItemPosition()) + villageCodes.get(bi.mavi.getSelectedItemPosition()));
+
         assessment.setMasysdate(assessment.getMasysdate());
 
         //assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
