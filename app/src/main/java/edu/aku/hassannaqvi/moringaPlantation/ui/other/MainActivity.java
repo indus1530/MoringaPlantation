@@ -37,7 +37,7 @@ import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.moringaPlantation.models.Form;
 import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
 import edu.aku.hassannaqvi.moringaPlantation.ui.list_activity.FormsReportDate;
-import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMFActivity;
+import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMAActivity;
 import edu.aku.hassannaqvi.moringaPlantation.ui.sections.SectionMPActivity;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AndroidUtilityKt;
 import edu.aku.hassannaqvi.moringaPlantation.utils.AppUtilsKt;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
 
         //bi.txtinstalldate.setText(appInfo.getAppInfo());
         Collection<Form> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
-        Collection<Form> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms(null);
+        Collection<Form> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
         Collection<Form> unclosedForms = appInfo.getDbHelper().getUnclosedForms();
 
         StringBuilder rSumText = new StringBuilder()
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                 oF = new Intent(this, SectionMPActivity.class);
                 break;
             case R.id.formB:
-                oF = new Intent(this, SectionMFActivity.class);
+                oF = new Intent(this, SectionMAActivity.class);
                 break;
             /* case R.id.formC:
                 oF = new Intent(this, SectionEActivity.class);

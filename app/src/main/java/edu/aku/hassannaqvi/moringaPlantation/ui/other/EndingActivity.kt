@@ -6,16 +6,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.validatorcrawler.aliazaz.Validator
+import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.Companion.FSTATUS_END_FLAG
 import edu.aku.hassannaqvi.moringaPlantation.R
-import edu.aku.hassannaqvi.moringaPlantation.core.MainApp.appInfo
-import edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form
+import edu.aku.hassannaqvi.moringaPlantation.core.MainApp.*
 import edu.aku.hassannaqvi.moringaPlantation.databinding.ActivityEndingBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EndingActivity : AppCompatActivity() {
     lateinit var bi: ActivityEndingBinding
+    var flag = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ending)
@@ -32,6 +33,10 @@ class EndingActivity : AppCompatActivity() {
             bi.istatusb.isEnabled = true
             bi.istatus96.isEnabled = true
         }
+
+        flag = intent.getStringExtra(CONSTANTS.SELECTED_MODEL).toString();
+
+        //Toast.makeText(applicationContext, ""+flag, Toast.LENGTH_SHORT).show();
     }
 
     fun BtnEnd() {
@@ -46,20 +51,55 @@ class EndingActivity : AppCompatActivity() {
     }
 
     private fun saveDraft() {
+
         val statusValue = if (bi.istatusa.isChecked) "1"
         else if (bi.istatusb.isChecked) "2"
         else if (bi.istatus96.isChecked) "96"
         else "-1"
-        form.istatus = statusValue
-        form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
-        form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm").format(Date().time)
+
+
+        /*when (flag) {
+            CONSTANTS.FORM_MP -> {
+                form.istatus = statusValue
+                form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+            CONSTANTS.FORM_MA -> {
+                assessment.istatus = statusValue
+                assessment.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                assessment.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+        }*/
+
+
+
+        when (flag) {
+            CONSTANTS.FORM_MP -> {
+                form.istatus = statusValue
+                form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+            else -> {
+                assessment.istatus = statusValue
+                assessment.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
+                assessment.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH).format(Date().time)
+            }
+        }
 
     }
 
 
     private fun updateDB(): Boolean {
         val db = appInfo.dbHelper
-        val updcount = db.updateEnding()
+        val updcount =
+                when (flag) {
+                    CONSTANTS.FORM_MP -> {
+                        db.updateEnding()
+                    }
+                    else -> {
+                        db.updateAssesmentEnding()
+                    }
+                }
         return if (updcount == 1) {
             true
         } else {

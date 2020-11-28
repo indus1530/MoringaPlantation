@@ -69,7 +69,7 @@
             android:theme="@style/AppThemeEnglish" />
 
         <activity
-            android:name=".ui.sections.SectionMFActivity"
+            android:name=".ui.sections.SectionMAActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
 

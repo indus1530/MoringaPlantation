@@ -4,6 +4,8 @@ package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
@@ -32,6 +35,8 @@ import edu.aku.hassannaqvi.moringaPlantation.models.Users;
 import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 import edu.aku.hassannaqvi.moringaPlantation.ui.other.EndingActivity;
 
+import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.FORM_MP;
+import static edu.aku.hassannaqvi.moringaPlantation.CONSTANTS.SELECTED_MODEL;
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 
 
@@ -48,18 +53,30 @@ public class SectionMPActivity extends AppCompatActivity {
         bi.setCallback(this);
         setupSkip();
         populateSpinner(this);
+
+        db.resetAll();
+        Toast.makeText(this, "Updated: " + new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()), Toast.LENGTH_SHORT).show();
     }
 
 
     private void setupSkip() {
-        bi.mp107.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVmp108));
+
+        bi.mp108.setOnCheckedChangeListener((radioGroup, i) -> {
+            if (i == bi.mp10801.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmp109);
+                bi.fldGrpCVmp109.setVisibility(View.GONE);
+            } else {
+                bi.fldGrpCVmp109.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
     private void populateSpinner(final Context context) {
+
         db = MainApp.appInfo.getDbHelper();
         // Spinner Drop down elements
-        usersFullName = new ArrayList<String>() {
+        /*usersFullName = new ArrayList<String>() {
             {
                 add("....");
             }
@@ -123,7 +140,19 @@ public class SectionMPActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+
+        ucNames = new ArrayList<>();
+        ucCodes = new ArrayList<>();
+        ucNames.add("....");
+        ucCodes.add("....");
+
+        Collection<Villages> pc = db.getVillageUc();
+        for (Villages p : pc) {
+            ucNames.add(p.getUcname());
+            ucCodes.add(p.getUcid());
+        }
+        bi.mp105.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, ucNames));
 
         bi.mp105.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -158,7 +187,7 @@ public class SectionMPActivity extends AppCompatActivity {
         SaveDraft();
         if (UpdateDB()) {
             finish();
-            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true).putExtra(SELECTED_MODEL, FORM_MP));
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
         }
@@ -190,41 +219,44 @@ public class SectionMPActivity extends AppCompatActivity {
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setAppversion(MainApp.appInfo.getAppVersion());
-
+        //form.set_luid(form.get_luid());
         form.setMp101(bi.mp101.getText().toString().trim().isEmpty() ? "-1" : bi.mp101.getText().toString());
-
-        form.setMp102(bi.mp102.getSelectedItem().toString());
-
-        form.setMp103(bi.mp103.getSelectedItem().toString());
-
+        form.setMp102(MainApp.userName);
+        form.setMp103(MainApp.userName);
         form.setMp104(villageCodes.get(bi.mp104.getSelectedItemPosition()));
-
         form.setMp105(ucCodes.get(bi.mp105.getSelectedItemPosition()));
-
+        //form.setMp106(MainApp.userName);
         form.setMp106(bi.mp106.getText().toString().trim().isEmpty() ? "-1" : bi.mp106.getText().toString());
+        form.setMp107(bi.mp107.getText().toString().trim().isEmpty() ? "-1" : bi.mp107.getText().toString());
 
-
-        form.setMp107(bi.mp10701.isChecked() ? "1"
-                : bi.mp10702.isChecked() ? "2"
-                : bi.mp10703.isChecked() ? "3"
-                : bi.mp1074.isChecked() ? "4"
-                : bi.mp10705.isChecked() ? "5"
-                : bi.mp10706.isChecked() ? "6"
-                : bi.mp10707.isChecked() ? "7"
-                : bi.mp10708.isChecked() ? "8"
-                : bi.mp10709.isChecked() ? "9"
-                : bi.mp10710.isChecked() ? "10"
-                : bi.mp10711.isChecked() ? "11"
+        form.setMp108(bi.mp10801.isChecked() ? "1"
+                : bi.mp10802.isChecked() ? "2"
                 : "-1");
-        form.setMp107x(bi.mp10711x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10711x.getText().toString());
-
-        form.setMp108(bi.mp108.getText().toString().trim().isEmpty() ? "-1" : bi.mp108.getText().toString());
 
         form.setSeem_vid(ucCodes.get(bi.mp105.getSelectedItemPosition()) + villageCodes.get(bi.mp104.getSelectedItemPosition()));
 
-        MainApp.setGPS(this);
+        form.setMp109(bi.mp10901.isChecked() ? "1"
+                : bi.mp10902.isChecked() ? "2"
+                : bi.mp10903.isChecked() ? "3"
+                : bi.mp10904.isChecked() ? "4"
+                : bi.mp10905.isChecked() ? "5"
+                : bi.mp10906.isChecked() ? "6"
+                : bi.mp10907.isChecked() ? "7"
+                : bi.mp10908.isChecked() ? "8"
+                : bi.mp10909.isChecked() ? "9"
+                : bi.mp10910.isChecked() ? "10"
+                : "-1");
+        form.setMp10910x(bi.mp10910x.getText().toString().trim().isEmpty() ? "-1" : bi.mp10910x.getText().toString());
+
+        form.setMp110a(bi.mp110a.getText().toString().trim().isEmpty() ? "-1" : bi.mp110a.getText().toString());
+        form.setMp110b(bi.mp110b.getText().toString().trim().isEmpty() ? "-1" : bi.mp110b.getText().toString());
+        form.setMp110c(bi.mp110c.getText().toString().trim().isEmpty() ? "-1" : bi.mp110c.getText().toString());
+        form.setMp110d(bi.mp110d.getText().toString().trim().isEmpty() ? "-1" : bi.mp110d.getText().toString());
 
 
+        Toast.makeText(getApplicationContext(), ""+this, Toast.LENGTH_SHORT).show();
+
+        MainApp.setGPS(this, FORM_MP);
     }
 
 
