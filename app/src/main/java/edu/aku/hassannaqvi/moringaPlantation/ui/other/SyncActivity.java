@@ -192,6 +192,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
 
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
+
+            Toast.makeText(this, ""+folder, Toast.LENGTH_LONG).show();
+
             boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
