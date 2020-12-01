@@ -298,49 +298,6 @@ public class Assessment extends LiveData<Assessment> {
         this.seem_vid = seem_vid;
     }
 
-    public JSONObject toJSONObject() {
-
-        JSONObject json = new JSONObject();
-        try {
-
-           json.put(AssessmentContract.TableAssessment._ID, this._ID == null ? JSONObject.NULL : this._ID);
-           json.put(AssessmentContract.TableAssessment.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MAUC, this.mauc == null ? JSONObject.NULL : this.mauc);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MAVI, this.mavi == null ? JSONObject.NULL : this.mavi);
-           json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
-           json.put(AssessmentContract.TableAssessment.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
-           json.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
-           //json.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, this.masysdate == null ? JSONObject.NULL : this.masysdate);
-           json.put(AssessmentContract.TableAssessment.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
-           json.put(AssessmentContract.TableAssessment.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
-           json.put(AssessmentContract.TableAssessment.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
-           //json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA101, this.ma101 == null ? JSONObject.NULL : this.ma101);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA102, this.ma102 == null ? JSONObject.NULL : this.ma102);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA103, this.ma103 == null ? JSONObject.NULL : this.ma103);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA104, this.ma104 == null ? JSONObject.NULL : this.ma104);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA105, this.ma105 == null ? JSONObject.NULL : this.ma105);
-           json.put(AssessmentContract.TableAssessment.COLUMN_MA106, this.ma106 == null ? JSONObject.NULL : this.ma106);
-           json.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
-           json.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
-           json.put(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
-           json.put(AssessmentContract.TableAssessment.COLUMN_GPSLAT, this.gpslat == null ? JSONObject.NULL : this.gpslat);
-           json.put(AssessmentContract.TableAssessment.COLUMN_GPSLNG, this.gpslng == null ? JSONObject.NULL : this.gpslng);
-           json.put(AssessmentContract.TableAssessment.COLUMN_GPSDATE, this.gpsdate == null ? JSONObject.NULL : this.gpsdate);
-           json.put(AssessmentContract.TableAssessment.COLUMN_GPSACC, this.gpsacc == null ? JSONObject.NULL : this.gpsacc);
-           json.put(AssessmentContract.TableAssessment.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
-           json.put(AssessmentContract.TableAssessment.COLUMN_DEVICETAGID, this.devicetagid == null ? JSONObject.NULL : this.devicetagid);
-           json.put(AssessmentContract.TableAssessment.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
-           json.put(AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
-           json.put(AssessmentContract.TableAssessment.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
-
-            return json;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public Assessment Sync(JSONObject jsonObject) throws JSONException {
 
         /*this._luid = jsonObject.getString(AssessmentContract.TableAssessment.COLUMN__LUID);
@@ -399,8 +356,6 @@ public class Assessment extends LiveData<Assessment> {
         this.istatus = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS));
         this.istatus96x = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME));
-        this.synced = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE));
         this.appversion = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_APPVERSION));
         this.gpslat = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLAT));
         this.gpslng = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_GPSLNG));
@@ -410,6 +365,47 @@ public class Assessment extends LiveData<Assessment> {
         this.devicetagid = cursor.getString(cursor.getColumnIndex(AssessmentContract.TableAssessment.COLUMN_DEVICETAGID));
 
         return this;
+    }
+
+    public JSONObject toJSONObject() {
+
+        JSONObject json = new JSONObject();
+        try {
+
+            json.put(AssessmentContract.TableAssessment._ID, this._ID == null ? JSONObject.NULL : this._ID);
+            json.put(AssessmentContract.TableAssessment.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MAUC, this.mauc == null ? JSONObject.NULL : this.mauc);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MAVI, this.mavi == null ? JSONObject.NULL : this.mavi);
+            json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
+            json.put(AssessmentContract.TableAssessment.COLUMN__LUID, this._luid == null ? JSONObject.NULL : this._luid);
+            json.put(AssessmentContract.TableAssessment.COLUMN_SEEM_VID, this.seem_vid == null ? JSONObject.NULL : this.seem_vid);
+            //json.put(AssessmentContract.TableAssessment.COLUMN_MASYSDATE, this.masysdate == null ? JSONObject.NULL : this.masysdate);
+            json.put(AssessmentContract.TableAssessment.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
+            json.put(AssessmentContract.TableAssessment.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
+            json.put(AssessmentContract.TableAssessment.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
+            //json.put(AssessmentContract.TableAssessment.COLUMN_PID, this.pid == null ? JSONObject.NULL : this.pid);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA101, this.ma101 == null ? JSONObject.NULL : this.ma101);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA102, this.ma102 == null ? JSONObject.NULL : this.ma102);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA103, this.ma103 == null ? JSONObject.NULL : this.ma103);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA104, this.ma104 == null ? JSONObject.NULL : this.ma104);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA105, this.ma105 == null ? JSONObject.NULL : this.ma105);
+            json.put(AssessmentContract.TableAssessment.COLUMN_MA106, this.ma106 == null ? JSONObject.NULL : this.ma106);
+            json.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
+            json.put(AssessmentContract.TableAssessment.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
+            json.put(AssessmentContract.TableAssessment.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
+            json.put(AssessmentContract.TableAssessment.COLUMN_GPSLAT, this.gpslat == null ? JSONObject.NULL : this.gpslat);
+            json.put(AssessmentContract.TableAssessment.COLUMN_GPSLNG, this.gpslng == null ? JSONObject.NULL : this.gpslng);
+            json.put(AssessmentContract.TableAssessment.COLUMN_GPSDATE, this.gpsdate == null ? JSONObject.NULL : this.gpsdate);
+            json.put(AssessmentContract.TableAssessment.COLUMN_GPSACC, this.gpsacc == null ? JSONObject.NULL : this.gpsacc);
+            json.put(AssessmentContract.TableAssessment.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
+            json.put(AssessmentContract.TableAssessment.COLUMN_DEVICETAGID, this.devicetagid == null ? JSONObject.NULL : this.devicetagid);
+            json.put(AssessmentContract.TableAssessment.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
+
+            return json;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Assessment HydrateA(Cursor cursor) {

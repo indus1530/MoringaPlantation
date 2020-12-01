@@ -169,7 +169,10 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setDeviceTagId(MainApp.appInfo.getTagName());
 
         assessment.setAppversion(MainApp.appInfo.getAppVersion());
-        assessment.setSeem_vid(assessment.getSeem_vid());
+        //assessment.setSeem_vid(assessment.getSeem_vid());
+
+        assessment.setSeem_vid(ucCodes.get(bi.mauc.getSelectedItemPosition()) + villageCodes.get(bi.mavi.getSelectedItemPosition()));
+
         assessment.setMasysdate(assessment.getMasysdate());
 
         //assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
@@ -200,7 +203,17 @@ public class SectionMAActivity extends AppCompatActivity {
 
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName)) {
+            return false;
+        }
+
+        if (PhotoSerial <= 2) {
+            Toast.makeText(this, "Minimum 1 and maximum 4 picture(s) must be taken", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
 
@@ -314,6 +327,8 @@ public class SectionMAActivity extends AppCompatActivity {
 
             startActivityForResult(intent, 1); // Activity is started with requestCode 1 = Front
         }
+
+        //Toast.makeText(this, ""+PhotoSerial, Toast.LENGTH_SHORT).show();
     }
 
      /* onActivityResult(resultCode) 0= Photo Cancel, 1=Photo Taken

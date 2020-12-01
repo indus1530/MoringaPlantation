@@ -163,7 +163,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         "updateSyncedAssesmentForms",
                         Form.class,
                         MainApp._HOST_URL + MainApp._SERVER_URL,
-                        AssessmentContract.TableAssessment.TABLE_NAME + CONSTANTS.FORM_MA,
+                        "form" + CONSTANTS.FORM_MA,
                         db.getUnsyncedAssesmentForms(), 1, syncListAdapter, uploadlist
                 ).execute();
 
@@ -197,6 +197,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             }
 
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
+
+            Toast.makeText(this, ""+folder, Toast.LENGTH_LONG).show();
+
             boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
