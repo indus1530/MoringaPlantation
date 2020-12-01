@@ -124,7 +124,7 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
                     parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
                     parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
                     parameters.set("rotation", 90);
-                    parameters.set("iso", "auto");
+                    parameters.set("iso", "8");
                     //parameters.setPreviewSize(640, 480);
                     //parameters.setPictureSize(640, 480);
                     //parameters.setPictureSize(2576, 1932);

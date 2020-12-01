@@ -15,9 +15,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="37.5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="37.5dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/white"
         app:cardCornerRadius="2dp"
         app:cardElevation="1dp">
@@ -49,9 +50,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginLeft="17.50dp"
+                    android:layout_marginTop="17.50dp"
+                    android:layout_marginRight="17.50dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -59,9 +60,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
                         tools:text="Table Name" />
 
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Status" />
 
                     <ProgressBar
                         android:id="@+id/pb"
@@ -70,24 +76,14 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_status"
-                    style="@style/TextAppearance.AppCompat.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    tools:text="Status" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_margin="12dp"
-                    android:background="#7f7f7f7f" />
+                    android:background="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_msg"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17.50dp"

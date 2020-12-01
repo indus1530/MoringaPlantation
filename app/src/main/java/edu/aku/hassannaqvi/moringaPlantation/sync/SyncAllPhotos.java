@@ -42,10 +42,10 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     private String appFolder;
     private ProgressDialog pd;
 
-    public SyncAllPhotos(String fileName, Context c) {
+    public SyncAllPhotos(String fileName, Context c, ProgressDialog pd) {
         this.mContext = c;
         this.fileName = fileName;
-
+        this.pd = pd;
         sdDir = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         appFolder = PROJECT_NAME;
@@ -54,10 +54,14 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
+/*
         pd = new ProgressDialog(mContext);
-        pd.setTitle("Syncing Photo: " + fileName);
+*/
+        pd.setTitle("Syncing Photos");
         pd.setMessage("Getting connected to server...");
         pd.show();
+
 
     }
 
@@ -67,23 +71,26 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 
 
         filePath = new File(sdDir, appFolder);
+        Log.d(TAG, "doInBackground: filepath: " + filePath);
         try {
             return uploadPhoto(String.valueOf(new File(filePath + File.separator + fileName)));
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         }
-        return "";
+
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        pd.setTitle("Syncing Photos");
+/*        pd.setTitle("Syncing Photos");
         pd.setMessage("Uploading..." + values[0]);
-        pd.show();
+        pd.show();*/
     }
 
     private String uploadPhoto(String filepath) throws Exception {
+        Log.d(TAG, "uploadPhoto: filepath " + filepath);
         HttpURLConnection connection = null;
         DataOutputStream outputStream = null;
         InputStream inputStream = null;
@@ -110,7 +117,7 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
         URL url = null;
 
         url = new URL(MainApp._PHOTO_UPLOAD_URL);
-
+        Log.d(TAG, "uploadPhoto: URL: " + url);
         connection = (HttpURLConnection) url.openConnection();
 
         connection.setDoInput(true);
@@ -192,16 +199,16 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 
                 //TODO:   db.updateUploadedPhoto(jsonObject.getString("id"));  // UPDATE SYNCED
 
-                pd.setMessage("Photo synced:" + fileName);
+/*                pd.setMessage("Photo synced:" + fileName);
                 pd.setTitle("Done uploading Photos");
-                pd.show();
+                pd.show();*/
                 moveFile(fileName);
 
             } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
 
-                pd.setMessage("Duplicate Photo: " + fileName);
+/*                pd.setMessage("Duplicate Photo: " + fileName);
                 pd.setTitle("Done uploading Photos");
-                pd.show();
+                pd.show();*/
                 moveFile(fileName);
 
 
@@ -222,7 +229,7 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     private void moveFile(String inputFile) {
         Toast.makeText(mContext, "Saving Photo...", Toast.LENGTH_LONG).show();
         sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         InputStream in = null;
         OutputStream out = null;
         File inputPath = filePath;
@@ -262,4 +269,5 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
         }
 
     }
+
 }

@@ -1,5 +1,6 @@
 package edu.aku.hassannaqvi.moringaPlantation.ui.other;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -61,6 +63,9 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     List<SyncModel> uploadlist;
     Boolean listActivityCreated;
     Boolean uploadlistActivityCreated;
+    AlertDialog.Builder dialogBuilder;
+    AlertDialog alertDialog;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,8 +256,18 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         finish();
     }
 
+    public void uploadPhoto(View view) {
+        dialogBuilder = new AlertDialog.Builder(this)
+                .setTitle("Photo Upload")
+                .setMessage("Uploading 0 of");
+        alertDialog = dialogBuilder.create();
+        alertDialog.setMessage("First method call");
+        alertDialog.show();
+    }
+
     public void uploadPhotos(View view) {
 
+        pd = new ProgressDialog(SyncActivity.this);
         File sdDir = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
@@ -270,18 +285,70 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             Log.d("Files", "Count: " + files.length);
             if (files.length > 0) {
-                for (File file : files) {
+
+          /*      new AlertDialog.Builder(this)
+                        .setTitle("Photo Upload")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();*/
+
+                dialogBuilder = new AlertDialog.Builder(this)
+                        .setTitle("Photo Upload")
+                        .setMessage("Uploading 0 of" + files.length);
+                alertDialog = dialogBuilder.create();
+                alertDialog.show();
+
+                int fcount = Math.min(files.length, 30);
+                for (int i = 0; i < fcount; i++) {
+                    File file = files[i];
                     Log.d("Files", "FileName:" + file.getName());
-                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this);
+                  /*  alertDialog.setTitle("Photo Upload ("+i+"/"+files.length+")");
+                    alertDialog.setMessage("STARTING: "+ file.getName());
+                    alertDialog.show();*/
+                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this, pd);
                     syncAllPhotos.execute();
+                    Log.d("Uploads", "uploadPhotos: " + syncAllPhotos.getStatus());
 
-                    try {
-                        //3000 ms delay to process upload of next file.
-                        Thread.sleep(3000);
+                   /* if(syncAllPhotos.getStatus() == AsyncTask.Status.PENDING){
+                        // My AsyncTask has not started yet
+                        try {
+                            alertDialog.setTitle("Photo Upload ("+i+"/"+files.length+")");
+                            alertDialog.setMessage("PENDING: "+ file.getName());
+                            alertDialog.show();
+                            i--;
+                            //3000 ms delay to process upload of next file.
+                            Thread.sleep(500);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+
+                    if(syncAllPhotos.getStatus() == AsyncTask.Status.RUNNING){
+                        // My AsyncTask is currently doing work in doInBackground()
+                        try {
+                            alertDialog.setTitle("Photo Upload ("+i+"/"+files.length+")");
+                            alertDialog.setMessage("UPLOADING: "+ file.getName());
+                            alertDialog.show();
+                            i--;
+                            //3000 ms delay to process upload of next file.
+                            Thread.sleep(500);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if(syncAllPhotos.getStatus() == AsyncTask.Status.FINISHED){
+                        // My AsyncTask is done and onPostExecute was called
+
+                    }*/
+
                 }
                 editor.putString("LastPhotoUpload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
                 editor.apply();
