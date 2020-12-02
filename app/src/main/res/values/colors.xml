@@ -2,14 +2,14 @@
 <resources>
 
     <!-- App Theme Colors -->
-    <color name="colorPrimary">#8ca400</color>
-    <color name="colorPrimary_overlay">#7f8ca400</color>
-    <color name="colorPrimaryDark">#3d4100</color>
-    <color name="colorPrimaryDark_overlay">#7f3d4100</color>
-    <color name="colorPrimaryLight">#99cc00</color>
-    <color name="colorPrimaryLight_overlay">#7f99cc00</color>
-    <color name="colorAccent">#ccff00</color>
-    <color name="colorAccent_overlay">#7fccff00</color>
+    <color name="colorPrimary">#33803C</color>
+    <color name="colorPrimary_overlay">#7f65BA45</color>
+    <color name="colorPrimaryDark">#2B6A35</color>
+    <color name="colorPrimaryDark_overlay">#7f2B6A35</color>
+    <color name="colorPrimaryLight">#529B42</color>
+    <color name="colorPrimaryLight_overlay">#7f529B42</color>
+    <color name="colorAccent">#7AC043</color>
+    <color name="colorAccent_overlay">#7f7AC043</color>
 
     <!-- Standard App Colors -->
     <color name="black">#000000</color>

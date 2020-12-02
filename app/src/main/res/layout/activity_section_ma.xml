@@ -139,6 +139,7 @@
 
 
                         <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                            app:theme="@style/DatePickerStyle"
                             android:id="@+id/ma101"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
