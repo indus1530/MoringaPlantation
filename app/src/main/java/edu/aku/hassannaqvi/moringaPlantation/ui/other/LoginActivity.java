@@ -767,6 +767,14 @@ public class LoginActivity extends Activity {
             showProgress(false);
         }
     }
+
+    public void takePhotos(View view) {
+        Intent intent = new Intent(this, TakePhoto.class);
+        intent.putExtra("picID", "901001" + "_" + "A-0001-001" + "_" + "1" + "_");
+        intent.putExtra("childName", "Hassan");
+        intent.putExtra("picView", "test");
+        startActivityForResult(intent, 1);
+    }
 }
 
 

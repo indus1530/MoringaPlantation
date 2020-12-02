@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -29,7 +30,6 @@ import edu.aku.hassannaqvi.moringaPlantation.R;
 import id.zelory.compressor.Compressor;
 
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.PROJECT_NAME;
-
 
 public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camera.PictureCallback {
 
@@ -63,19 +63,15 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
      */
 
     private static final String TAG = "Photo Capture";
-    Camera camera;
-    Context context;
+    Camera mCamera;
+    //Context context;
     LinearLayout btnGrp;
     String picID;
     String picView;
     String childName;
     TextView picInfo;
-    int cameraId = -1;
-    SurfaceHolder surfaceHolder;
-    // Button toggleCamera;
     private boolean previewFlag;
     private String tmpFile = null;
-    private String viewFacing;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,13 +82,11 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         picID = intent.getStringExtra("picID");
         picView = intent.getStringExtra("picView");
         childName = intent.getStringExtra("childName");
-        viewFacing = intent.getStringExtra("viewFacing");
 
         picInfo = findViewById(R.id.picInfo);
         btnGrp = findViewById(R.id.btnGrp);
-//        toggleCamera = findViewById(R.id.toggleCamera);
         btnGrp.setVisibility(View.GONE);
-        //toggleCamera.setVisibility(View.GONE);
+        hideSystemUI();
 
         picInfo.setText(picView + "\r\n For: " + childName);
 
@@ -108,36 +102,36 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 
         SurfaceView surfaceView = findViewById(R.id.CameraView);
-        surfaceHolder = surfaceView.getHolder();
+        SurfaceHolder surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
 
         surfaceView.setFocusable(true);
         surfaceView.setFocusableInTouchMode(true);
         surfaceView.setClickable(true);
-        surfaceView.setOnClickListener(new View.OnClickListener() {
+
+        surfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (previewFlag == false) {
-                    Camera.Parameters parameters = camera.getParameters();
+                    mCamera.cancelAutoFocus();
+                    Camera.Parameters parameters = mCamera.getParameters();
                     //parameters.setJpegQuality(88);
-                    parameters.setAutoWhiteBalanceLock(true);
-                    parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
-                    parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
+
+                    parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
+                    //parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
                     parameters.set("rotation", 90);
-                    parameters.set("iso", "8");
+                    parameters.set("iso", "auto");
                     //parameters.setPreviewSize(640, 480);
-                    //parameters.setPictureSize(640, 480);
+                    //parameters.setPictureSize(2448, 3264);
                     //parameters.setPictureSize(2576, 1932);
                     parameters.setPictureFormat(ImageFormat.JPEG);
-                    camera.setParameters(parameters);
-                    camera.autoFocus(new Camera.AutoFocusCallback() {
+                    mCamera.setParameters(parameters);
+                    mCamera.autoFocus(new Camera.AutoFocusCallback() {
                         @Override
                         public void onAutoFocus(boolean b, Camera camera) {
                             previewFlag = true;
-
                             camera.takePicture(null, null, null, TakePhoto.this);
                             btnGrp.setVisibility(View.VISIBLE);
-                            //toggleCamera.setVisibility(View.GONE);
                         }
                     });
 
@@ -145,8 +139,47 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
                     /*camera.startPreview();
                     previewFlag = false;*/
                 }
+                return false;
             }
         });
+
+
+
+      /*  surfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (previewFlag == false) {
+                    mCamera.cancelAutoFocus();
+                    Camera.Parameters parameters = mCamera.getParameters();
+                    //parameters.setJpegQuality(88);
+
+                    parameters.setAutoWhiteBalanceLock(true);
+                    //parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
+                    parameters.set("rotation", 90);
+                    parameters.set("iso", "auto");
+                    //parameters.setPreviewSize(640, 480);
+                    //parameters.setPictureSize(640, 480);
+                    //parameters.setPictureSize(2576, 1932);
+                    parameters.setPictureFormat(ImageFormat.JPEG);
+
+
+
+                    mCamera.setParameters(parameters);
+                    mCamera.autoFocus(new Camera.AutoFocusCallback() {
+                        @Override
+                        public void onAutoFocus(boolean b, Camera camera) {
+                            previewFlag = true;
+                            camera.takePicture(null, null, null, TakePhoto.this);
+                            btnGrp.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                } else {
+                    *//*camera.startPreview();
+                    previewFlag = false;*//*
+                }
+            }
+        });*/
 
     }
 
@@ -159,11 +192,11 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
             switch (newOrientation) {
                 case Configuration.ORIENTATION_PORTRAIT:
-                    camera.setDisplayOrientation(90);
+                    mCamera.setDisplayOrientation(90);
                     Log.v("TakePhoto", "Orientation = 90");
                     break;
                 case Configuration.ORIENTATION_LANDSCAPE:
-                    camera.setDisplayOrientation(180);
+                    mCamera.setDisplayOrientation(180);
                     Log.v("TakePhoto", "Orientation = 180");
                     break;
             }
@@ -173,30 +206,17 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        // camera = Camera.open();
-        int cameraId = -1;
-        Log.d(TAG, "surfaceCreated: " + viewFacing);
-        if (viewFacing.equals("1")) {
-            cameraId = findFrontFacingCamera();
-            Log.d(TAG, "surfaceCreated: " + viewFacing);
-
-        } else if (viewFacing.equals("2")) {
-            cameraId = findBackFacingCamera();
-            Log.d(TAG, "surfaceCreated: " + viewFacing);
-
-        }
-        if (cameraId < 0) {
-            Toast.makeText(this, "No front facing camera found.",
-                    Toast.LENGTH_LONG).show();
-        }
-
-        camera = Camera.open(cameraId);
-        Camera.Parameters parameters = camera.getParameters();
+        mCamera = Camera.open();
+        Camera.Parameters parameters = mCamera.getParameters();
         List<String> focusModes = parameters.getSupportedFocusModes();
-//        for (String p : focusModes) {
-//            Log.d("TAH", "surfaceCreated: " + p + "\r\n");
-//        }
-//
+        for (String p : focusModes) {
+            Log.d("focusModes", "surfaceCreated: " + p + "\r\n");
+        }
+
+        List<String> whiteBalance = parameters.getSupportedWhiteBalance();
+        for (String p : whiteBalance) {
+            Log.d("whiteBalance", "surfaceCreated: " + p + "\r\n");
+        }
 
         List<Integer> picFormat = parameters.getSupportedPictureFormats();
         for (Integer p : picFormat) {
@@ -204,10 +224,10 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         }
 //
         List<String> colorEffects = parameters.getSupportedColorEffects();
-//        for (String effect : colorEffects) {
-//            Log.d("TAG", effect);
-//        }
-        parameters.setColorEffect(Camera.Parameters.WHITE_BALANCE_AUTO);
+        for (String effect : colorEffects) {
+            Log.d("colorEffects", effect);
+        }
+        //parameters.setColorEffect(Camera.Parameters.WHITE_BALANCE_AUTO);
         //parameters.setPreviewSize(640, 480);
         //parameters.setPictureSize(640, 480);
         if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
@@ -221,11 +241,11 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
         switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
-                camera.setDisplayOrientation(90);
+                mCamera.setDisplayOrientation(90);
                 Log.v("TakePhoto", "Orientation = 90");
                 break;
             case Configuration.ORIENTATION_LANDSCAPE:
-                camera.setDisplayOrientation(180);
+                mCamera.setDisplayOrientation(180);
                 Log.v("TakePhoto", "Orientation = 0");
                 break;
         }
@@ -244,13 +264,13 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             }
         }
         try {
-            camera.setPreviewDisplay(holder);
+            mCamera.setPreviewDisplay(holder);
         } catch (Exception e) {
-            camera.release();
+            mCamera.release();
         }
-        camera.setParameters(parameters);
+        mCamera.setParameters(parameters);
 
-        camera.startPreview();
+        mCamera.startPreview();
     }
 
     @Override
@@ -260,14 +280,15 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        camera.stopPreview();
-        camera.release();
+        mCamera.stopPreview();
+        mCamera.release();
     }
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
-
+        Log.d(TAG, "onPictureTaken: Start");
         File pictureFileDir = getDir(0);
+        Log.d(TAG, "onPictureTaken: Directory Created");
         if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {
 
             Log.d(TAG, "Can't create directory to save image.");
@@ -280,9 +301,10 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss_SSS");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_mm_dd_hh_mm_ss");
         String date = dateFormat.format(new Date());
 
+        //TODO: PhotoID will be sent from calling Activity as StringExtra(). Replace "Cipture"
         String photoFile = picID + "_" + date + "_" + picView + ".jpg";
 
         String filename = pictureFileDir.getPath() + File.separator + photoFile;
@@ -302,7 +324,6 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             Toast.makeText(this, "Image could not be saved.",
                     Toast.LENGTH_LONG).show();
         }
-        camera.stopPreview();
     }
 
     public void dropPhoto(View view) {
@@ -331,12 +352,10 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             setResult(1, intent);
             finish();//finishing activity
             //previewFlag = false;
-        } else {
-            Toast.makeText(this, "TempFile is null", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private File getDir(int i) {
+/*    private File getDir(int i) {
         String appFolder = PROJECT_NAME;
 
         if (i == 1) {
@@ -347,6 +366,24 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             File sdDir = Environment
                     .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             return new File(sdDir, appFolder + File.separator + "temp");
+        }
+    }*/
+
+    private File getDir(int i) {
+        String albumName = PROJECT_NAME;
+
+        if (i == 1) {
+            /*File sdDir = Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
+            File sdDir = new File(this.getExternalFilesDir(
+                    Environment.DIRECTORY_PICTURES), albumName);
+            return sdDir;
+        } else {
+            /*File sdDir = Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
+            File sdDir = new File(this.getExternalFilesDir(
+                    Environment.DIRECTORY_PICTURES), albumName + File.separator + "temp");
+            return sdDir;
         }
     }
 
@@ -386,52 +423,78 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         return inputFile;
     }
 
-/*
-    private void moveFile(String inputFile) {
-        Toast.makeText(this, "Saving Photo...", Toast.LENGTH_LONG).show();
+    /*
+        private void moveFile(String inputFile) {
+            Toast.makeText(this, "Saving Photo...", Toast.LENGTH_LONG).show();
 
-        InputStream in = null;
-        OutputStream out = null;
-        File inputPath = getDir(0);
-        File outputPath = getDir(1);
-        try {
+            InputStream in = null;
+            OutputStream out = null;
+            File inputPath = getDir(0);
+            File outputPath = getDir(1);
+            try {
 
-            //create output directory if it doesn't exist (not needed, just a precaution)
-            //File dir = getDir(1);
-            if (!outputPath.exists()) {
-                outputPath.mkdirs();
+                //create output directory if it doesn't exist (not needed, just a precaution)
+                //File dir = getDir(1);
+                if (!outputPath.exists()) {
+                    outputPath.mkdirs();
+                }
+
+                in = new FileInputStream(inputPath + File.separator + inputFile);
+                File actualImage = new File(inputPath + File.separator + inputFile);
+                File compressedImgFile = new Compressor(this).compressToFile(actualImage);
+                out = new FileOutputStream(outputPath + File.separator + inputFile);
+
+                byte[] buffer = new byte[1024];
+                int read;
+                while ((read = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, read);
+                }
+                in.close();
+                in = null;
+
+                // write the output file
+                out.flush();
+                out.close();
+                out = null;
+
+                // delete the original file
+                new File(inputPath + File.separator + inputFile).delete();
+                Toast.makeText(this, "Photo Saved in " + outputPath + File.separator + inputFile, Toast.LENGTH_SHORT).show();
+
+            } catch (FileNotFoundException fnfe1) {
+                Log.e("tag", fnfe1.getMessage());
+            } catch (Exception e) {
+                Log.e("tag", e.getMessage());
             }
 
-            in = new FileInputStream(inputPath + File.separator + inputFile);
-            File actualImage = new File(inputPath + File.separator + inputFile);
-            File compressedImgFile = new Compressor(this).compressToFile(actualImage);
-            out = new FileOutputStream(outputPath + File.separator + inputFile);
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-            in.close();
-            in = null;
-
-            // write the output file
-            out.flush();
-            out.close();
-            out = null;
-
-            // delete the original file
-            new File(inputPath + File.separator + inputFile).delete();
-            Toast.makeText(this, "Photo Saved in " + outputPath + File.separator + inputFile, Toast.LENGTH_SHORT).show();
-
-        } catch (FileNotFoundException fnfe1) {
-            Log.e("tag", fnfe1.getMessage());
-        } catch (Exception e) {
-            Log.e("tag", e.getMessage());
         }
-
+    */
+    private void hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        // Hide the nav bar and status bar
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-*/
+
+    // Shows the system bars by removing all the flags
+// except for the ones that make the content appear under the system bars.
+    private void showSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    }
 
     @Override
     public void onBackPressed() {
@@ -445,76 +508,4 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         finish();//finishing activity
     }
 
-    public void toggleCamera(View view) {
-        camera.stopPreview();
-        //camera.release();
-
-        int cameraId = -1;
-        Log.d(TAG, "surfaceCreated: " + viewFacing);
-        if (viewFacing.equals("1")) {
-            cameraId = findFrontFacingCamera();
-            Log.d(TAG, "surfaceCreated: " + viewFacing);
-
-        } else if (viewFacing.equals("2")) {
-            cameraId = findBackFacingCamera();
-            Log.d(TAG, "surfaceCreated: " + viewFacing);
-
-        }
-        if (cameraId < 0) {
-            Toast.makeText(this, "No front facing camera found.",
-                    Toast.LENGTH_LONG).show();
-        }
-        Camera.open(cameraId);
-        camera.startPreview();
-    }
-
-    private boolean findFacingCamera() {
-        // Search for the front facing camera
-        int numberOfCameras = Camera.getNumberOfCameras();
-        for (int i = 0; i < numberOfCameras; i++) {
-            Camera.CameraInfo info = new Camera.CameraInfo();
-            Camera.getCameraInfo(i, info);
-            //toggleId = Camera.CameraInfo.CAMERA_FACING_FRONT
-            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-                Log.d("Facing Camera", "Camera found");
-                return true;
-
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    private int findFrontFacingCamera() {
-        int cameraId = -1;
-        // Search for the front facing camera
-        int numberOfCameras = Camera.getNumberOfCameras();
-        for (int i = 0; i < numberOfCameras; i++) {
-            Camera.CameraInfo info = new Camera.CameraInfo();
-            Camera.getCameraInfo(i, info);
-            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-                Log.d("Front Camera", "Camera found");
-                cameraId = i;
-                break;
-            }
-        }
-        return cameraId;
-    }
-
-    private int findBackFacingCamera() {
-        int cameraId = -1;
-        // Search for the back facing camera
-        int numberOfCameras = Camera.getNumberOfCameras();
-        for (int i = 0; i < numberOfCameras; i++) {
-            Camera.CameraInfo info = new Camera.CameraInfo();
-            Camera.getCameraInfo(i, info);
-            if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                Log.d("Back Camera", "Camera found");
-                cameraId = i;
-                break;
-            }
-        }
-        return cameraId;
-    }
 }

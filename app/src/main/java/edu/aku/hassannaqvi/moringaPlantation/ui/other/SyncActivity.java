@@ -34,7 +34,6 @@ import java.util.List;
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
@@ -271,14 +270,15 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     public void uploadPhotos(View view) {
 
         pd = new ProgressDialog(SyncActivity.this);
-        File sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
+        /*File sdDir = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
+        File sdDir = new File(this.getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), PROJECT_NAME);
         Log.d("Files", "Path: " + sdDir);
-        File directory = new File(String.valueOf(sdDir), PROJECT_NAME);
-        Log.d("Directory", "uploadPhotos: " + directory);
-        if (directory.exists()) {
-            File[] files = directory.listFiles(new FileFilter() {
+        //sdDir = new File(String.valueOf(sdDir), PROJECT_NAME);
+        Log.d("Directory", "uploadPhotos: " + sdDir);
+        if (sdDir.exists()) {
+            File[] files = sdDir.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
                     return (file.getPath().endsWith(".jpg") || file.getPath().endsWith(".jpeg"));
@@ -312,7 +312,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                   /*  alertDialog.setTitle("Photo Upload ("+i+"/"+files.length+")");
                     alertDialog.setMessage("STARTING: "+ file.getName());
                     alertDialog.show();*/
-                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this, pd);
+                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this, alertDialog);
                     syncAllPhotos.execute();
                     Log.d("Uploads", "uploadPhotos: " + syncAllPhotos.getStatus());
 

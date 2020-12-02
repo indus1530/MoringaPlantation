@@ -1,11 +1,12 @@
 package edu.aku.hassannaqvi.moringaPlantation.sync;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,15 +41,16 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     private File filePath;
     private File sdDir;
     private String appFolder;
-    private ProgressDialog pd;
+    private AlertDialog pd;
 
-    public SyncAllPhotos(String fileName, Context c, ProgressDialog pd) {
+    public SyncAllPhotos(String fileName, Context c, AlertDialog pd) {
         this.mContext = c;
         this.fileName = fileName;
         this.pd = pd;
-        sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        appFolder = PROJECT_NAME;
+
+        sdDir = new File(mContext.getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), PROJECT_NAME);
+        filePath = sdDir;
     }
 
     @Override
@@ -70,7 +72,9 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     protected String doInBackground(Void... params) {
 
 
+/*
         filePath = new File(sdDir, appFolder);
+*/
         Log.d(TAG, "doInBackground: filepath: " + filePath);
         try {
             return uploadPhoto(String.valueOf(new File(filePath + File.separator + fileName)));
@@ -161,6 +165,7 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
         inputStream = connection.getInputStream();
 
         int status = connection.getResponseCode();
+        Log.d(TAG, "uploadPhoto: " + status);
         if (status == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
@@ -175,10 +180,11 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
             fileInputStream.close();
             outputStream.flush();
             outputStream.close();
-
+            Log.d(TAG, "uploadPhoto: " + response);
             return response.toString();
         } else {
-            throw new Exception("Non ok response returned");
+            //throw new Exception("Non ok response returned");
+            return connection.getResponseMessage();
         }
     }
 
@@ -199,16 +205,16 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 
                 //TODO:   db.updateUploadedPhoto(jsonObject.getString("id"));  // UPDATE SYNCED
 
-/*                pd.setMessage("Photo synced:" + fileName);
-                pd.setTitle("Done uploading Photos");
-                pd.show();*/
+                pd.setMessage("Photo synced:" + fileName);
+                /*               pd.setTitle("Done uploading Photos");*/
+                pd.show();
                 moveFile(fileName);
 
             } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
 
-/*                pd.setMessage("Duplicate Photo: " + fileName);
-                pd.setTitle("Done uploading Photos");
-                pd.show();*/
+                pd.setMessage("Duplicate Photo: " + fileName);
+                /*                   pd.setTitle("Done uploading Photos");*/
+                pd.show();
                 moveFile(fileName);
 
 
@@ -223,13 +229,15 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
             e.printStackTrace();
             Toast.makeText(mContext, "Sync Result:  " + result, Toast.LENGTH_SHORT).show();
             //syncStatus.setText(syncStatus.getText() + "\r\n" + syncClass + " Sync Failed");
+            pd.setMessage(e.getMessage());
+            pd.show();
         }
     }
 
     private void moveFile(String inputFile) {
         Toast.makeText(mContext, "Saving Photo...", Toast.LENGTH_LONG).show();
-        sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        /*sdDir = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
         InputStream in = null;
         OutputStream out = null;
         File inputPath = filePath;

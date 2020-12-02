@@ -247,7 +247,7 @@
     </style>
 
     <style name="quesNum">
-        <item name="android:background">"@drawable/outline_ques_num"</item>
+        <item name="android:background">@drawable/outline_ques_num</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:padding">8dp</item>
