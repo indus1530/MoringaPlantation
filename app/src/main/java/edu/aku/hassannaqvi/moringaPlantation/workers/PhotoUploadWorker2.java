@@ -73,7 +73,6 @@ public class PhotoUploadWorker2 extends Worker {
     @Override
     public Result doWork() {
 
-
         /*File directory = new File(mContext.getExternalFilesDir(
                 Environment.DIRECTORY_PICTURES), PROJECT_NAME);*/
 
@@ -84,7 +83,6 @@ public class PhotoUploadWorker2 extends Worker {
         String res = null;
         try {
             res = uploadPhoto(String.valueOf(new File(sdDir + File.separator + fileZero.getName())));
-
 
         } catch (Exception e) {
             Log.d(TAG, "doWork: " + e.getMessage());
