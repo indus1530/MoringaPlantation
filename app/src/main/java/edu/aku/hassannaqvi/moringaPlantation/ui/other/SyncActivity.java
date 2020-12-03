@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.moringaPlantation.ui.other;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -10,7 +9,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -64,7 +65,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     Boolean uploadlistActivityCreated;
     AlertDialog.Builder dialogBuilder;
     AlertDialog alertDialog;
-    ProgressDialog pd;
+    //ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -269,7 +270,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     public void uploadPhotos(View view) {
 
-        pd = new ProgressDialog(SyncActivity.this);
+        //pd = new ProgressDialog(SyncActivity.this);
         /*File sdDir = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
         File sdDir = new File(this.getExternalFilesDir(
@@ -299,20 +300,30 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();*/
 
-                dialogBuilder = new AlertDialog.Builder(this)
-                        .setTitle("Photo Upload")
-                        .setMessage("Uploading 0 of" + files.length);
+                dialogBuilder = new AlertDialog.Builder(this);
+                        /*.setTitle("Photo Upload")
+                        .setMessage("Uploading 0 of" + files.length);*/
+
+                LayoutInflater inflater = this.getLayoutInflater();
+                View dialogLayout = inflater.inflate(R.layout.photo_sync_dialog, null);
+                // Inflate and set the layout for the dialog
+                // Pass null as the parent view because its going in the dialog layout
+                TextView textView = dialogLayout.findViewById(R.id.txtMessage);
+                TextView uploadCount = dialogLayout.findViewById(R.id.uploadCount);
+                dialogBuilder.setView(dialogLayout);
+
                 alertDialog = dialogBuilder.create();
                 alertDialog.show();
-
                 int fcount = Math.min(files.length, 30);
+
                 for (int i = 0; i < fcount; i++) {
+
                     File file = files[i];
                     Log.d("Files", "FileName:" + file.getName());
                   /*  alertDialog.setTitle("Photo Upload ("+i+"/"+files.length+")");
                     alertDialog.setMessage("STARTING: "+ file.getName());
                     alertDialog.show();*/
-                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this, alertDialog);
+                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this, textView);
                     syncAllPhotos.execute();
                     Log.d("Uploads", "uploadPhotos: " + syncAllPhotos.getStatus());
 
@@ -363,6 +374,12 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         }
 
     }
+
+/*    public void updateCount(int total,){
+
+        uploadCount.setText("(")
+
+    }*/
 
     private class SyncData extends AsyncTask<Boolean, String, String> {
 

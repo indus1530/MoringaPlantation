@@ -266,11 +266,11 @@
                         android:text="Download User Data"
                         android:textColor="@color/white_overlay" />
 
-                    <Button
+               <!--     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="takePhotos"
-                        android:text="Take Photo" />
+                        android:text="Take Photo" />-->
 
                     <TextView
                         android:id="@+id/txtinstalldate"
