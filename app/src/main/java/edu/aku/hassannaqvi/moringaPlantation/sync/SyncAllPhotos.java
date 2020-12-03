@@ -4,9 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,9 +40,9 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
     private File filePath;
     private File sdDir;
     private String appFolder;
-    private AlertDialog pd;
+    private TextView pd;
 
-    public SyncAllPhotos(String fileName, Context c, AlertDialog pd) {
+    public SyncAllPhotos(String fileName, Context c, TextView pd) {
         this.mContext = c;
         this.fileName = fileName;
         this.pd = pd;
@@ -60,9 +59,7 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 /*
         pd = new ProgressDialog(mContext);
 */
-        pd.setTitle("Syncing Photos");
-        pd.setMessage("Getting connected to server...");
-        pd.show();
+
 
 
     }
@@ -205,21 +202,21 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 
                 //TODO:   db.updateUploadedPhoto(jsonObject.getString("id"));  // UPDATE SYNCED
 
-                pd.setMessage("Photo synced:" + fileName);
+                pd.setText(pd.getText() + "\nPhoto synced:" + fileName);
                 /*               pd.setTitle("Done uploading Photos");*/
-                pd.show();
                 moveFile(fileName);
 
             } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
-
-                pd.setMessage("Duplicate Photo: " + fileName);
+                pd.setText(pd.getText() + "\nDuplicate Photo: " + fileName);
                 /*                   pd.setTitle("Done uploading Photos");*/
-                pd.show();
                 moveFile(fileName);
 
 
             } else {
-                sSyncedError.append("\nError: ").append(jsonObject.getString("message"));
+                pd.setText(pd.getText() + "\nERROR: " + fileName);
+                pd.setText(pd.getText() + "         " + jsonObject.getString("message"));
+
+                sSyncedError.append(pd.getText() + "\nError: ").append(jsonObject.getString("message"));
             }
 
 
@@ -229,8 +226,9 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
             e.printStackTrace();
             Toast.makeText(mContext, "Sync Result:  " + result, Toast.LENGTH_SHORT).show();
             //syncStatus.setText(syncStatus.getText() + "\r\n" + syncClass + " Sync Failed");
-            pd.setMessage(e.getMessage());
-            pd.show();
+            pd.setText(pd.getText() + "\nERROR: " + fileName);
+            pd.setText(pd.getText() + e.getMessage());
+
         }
     }
 
