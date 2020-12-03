@@ -197,7 +197,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
 
-            Toast.makeText(this, ""+folder, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "My Toast: "+folder, Toast.LENGTH_SHORT).show();
 
             boolean success = true;
             if (!folder.exists()) {
@@ -378,7 +378,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         protected String doInBackground(Boolean... booleans) {
             runOnUiThread(() -> {
 
-                String[] syncItems = {"User", "VersionApp", "Villages"};
+                String[] syncItems = {"User", "Villages"};
                 for (String syncItem : syncItems) {
                     if (listActivityCreated) {
                         model = new SyncModel();

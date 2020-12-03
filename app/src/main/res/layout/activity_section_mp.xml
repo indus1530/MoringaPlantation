@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <!-- mp101  Input   -->
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp101"
                 style="@style/cardView">
 
@@ -59,6 +59,54 @@
                     </RelativeLayout>
 
                     <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                        android:id="@+id/mp101"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="dd-MM-yyyy"
+                        app:dateFormat="dd-MM-yyyy"
+                        app:maxDate="CR_DATE"
+                        app:minDate="CR_DATE" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>-->
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVmp101"
+                style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom">
+
+                        <TextView
+                            android:id="@+id/qtxt_mp101"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_mp101"
+                            android:text="@string/mp101" />
+
+                        <TextView
+                            android:id="@+id/q_mp101"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_mp101"
+                            android:layout_alignBottom="@id/qtxt_mp101"
+                            android:text="@string/Q_mp101" />
+
+                    </RelativeLayout>
+
+
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                        app:theme="@style/DatePickerStyle"
                         android:id="@+id/mp101"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

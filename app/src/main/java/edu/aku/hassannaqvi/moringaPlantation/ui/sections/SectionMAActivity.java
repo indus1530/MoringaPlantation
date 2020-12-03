@@ -208,7 +208,7 @@ public class SectionMAActivity extends AppCompatActivity {
             return false;
         }
 
-        if (PhotoSerial <= 2) {
+        if (PhotoSerial <= 1 || PhotoSerial >= 5) {
             Toast.makeText(this, "Minimum 1 and maximum 4 picture(s) must be taken", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -313,7 +313,7 @@ public class SectionMAActivity extends AppCompatActivity {
                     ucCodes.get(bi.mauc.getSelectedItemPosition())
                             + "_" + villageCodes.get(bi.mavi.getSelectedItemPosition())
                             + "_" + (bi.mapid.getText().toString().trim().isEmpty() ? "-1" : bi.mapid.getText().toString())
-                            + PhotoSerial + "_"
+                            + PhotoSerial
             );
 
             intent.putExtra("childName", "");

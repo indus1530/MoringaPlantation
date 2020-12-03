@@ -58,11 +58,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "User":
                 position = 0;
                 break;
-            case "VersionApp":
+            /*case "VersionApp":
                 position = 1;
-                break;
+                break;*/
             case "Villages":
-                position = 2;
+                position = 1;
                 break;
             /*case "Assessment":
                 position = 3;
@@ -92,11 +92,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "User":
                 position = 0;
                 break;
-            case "VersionApp":
+            /*case "VersionApp":
                 position = 1;
-                break;
+                break;*/
             case "Villages":
-                position = 2;
+                position = 1;
                 break;
             /*case "Assessment":
                 position = 3;
@@ -122,14 +122,14 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     tableName = UsersContract.UsersTable.TABLE_NAME;
                     position = 0;
                     break;
-                case "VersionApp":
+                /*case "VersionApp":
                     url = new URL(MainApp._UPDATE_URL + VersionAppContract.VersionAppTable.SERVER_URI);
                     position = 1;
-                    break;
+                    break;*/
                 case "Villages":
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
                     tableName = VillagesContract.TableVillage.TABLE_NAME;
-                    position = 2;
+                    position = 1;
                     break;
                 /*case "Assessment":
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
@@ -214,15 +214,15 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             insertCount = db.syncUser(jsonArray);
                             position = 0;
                             break;
-                        case "VersionApp":
+                        /*case "VersionApp":
                             insertCount = db.syncVersionApp(new JSONObject(result));
                             if (insertCount == 1) jsonArray.put("1");
                             position = 1;
-                            break;
+                            break;*/
                         case "Villages":
                             jsonArray = new JSONArray(result);
                             insertCount = db.syncVillage(jsonArray);
-                            position = 2;
+                            position = 1;
                             break;
                         /*case "Assessment":
                             jsonArray = new JSONArray(result);

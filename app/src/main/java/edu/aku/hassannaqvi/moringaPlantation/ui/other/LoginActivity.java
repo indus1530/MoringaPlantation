@@ -199,6 +199,9 @@ public class LoginActivity extends Activity {
             }
 
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
+
+            Toast.makeText(this, "My Toast : "+folder, Toast.LENGTH_SHORT).show();
+
             boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
