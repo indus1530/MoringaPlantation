@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
+import edu.aku.hassannaqvi.moringaPlantation.adapter.UploadListAdapter;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.models.SyncModel;
 
@@ -36,7 +37,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class SyncAllData extends AsyncTask<Void, Integer, String> {
 
     SharedPreferences sharedPref;
-    private SyncListAdapter adapter;
+    private UploadListAdapter adapter;
+    //private SyncListAdapter adapter;
     private List<SyncModel> uploadlist;
     private int position;
     private String TAG;
@@ -47,7 +49,7 @@ public class SyncAllData extends AsyncTask<Void, Integer, String> {
     private Collection dbData;
 
     public SyncAllData(Context mContext, String syncClass, String updateSyncClass, Class contractClass, String url,
-                       String tableName, Collection dbData, int position, SyncListAdapter adapter, List<SyncModel> uploadlist) {
+                       String tableName, Collection dbData, int position, UploadListAdapter adapter, List<SyncModel> uploadlist) {
         this.mContext = mContext;
         this.syncClass = syncClass;
         this.updateSyncClass = updateSyncClass;

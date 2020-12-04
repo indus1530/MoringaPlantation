@@ -35,6 +35,7 @@ import java.util.List;
 import edu.aku.hassannaqvi.moringaPlantation.CONSTANTS;
 import edu.aku.hassannaqvi.moringaPlantation.R;
 import edu.aku.hassannaqvi.moringaPlantation.adapter.SyncListAdapter;
+import edu.aku.hassannaqvi.moringaPlantation.adapter.UploadListAdapter;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract;
 import edu.aku.hassannaqvi.moringaPlantation.core.DatabaseHelper;
 import edu.aku.hassannaqvi.moringaPlantation.core.MainApp;
@@ -56,6 +57,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
     String DirectoryName;
     DatabaseHelper db;
     SyncListAdapter syncListAdapter;
+    UploadListAdapter uploadListAdapter;
     ActivitySyncBinding bi;
     SyncModel model;
     SyncModel uploadmodel;
@@ -74,7 +76,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         bi.setCallback(this);
         list = new ArrayList<>();
         uploadlist = new ArrayList<>();
-        //bi.noItem.setVisibility(View.VISIBLE);
+        bi.noItem.setVisibility(View.VISIBLE);
         bi.noDataItem.setVisibility(View.VISIBLE);
         listActivityCreated = true;
         uploadlistActivityCreated = true;
@@ -87,7 +89,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
         bi.btnSync.setOnClickListener(v -> onSyncDataClick());
         bi.btnUpload.setOnClickListener(v -> syncServer());
-        // setAdapter();
+        setAdapter();
         setUploadAdapter();
     }
 
@@ -101,21 +103,35 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         if (networkInfo != null && networkInfo.isConnected()) {
             /*if (sync_flag) new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(true);
             else new SyncDevice(SyncActivity.this, true).execute();*/
-            new SyncDevice(this, true).execute();
-            new SyncData(this, MainApp.DIST_ID).execute(true);
+            new SyncDevice(SyncActivity.this, true).execute();
+            new SyncData(SyncActivity.this, MainApp.DIST_ID).execute(true);
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
     }
 
+    void setAdapter() {
+        syncListAdapter = new SyncListAdapter(list);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        bi.rvSyncList.setLayoutManager(mLayoutManager);
+        bi.rvSyncList.setItemAnimator(new DefaultItemAnimator());
+        bi.rvSyncList.setAdapter(syncListAdapter);
+        syncListAdapter.notifyDataSetChanged();
+        if (syncListAdapter.getItemCount() > 0) {
+            bi.noItem.setVisibility(View.GONE);
+        } else {
+            bi.noItem.setVisibility(View.VISIBLE);
+        }
+    }
+
     void setUploadAdapter() {
-        syncListAdapter = new SyncListAdapter(uploadlist);
+        uploadListAdapter = new UploadListAdapter(uploadlist);
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
         bi.rvUploadList.setLayoutManager(mLayoutManager2);
         bi.rvUploadList.setItemAnimator(new DefaultItemAnimator());
-        bi.rvUploadList.setAdapter(syncListAdapter);
-        syncListAdapter.notifyDataSetChanged();
-        if (syncListAdapter.getItemCount() > 0) {
+        bi.rvUploadList.setAdapter(uploadListAdapter);
+        uploadListAdapter.notifyDataSetChanged();
+        if (uploadListAdapter.getItemCount() > 0) {
             bi.noDataItem.setVisibility(View.GONE);
         } else {
             bi.noDataItem.setVisibility(View.VISIBLE);
@@ -147,7 +163,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         Form.class,
                         MainApp._HOST_URL + MainApp._SERVER_URL,
                         FormsContract.FormsTable.TABLE_NAME + CONSTANTS.FORM_MP,
-                        db.getUnsyncedForms(), 0, syncListAdapter, uploadlist
+                        db.getUnsyncedForms(), 0, uploadListAdapter, uploadlist
                 ).execute();
 
                 //  *******************************************************Forms*********************************
@@ -164,7 +180,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                         Form.class,
                         MainApp._HOST_URL + MainApp._SERVER_URL,
                         "form" + CONSTANTS.FORM_MA,
-                        db.getUnsyncedAssesmentForms(), 1, syncListAdapter, uploadlist
+                        db.getUnsyncedAssesmentForms(), 1, uploadListAdapter, uploadlist
                 ).execute();
 
             bi.noDataItem.setVisibility(View.GONE);
