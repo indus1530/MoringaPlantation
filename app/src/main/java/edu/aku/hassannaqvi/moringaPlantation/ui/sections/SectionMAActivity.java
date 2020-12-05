@@ -265,7 +265,7 @@ public class SectionMAActivity extends AppCompatActivity {
             return false;
         }
 
-        if (PhotoSerial <= 1 || PhotoSerial >= 5) {
+        if (PhotoSerial <= 1) {
             Toast.makeText(this, "Minimum 1 and maximum 4 picture(s) must be taken", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -327,6 +327,8 @@ public class SectionMAActivity extends AppCompatActivity {
     public void TakePhoto(int id) {
         if (bi.mauc.getSelectedItemPosition() == 0 || bi.mavi.getSelectedItemPosition() == 0 || bi.pid.getSelectedItem().toString().isEmpty()) {
             Toast.makeText(this, "Please fill the form first", Toast.LENGTH_SHORT).show();
+        } else if (PhotoSerial > 4) {
+            Toast.makeText(this, "Maximum 4 pictures are allowed", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, TakePhoto.class);
             intent.putExtra("picID",
