@@ -193,7 +193,7 @@ public class SectionMAActivity extends AppCompatActivity {
         long updcount = db.addAssessment(assessment);
         assessment.set_ID(String.valueOf(updcount));
         if (updcount > 0) {
-            assessment.setUid(assessment.getDeviceid() + assessment.getUid());
+            assessment.setUid(assessment.getDeviceid() + assessment.get_ID());
             db.updatesAssessmentColumn(AssessmentContract.TableAssessment.COLUMN_UID, assessment.getUid());
             return true;
         } else {
@@ -211,6 +211,8 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setFormtype(CONSTANTS.FORM_MA);
         assessment.setUsername(MainApp.userName);
         assessment.setDeviceid(MainApp.appInfo.getDeviceID());
+
+        //assessment.setUid(MainApp.form.get_UID());
 
         assessment.setDeviceTagId(MainApp.appInfo.getTagName());
 
@@ -237,6 +239,13 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.setMavi(villageCodes.get(bi.mavi.getSelectedItemPosition()));
         assessment.setMauc(ucCodes.get(bi.mauc.getSelectedItemPosition()));
         assessment.setPid(bi.pid.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.pid.getSelectedItem().toString());
+
+        String luid;
+        luid = db.getFormUID("form", String.valueOf(assessment.getPid()));
+        Toast.makeText(this, "PID hhh: "+assessment.getPid(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "LUID hhh: "+luid, Toast.LENGTH_SHORT).show();
+        assessment.set_luid(luid);
+
 
         MainApp.setGPS(this, FORM_MA);
     }

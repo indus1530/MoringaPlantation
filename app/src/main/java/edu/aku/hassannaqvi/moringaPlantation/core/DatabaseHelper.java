@@ -34,6 +34,7 @@ import edu.aku.hassannaqvi.moringaPlantation.models.VersionApp;
 import edu.aku.hassannaqvi.moringaPlantation.models.Villages;
 
 import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.assessment;
+import static edu.aku.hassannaqvi.moringaPlantation.core.MainApp.form;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_BL_RANDOM;
@@ -1015,22 +1016,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //Generic update AssessmentColumn
-    public int updatesAssessmentColumn(String column, String value) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(column, value);
-
-        String selection = AssessmentContract.TableAssessment._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.assessment.get_ID())};
-
-        return db.update(AssessmentContract.TableAssessment.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-    }
-
 
     // ANDROID DATABASE MANAGER
     public ArrayList<Cursor> getData(String Query) {
@@ -1444,5 +1429,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from form where cast((SUBSTR(seem_vid, 2, 1)) as int) = "+ uc +" and mp106 not in(select pid from assessment)", null);
         return res;
+    }
+
+
+    public String getFormUID(String tableName, String pid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select _uid from form where mp106 = '" + pid + "'", null);
+        res.moveToFirst();
+        String formUID = res.getString(res.getColumnIndex("_uid"));
+        return formUID;
+    }
+
+    //Generic update AssessmentColumn
+    public int updatesAssessmentColumn(String column, String value) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(column, value);
+        //values.put("_luid", getValueByColumn("form", pid));
+
+        String selection = AssessmentContract.TableAssessment._ID + " =? ";
+        String[] selectionArgs = {String.valueOf(MainApp.assessment.get_ID())};
+
+        return db.update(AssessmentContract.TableAssessment.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
     }
 }

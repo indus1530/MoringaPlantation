@@ -56,7 +56,7 @@ public class SectionMPActivity extends AppCompatActivity {
         setupSkip();
         populateSpinner(this);
 
-        db.resetAll();
+        //db.resetAll();
         //Toast.makeText(this, "Updated: " + new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()), Toast.LENGTH_SHORT).show();
     }
 
