@@ -45,6 +45,8 @@ public class SectionMPActivity extends AppCompatActivity {
     ActivitySectionMpBinding bi;
     private List<String> usersFullName, ucNames, ucCodes, villageNames, villageCodes;
     private DatabaseHelper db;
+    private int PID;
+    int uc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class SectionMPActivity extends AppCompatActivity {
         populateSpinner(this);
 
         db.resetAll();
-        Toast.makeText(this, "Updated: " + new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Updated: " + new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -171,6 +173,38 @@ public class SectionMPActivity extends AppCompatActivity {
                 }
 
                 bi.mp104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
+
+                int selectedUC = bi.mp105.getSelectedItemPosition();
+                if (selectedUC == 1) {
+                    uc = 4;
+                } else if (selectedUC == 2) {
+                    uc = 5;
+                } else if (selectedUC == 3) {
+                    uc = 3;
+                } else if (selectedUC == 4) {
+                    uc = 2;
+                }
+
+                int flag;
+                flag = db.getRecord(uc);
+                if (flag > 0) {
+                    //Toast.makeText(context, "Has Records", Toast.LENGTH_SHORT).show();
+                    PID = db.getPID(uc) + 1;
+                } else {
+                    //Toast.makeText(context, "No Records", Toast.LENGTH_SHORT).show();
+                    if (uc == 2) {
+                        PID = 35001;
+                    } else if (uc == 3) {
+                        PID = 30001;
+                    } else if (uc == 4) {
+                        PID = 20001;
+                    } else if (uc == 5) {
+                        PID = 25001;
+                    }
+                }
+
+                bi.pid.setText(String.valueOf("PID: "+PID));
+                bi.mp106.setText(String.valueOf(PID));
             }
 
             @Override
@@ -261,7 +295,12 @@ public class SectionMPActivity extends AppCompatActivity {
 
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName)) {
+            return false;
+        }
+
+        return true;
     }
 
     /*public void BtnEnd() {

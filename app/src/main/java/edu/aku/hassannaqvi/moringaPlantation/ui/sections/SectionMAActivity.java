@@ -3,6 +3,7 @@ package edu.aku.hassannaqvi.moringaPlantation.ui.sections;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,8 +48,9 @@ public class SectionMAActivity extends AppCompatActivity {
 
     ActivitySectionMaBinding bi;
     private int PhotoSerial;
-    private List<String> ucNames, ucCodes, villageNames, villageCodes;
+    private List<String> ucNames, ucCodes, villageNames, villageCodes, PIDs;
     private DatabaseHelper db;
+    int uc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +120,34 @@ public class SectionMAActivity extends AppCompatActivity {
                 }
 
                 bi.mavi.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
+
+                PIDs = new ArrayList<>();
+                PIDs.add("....");
+                int selectedUC = bi.mauc.getSelectedItemPosition();
+                if (selectedUC == 1) {
+                    uc = 4;
+                } else if (selectedUC == 2) {
+                    uc = 5;
+                } else if (selectedUC == 3) {
+                    uc = 3;
+                } else if (selectedUC == 4) {
+                    uc = 2;
+                }
+
+                Cursor PIDsList = db.getRecords(uc);
+
+                if (PIDsList.getCount() > 0) {
+
+                    PIDsList.moveToFirst();
+                    for (int i = 0; i < PIDsList.getCount(); i++) {
+                        PIDs.add(PIDsList.getString(PIDsList.getColumnIndex("mp106")));
+                        PIDsList.moveToNext();
+                    }
+                }
+
+                //Toast.makeText(context, ""+PIDs, Toast.LENGTH_SHORT);
+
+                bi.pid.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, PIDs));
             }
 
             @Override
@@ -126,6 +156,22 @@ public class SectionMAActivity extends AppCompatActivity {
             }
         });
 
+        bi.pid.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (bi.pid.getSelectedItemPosition() > 0){
+                    bi.GrpName02.setVisibility(view.VISIBLE);
+                } else {
+                    Toast.makeText(context, "Please select a PID", Toast.LENGTH_LONG).show();
+                    bi.GrpName02.setVisibility(view.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -173,13 +219,13 @@ public class SectionMAActivity extends AppCompatActivity {
 
         assessment.setSeem_vid(ucCodes.get(bi.mauc.getSelectedItemPosition()) + villageCodes.get(bi.mavi.getSelectedItemPosition()));
 
-        assessment.setMasysdate(assessment.getMasysdate());
+        //assessment.setMasysdate(assessment.getMasysdate());
 
         //assessment.setPid(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
 
         assessment.setMa101(bi.ma101.getText().toString().trim().isEmpty() ? "-1" : bi.ma101.getText().toString());
         assessment.setMa102(MainApp.userName);
-        assessment.setMa103(bi.ma103.getText().toString().trim().isEmpty() ? "-1" : bi.ma103.getText().toString());
+        assessment.setMa103(MainApp.userName);
 
         assessment.setMa104(bi.ma10401.isChecked() ? "1"
                 : bi.ma10402.isChecked() ? "2"
@@ -190,7 +236,7 @@ public class SectionMAActivity extends AppCompatActivity {
 
         assessment.setMavi(villageCodes.get(bi.mavi.getSelectedItemPosition()));
         assessment.setMauc(ucCodes.get(bi.mauc.getSelectedItemPosition()));
-        assessment.setPid(bi.mapid.getText().toString().trim().isEmpty() ? "-1" : bi.mapid.getText().toString());
+        assessment.setPid(bi.pid.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.pid.getSelectedItem().toString());
 
         MainApp.setGPS(this, FORM_MA);
     }
@@ -203,6 +249,8 @@ public class SectionMAActivity extends AppCompatActivity {
 
 
     private boolean formValidation() {
+
+        Toast.makeText(this, ""+bi.mauc.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName)) {
             return false;
@@ -222,7 +270,7 @@ public class SectionMAActivity extends AppCompatActivity {
     }
 
 
-    public void BtnCheckFUP(View view) {
+    /*public void BtnCheckFUP(View view) {
 
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
@@ -260,59 +308,22 @@ public class SectionMAActivity extends AppCompatActivity {
 
     }
 
-    public void BtnCheckFUP2(View view) {
-
-
-        if (!Validator.emptyCheckingContainer(this, bi.GrpName02)) return;
-
-        getFupByID(bi.ma103.getText().toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Assessment>() {
-                    Disposable disposable;
-
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        disposable = d;
-                    }
-
-                    @Override
-                    public void onNext(Assessment fupContract) {
-                        assessment = fupContract;
-                        setupFields(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        bi.GrpName02.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        disposable.dispose();
-                    }
-                });
-
-
-    }
-
-
     private Observable<Assessment> getFupByID(String pid) {
         return Observable.create(emitter -> {
             emitter.onNext(appInfo.getDbHelper().getAssessment(Integer.valueOf(pid).toString()));
             emitter.onComplete();
         });
-    }
+    }*/
 
     public void TakePhoto(int id) {
-        if (bi.mauc.getSelectedItemPosition() == 0 || bi.mavi.getSelectedItemPosition() == 0 || bi.mapid.getText().toString().trim().isEmpty()) {
+        if (bi.mauc.getSelectedItemPosition() == 0 || bi.mavi.getSelectedItemPosition() == 0 || bi.pid.getSelectedItem().toString().isEmpty()) {
             Toast.makeText(this, "Please fill the form first", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, TakePhoto.class);
             intent.putExtra("picID",
                     ucCodes.get(bi.mauc.getSelectedItemPosition())
                             + "_" + villageCodes.get(bi.mavi.getSelectedItemPosition())
-                            + "_" + (bi.mapid.getText().toString().trim().isEmpty() ? "-1" : bi.mapid.getText().toString())
+                            + "_" + (bi.pid.getSelectedItem().toString().trim().isEmpty() ? "-1" : bi.pid.getSelectedItem().toString())
                             + PhotoSerial
             );
 

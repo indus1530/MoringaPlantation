@@ -3,9 +3,11 @@ package edu.aku.hassannaqvi.moringaPlantation.utils;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.PIDsContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
+import edu.aku.hassannaqvi.moringaPlantation.contracts.PIDsContract;
 
 public final class CreateTable {
 
@@ -123,10 +125,10 @@ public final class CreateTable {
             + " );";
 
 
-/*    public static final String SQL_ALTER_FORMS = "ALTER TABLE " +
-            FormsTable.TABLE_NAME + " ADD COLUMN " +
-            FormsTable.COLUMN_SYSDATE + " TEXT";
-    public static final String SQL_ALTER_CHILD_TABLE = "ALTER TABLE " +
-            ChildTable.TABLE_NAME + " ADD COLUMN " +
-            ChildTable.COLUMN_SYSDATE + " TEXT";*/
+    public static final String SQL_CREATE_PIDs = "CREATE TABLE " + PIDsContract.PIDsTable.TABLE_NAME + " (" +
+            PIDsContract.PIDsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            PIDsContract.PIDsTable.COLUMN_UC_CODE + " TEXT, " +
+            PIDsContract.PIDsTable.COLUMN_PID + " TEXT, " +
+            PIDsContract.PIDsTable.COLUMN_STATUS + " TEXT " +
+            ");";
 }

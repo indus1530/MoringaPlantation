@@ -25,6 +25,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bottom">
+                    <TextView
+                        android:id="@+id/pid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No PID is yet assigned"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
             <!-- mp101  Input   -->
             <!--<androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmp101"
@@ -322,11 +341,12 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mp106"
                         android:inputType="number"
-                        android:maxLength="4"
-                        app:maxValue="9999"
-                        app:minValue="1"
-                        app:mask="####"
-                        app:type="range" />
+                        android:maxLength="5"
+                        app:maxValue="40000"
+                        app:minValue="20001"
+                        app:mask="#####"
+                        app:type="range"
+                        android:enabled="false"/>
 
                 </LinearLayout>
 

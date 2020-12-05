@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
@@ -41,6 +42,7 @@ import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VERSIONAPP;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VILLAGES;
+import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_PIDs;
 
 
 /**
@@ -63,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERSIONAPP);
         db.execSQL(SQL_CREATE_ASSESSMENT);
+        db.execSQL(SQL_CREATE_PIDs);
     }
 
     @Override
@@ -1415,5 +1418,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values2,
                 where2,
                 whereArgs2);
+    }
+
+
+    public int getPID(int uc) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select max(cast(mp106 as int)) as mp106 from form where cast((substr(seem_vid, 2, 1)) as int) = " + uc, null);
+        res.moveToFirst();
+        int pid = Integer.parseInt(res.getString(res.getColumnIndex("mp106")));
+        res.close();
+        db.close();
+        return pid;
+    }
+
+    public int getRecord(int uc) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select cast((substr(seem_vid, 2, 1)) as int) as mp106 from form where cast((substr(seem_vid, 2, 1)) as int) = " + uc, null);
+        return res.getCount();
+    }
+
+    public Cursor getRecords(int uc) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from form where cast((SUBSTR(seem_vid, 2, 1)) as int) = "+ uc +" and mp106 not in(select pid from assessment)", null);
+        return res;
     }
 }
