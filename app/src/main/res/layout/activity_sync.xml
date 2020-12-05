@@ -36,12 +36,12 @@
                 android:text="DATA SYNC ACTIVITY"
                 android:textColor="@color/colorPrimary" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
-
 
                 <Button
                     android:id="@+id/btnSync"
@@ -59,7 +59,6 @@
                 <Button
                     android:id="@+id/btnUpload"
                     style="@style/TextAppearance.AppCompat.Small"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -74,7 +73,6 @@
                 <Button
                     android:id="@+id/btnUploadPhotos"
                     style="@style/TextAppearance.AppCompat.Small"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -85,7 +83,9 @@
                     android:text="Upload Photos"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
             </LinearLayout>
+
 
             <TextView
                 android:id="@+id/activityTitle"
@@ -110,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -118,7 +119,6 @@
 
                         <TextView
                             style="@style/labels"
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="12dp"
@@ -138,7 +138,6 @@
                             android:layout_marginTop="0dp"
                             tools:listitem="@layout/sync_list_adapter" />
 
-
                         <TextView
                             android:id="@+id/no_item"
                             android:layout_width="match_parent"
@@ -148,7 +147,9 @@
                             android:text="No Activty"
                             android:textColor="@color/red"
                             android:visibility="gone" />
+
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -162,7 +163,6 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="12dp"
                             android:layout_marginBottom="1dp"
-
                             android:elevation="1dp"
                             android:gravity="center_horizontal"
                             android:paddingBottom="1dp"
@@ -177,7 +177,6 @@
                             android:layout_height="wrap_content"
                             android:visibility="visible"
                             tools:listitem="@layout/sync_list_adapter">
-
                         </androidx.recyclerview.widget.RecyclerView>
 
                         <TextView
@@ -189,10 +188,18 @@
                             android:text="No Activty"
                             android:textColor="@color/red"
                             android:visibility="gone" />
+
                     </LinearLayout>
+
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
+
     </ScrollView>
+
 </layout>
 
