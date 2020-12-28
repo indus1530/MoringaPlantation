@@ -5,9 +5,7 @@
 
 
     <data>
-
         <import type="android.view.View" />
-
         <variable
             name="callback"
             type="edu.aku.hassannaqvi.moringaPlantation.ui.other.LoginActivity" />

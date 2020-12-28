@@ -211,8 +211,11 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
                 editor.apply();
             }
-
+            File folder = new File(this.getExternalFilesDir(
+                    Environment.DIRECTORY_PICTURES), PROJECT_NAME);
+/*
             File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
+*/
 
             //Toast.makeText(this, "My Toast: "+folder, Toast.LENGTH_SHORT).show();
 
@@ -254,7 +257,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 }
 
             } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Database Backup folder could not created.", Toast.LENGTH_SHORT).show();
             }
         }
 
