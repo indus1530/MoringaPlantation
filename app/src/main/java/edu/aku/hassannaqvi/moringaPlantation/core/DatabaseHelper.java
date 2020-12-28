@@ -43,7 +43,6 @@ import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VERSIONAPP;
 import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_VILLAGES;
-import static edu.aku.hassannaqvi.moringaPlantation.utils.CreateTable.SQL_CREATE_PIDs;
 
 
 /**
@@ -66,7 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_BL_RANDOM);
         db.execSQL(SQL_CREATE_VERSIONAPP);
         db.execSQL(SQL_CREATE_ASSESSMENT);
-        db.execSQL(SQL_CREATE_PIDs);
     }
 
     @Override

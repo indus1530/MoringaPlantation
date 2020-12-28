@@ -3,11 +3,9 @@ package edu.aku.hassannaqvi.moringaPlantation.utils;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.AssessmentContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.BLRandomContract.BLRandomTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.FormsContract.FormsTable;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.PIDsContract;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VersionAppContract.VersionAppTable;
 import edu.aku.hassannaqvi.moringaPlantation.contracts.VillagesContract;
-import edu.aku.hassannaqvi.moringaPlantation.contracts.PIDsContract;
 
 public final class CreateTable {
 
@@ -123,12 +121,4 @@ public final class CreateTable {
             + AssessmentContract.TableAssessment.COLUMN_SYNCED + " TEXT,"
             + AssessmentContract.TableAssessment.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
-
-
-    public static final String SQL_CREATE_PIDs = "CREATE TABLE " + PIDsContract.PIDsTable.TABLE_NAME + " (" +
-            PIDsContract.PIDsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            PIDsContract.PIDsTable.COLUMN_UC_CODE + " TEXT, " +
-            PIDsContract.PIDsTable.COLUMN_PID + " TEXT, " +
-            PIDsContract.PIDsTable.COLUMN_STATUS + " TEXT " +
-            ");";
 }
