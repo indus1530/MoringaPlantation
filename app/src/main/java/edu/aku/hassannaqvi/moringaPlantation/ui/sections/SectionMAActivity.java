@@ -135,7 +135,6 @@ public class SectionMAActivity extends AppCompatActivity {
                 }
 
                 Cursor PIDsList = db.getRecords(uc);
-
                 if (PIDsList.getCount() > 0) {
 
                     PIDsList.moveToFirst();
@@ -144,9 +143,6 @@ public class SectionMAActivity extends AppCompatActivity {
                         PIDsList.moveToNext();
                     }
                 }
-
-                //Toast.makeText(context, ""+PIDs, Toast.LENGTH_SHORT);
-
                 bi.pid.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, PIDs));
             }
 
@@ -247,7 +243,7 @@ public class SectionMAActivity extends AppCompatActivity {
         assessment.set_luid(luid);
 
 
-        MainApp.setGPS(this, FORM_MA);
+        //MainApp.setGPS(this, FORM_MA);
     }
 
 
@@ -265,7 +261,7 @@ public class SectionMAActivity extends AppCompatActivity {
             return false;
         }
 
-        if (PhotoSerial <= 1) {
+        if (PhotoSerial <= 1 && PhotoSerial > 4) {
             Toast.makeText(this, "Minimum 1 and maximum 4 picture(s) must be taken", Toast.LENGTH_LONG).show();
             return false;
         }

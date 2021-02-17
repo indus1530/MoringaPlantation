@@ -250,6 +250,12 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <!--     <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="takePhotos"
+                        android:text="Take Photo" />-->
+
                     <Button
                         android:id="@+id/syncData"
                         android:layout_width="wrap_content"
@@ -263,12 +269,6 @@
 
                         android:text="Download User Data"
                         android:textColor="@color/white_overlay" />
-
-               <!--     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="takePhotos"
-                        android:text="Take Photo" />-->
 
                     <TextView
                         android:id="@+id/txtinstalldate"

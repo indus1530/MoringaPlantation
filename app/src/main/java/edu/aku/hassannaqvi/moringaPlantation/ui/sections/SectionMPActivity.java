@@ -290,7 +290,7 @@ public class SectionMPActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), ""+this, Toast.LENGTH_SHORT).show();
 
-        MainApp.setGPS(this, FORM_MP);
+        //MainApp.setGPS(this, FORM_MP);
     }
 
 
