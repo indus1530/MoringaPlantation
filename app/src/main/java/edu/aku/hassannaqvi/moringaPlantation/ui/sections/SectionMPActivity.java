@@ -174,7 +174,7 @@ public class SectionMPActivity extends AppCompatActivity {
 
                 bi.mp104.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, villageNames));
 
-                int selectedUC = bi.mp105.getSelectedItemPosition();
+                /*int selectedUC = bi.mp105.getSelectedItemPosition();
                 if (selectedUC == 1) {
                     uc = 4;
                 } else if (selectedUC == 2) {
@@ -184,7 +184,6 @@ public class SectionMPActivity extends AppCompatActivity {
                 } else if (selectedUC == 4) {
                     uc = 2;
                 }
-
                 int flag;
                 flag = db.getRecord(uc);
                 if (flag > 0) {
@@ -202,9 +201,8 @@ public class SectionMPActivity extends AppCompatActivity {
                         PID = 25001;
                     }
                 }
-
                 bi.pid.setText(String.valueOf("PID: "+PID));
-                bi.mp106.setText(String.valueOf(PID));
+                bi.mp106.setText(String.valueOf(PID));*/
             }
 
             @Override
@@ -298,6 +296,18 @@ public class SectionMPActivity extends AppCompatActivity {
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName)) {
             return false;
+        }
+
+        int flag;
+
+        if (!bi.mp106.getText().toString().trim().isEmpty()) {
+
+            flag = db.getRecord2(bi.mp106.getText().toString().trim());
+            if (flag > 0) {
+                bi.mp106.setError("PID already exists");
+                bi.mp106.requestFocus();
+                return false;
+            }
         }
 
         return true;

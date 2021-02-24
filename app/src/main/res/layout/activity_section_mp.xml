@@ -345,8 +345,7 @@
                         app:maxValue="40000"
                         app:minValue="20001"
                         app:mask="#####"
-                        app:type="range"
-                        android:enabled="false"/>
+                        app:type="range"/>
 
                 </LinearLayout>
 

@@ -1422,6 +1422,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res.getCount();
     }
 
+    public int getRecord2(String mp106) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select mp106 from form where mp106 = " + mp106, null);
+        return res.getCount();
+    }
+
     public Cursor getRecords(int uc) {
 
         SQLiteDatabase db = this.getWritableDatabase();
